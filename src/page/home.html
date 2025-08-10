@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <title>Внутренний портал — каркас</title>
+</head>
+<body>
+<!-- ===== Шапка ===== -->
+<header class="header">
+    <div class="header__inner">
+        <div class="header__left">
+            <a class="header__logo" href="/">
+                <img class="header__logo-img" src="/images/Header.svg" width="80px" height="43px" alt="Логотип Ostec" />
+            </a>
+            <div class="header__divider" aria-hidden="true"></div>
+            <div class="header__loc">
+                <span class="header__city">Москва,</span>
+                <span class="header__time">12:20</span>
+            </div>
+            <div class="header__divider" aria-hidden="true"></div>
+            <div class="header__search">
+                <input class="header__search-input" type="search" placeholder="Поиск..." />
+            </div>
+        </div>
+
+        <div class="header__right">
+            <div class="header__status">
+                <button class="header__status-btn" type="button" aria-haspopup="menu" aria-expanded="false">
+                    <img class="header__icon" src="/images/icons/work.svg" alt="" aria-hidden="true" />
+                    <span>В офисе</span>
+                    <img class="header__chevron" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true" />
+                </button>
+            </div>
+            <div class="header__notify">
+                <button class="header__notify-btn" type="button" aria-label="Открыть уведомления">
+                    <img class="header__icon" src="/images/icons/bell.svg" alt="" aria-hidden="true" />
+                    <span class="header__notify-badge">1</span>
+                </button>
+            </div>
+            <div class="header__profile">
+                <img class="header__avatar" src="/images/header_avatar.png" alt="Аватар: Константин" />
+                <div class="header__profile-text">
+                    <div class="header__profile-name">Константин</div>
+                    <div class="header__profile-surname">Константинопольский</div>
+                </div>
+                <button class="header__icon-btn" type="button" aria-label="Открыть меню">
+                    <img class="header__icon" src="/images/icons/work.svg" alt="" aria-hidden="true" />
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <!-- ===== Левый сайдбар ===== -->
+    <aside class="sidebar sidebar--collapsed" aria-label="Главная навигация">
+        <nav class="sidebar__nav">
+            <ul class="sidebar__group">
+                <li class="sidebar__item">
+                    <button class="sidebar__btn sidebar__btn--active" type="button" aria-label="Главная">
+                        <img class="sidebar__icon" src="/images/icons/home.svg" alt="" aria-hidden="true">
+<!--                        <span class="sidebar__label">Главная</span>-->
+                    </button>
+                </li>
+                <li class="sidebar__item">
+                    <button class="sidebar__btn" type="button" aria-label="Задачи и проекты">
+                        <img class="sidebar__icon" src="/images/icons/inventory.svg" alt="" aria-hidden="true">
+<!--                        <span class="sidebar__label">Задачи и проекты</span>-->
+                    </button>
+                </li>
+                <li class="sidebar__item">
+                    <button class="sidebar__btn" type="button" aria-label="Сотрудники">
+                        <img class="sidebar__icon" src="/images/icons/people.svg" alt="" aria-hidden="true">
+<!--                        <span class="sidebar__label">Сотрудники</span>-->
+                    </button>
+                </li>
+                <li class="sidebar__item">
+                    <button class="sidebar__btn" type="button" aria-label="Новости">
+                        <img class="sidebar__icon" src="/images/icons/note.svg" alt="" aria-hidden="true">
+<!--                        <span class="sidebar__label">Новости</span>-->
+                    </button>
+                </li>
+                <li class="sidebar__item">
+                    <button class="sidebar__btn" type="button" aria-label="События">
+                        <img class="sidebar__icon" src="/images/icons/calendare.svg" alt="" aria-hidden="true">
+<!--                        <span class="sidebar__label">События</span>-->
+                    </button>
+                </li>
+                <li class="sidebar__item">
+                    <button class="sidebar__btn" type="button" aria-label="База знаний">
+                        <img class="sidebar__icon" src="/images/icons/study.svg" alt="" aria-hidden="true">
+<!--                        <span class="sidebar__label">База знаний</span>-->
+                    </button>
+                </li>
+                <li class="sidebar__item">
+                    <button class="sidebar__btn" type="button" aria-label="Банк идей">
+                        <img class="sidebar__icon" src="/images/icons/light.svg" alt="" aria-hidden="true">
+<!--                        <span class="sidebar__label">Банк идей</span>-->
+                    </button>
+                </li>
+            </ul>
+
+            <ul class="sidebar__group sidebar__group--footer">
+                <li class="sidebar__item">
+                    <button class="sidebar__btn" type="button" aria-label="Помощь">
+                        <img class="sidebar__icon" src="/images/icons/headset_mic.svg" alt="" aria-hidden="true">
+<!--                        <span class="sidebar__label">Помощь</span>-->
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- ===== Центральная колонка ===== -->
+    <section class="main">
+        <!-- Верхние виджеты -->
+        <div class="widgets-row">
+            <div class="info-widget">
+                <div class="info-widget__header">
+                    <strong>Понедельник, 26 сентября</strong>
+                </div>
+
+                <div class="info-widget__body">
+                    <div class="info-widget__weather">
+                        <div class="info-widget__weather-left">
+                            <img class="info-widget__weather-icon" src="/images/weather.png" alt="" aria-hidden="true">
+                            <div class="info-widget__temp">12°</div>
+                        </div>
+
+                        <div class="info-widget__weather-place">
+                            <div class="info-widget__city">
+                                <img class="info-widget__pin" src="/images/icons/Vector.svg" alt="" aria-hidden="true">
+                                <span>Москва</span>
+                            </div>
+                            <div class="info-widget__status meta">Облачно</div>
+                        </div>
+                    </div>
+
+                    <hr class="info-widget__divider" aria-hidden="true">
+
+                    <div class="info-widget__rates">
+                        <div class="info-widget__subtitle">Курс валют</div>
+
+                        <div class="rates">
+                            <div class="rates__item">
+                                <span class="rates__code">USD</span>
+                                <div class="rates__price">
+                                    <img class="rates_triangle" src="/images/icons/down_price.svg" alt="" aria-hidden="true">
+                                    <span class="rates__value">78,85</span>
+                                </div>
+                            </div>
+                            <div class="rates__item">
+                                <span class="rates__code">EUR</span>
+                                <div class="rates__price">
+                                    <img class="rates_triangle" src="/images/icons/down_price.svg" alt="" aria-hidden="true">
+                                    <span class="rates__value">78,85</span>
+                                </div>
+                            </div>
+                            <div class="rates__item">
+                                <span class="rates__code">CNY</span>
+                                <div class="rates__price">
+                                    <img class="rates_triangle" src="/images/icons/up_price.svg" alt="" aria-hidden="true">
+                                    <span class="rates__value">78,85</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-offers">
+                <div class="card-offers__header">
+                    <strong>Актуальные предложения</strong>
+                </div>
+
+                <div class="card-body">
+                    <!-- Слайдер -->
+                    <div class="offers__slider swiper">
+                        <div class="offers__wrapper swiper-wrapper">
+                            <a class="offers__slide swiper-slide" href="#">
+                                <img class="offers__image" src="/images/baner.png" alt="Учите английский со скидкой до 26%">
+                            </a>
+
+                            <a class="offers__slide swiper-slide" href="#">
+                                <img class="offers__image" src="/images/baner.png" alt="Учите английский со скидкой до 26%">
+                            </a>
+
+                            <a class="offers__slide swiper-slide" href="#">
+                                <img class="offers__image" src="/images/baner.png" alt="Учите английский со скидкой до 26%">
+                            </a>
+                        </div>
+
+                        <!-- Пагинация-точки -->
+                        <div class="offers__pagination swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Новости / события -->
+        <div class="card-header section-head">
+            <nav class="breadcrumbs" aria-label="Хлебные крошки">
+                <ol class="breadcrumbs__list">
+                    <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link breadcrumbs__link--active" href="#">Новости</a>
+                    </li>
+                    <li class="breadcrumbs__sep" aria-hidden="true">/</li>
+                    <li class="breadcrumbs__item">
+                        <span class="breadcrumbs__current" aria-current="page">События</span>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="section-head__actions">
+                <button class="section-head__btn" type="button">
+                    <span>Все компании</span>
+                    <img class="section-head__icon" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                </button>
+
+                <a class="section-head__link" href="#">
+                    <span>Все новости</span>
+                    <img class="section-head__icon right" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                </a>
+            </div>
+        </div>
+
+
+        <div class="card-body">
+            <div class="news-list">
+                <article class="news">
+                    <div class="thumb"></div>
+                    <div>
+                        <div class="title">Заголовок новости</div>
+                        <p class="excerpt">Короткий текст новости-превью для макета. Длинный текст длинный текст длинный...</p>
+                        <div class="meta">
+                            <span>18 сентября 09:25</span>
+                            <span style="margin: 0 8px;">•</span>
+                            <span>ТЕГ</span>
+                            <span style="margin: 0 8px;">•</span>
+                            <span>12 комментариев</span>
+                        </div>
+                        <div class="meta" style="display:flex; gap:16px; margin-top:6px;">
+                            <span>👍 5</span><span>💬 0</span><span>👁 42</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news">
+                    <div class="thumb"></div>
+                    <div>
+                        <div class="title">Заголовок новости</div>
+                        <p class="excerpt">Превью текста новости...</p>
+                        <div class="meta"><span>20 сентября</span> <span style="margin:0 8px;">•</span> <span>ТЕГ</span></div>
+                    </div>
+                </article>
+
+                <!-- Дублируйте блок .news под нужное количество -->
+            </div>
+
+            <div style="display:flex; justify-content:center; margin-top:16px;">
+                <button class="icon-btn" style="width:auto; padding:10px 16px;">Показать ещё</button>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- ===== Правый сайдбар ===== -->
+    <aside class="rightbar">
+        <div class="card">
+            <div class="card-header"><strong>Быстрые разделы</strong><a class="meta" href="#">Все</a></div>
+            <div class="card-body">
+                <div class="widget-list">
+                    <div class="list-item"><div class="icon-btn">🏢</div><div>Структура компании</div></div>
+                    <div class="list-item"><div class="icon-btn">📒</div><div>Адресная книга</div></div>
+                    <div class="list-item"><div class="icon-btn">🏬</div><div>Бронирование переговорок</div></div>
+                    <div class="list-item"><div class="icon-btn">📞</div><div>Справочник</div></div>
+                    <div class="list-item"><div class="icon-btn">💡</div><div>Подать идею</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><strong>События</strong><a class="meta" href="#">Все</a></div>
+            <div class="card-body">
+                <div class="calendar">
+                    <div class="meta">Сентябрь 2022</div>
+                    <div class="month" aria-label="Мини-календарь">
+                        <div class="day">Пн</div>
+                        <div class="day">Вт</div>
+                        <div class="day">Ср</div>
+                        <div class="day">Чт</div>
+                        <div class="day">Пт</div>
+                        <div class="day">Сб</div>
+                        <div class="day">Вс</div>
+                        <!-- здесь будут клетки дней; это просто заголовки -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><strong>Дни рождения</strong><a class="meta" href="#">Все</a></div>
+            <div class="card-body">
+                <div class="list">
+                    <div class="list-item"><div class="avatar"></div><div><div>Иванов Иван</div><div class="meta">Сегодня</div></div><button class="icon-btn">🎉</button></div>
+                    <div class="list-item"><div class="avatar"></div><div><div>Петров Петр</div><div class="meta">21.09</div></div><button class="icon-btn">🎁</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><strong>Новые сотрудники</strong></div>
+            <div class="card-body">
+                <div class="list">
+                    <div class="list-item"><div class="avatar"></div><div><div>Евгений Брусницын</div><div class="meta">Сегодня • 21:08</div></div></div>
+                    <div class="list-item"><div class="avatar"></div><div><div>Имя Фамилия</div><div class="meta">Вчера</div></div></div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <aside class="right-rail" aria-label="Быстрые действия справа">
+        <nav class="right-rail__nav">
+            <ul class="right-rail__group">
+                <li class="right-rail__item">
+                    <button class="right-rail__btn" type="button" aria-label="Заявки">
+                        <img class="right-rail__icon" src="/images/icons/mark_chat.svg" alt="" aria-hidden="true">
+                    </button>
+                </li>
+                <div class="right-rail__divider" role="separator" aria-hidden="true"></div>
+                <li class="right-rail__item">
+                    <button class="right-rail__btn" type="button" aria-label="Заметки">
+                        <img class="right-rail__icon" src="/images/icons/edit_square.svg" alt="" aria-hidden="true">
+                    </button>
+                </li>
+                <div class="right-rail__divider" role="separator" aria-hidden="true"></div>
+                <li class="right-rail__item">
+                    <button class="right-rail__btn" type="button" aria-label="Поиск">
+                        <img class="right-rail__icon" src="/images/icons/search.svg" alt="" aria-hidden="true">
+                    </button>
+                </li>
+            </ul>
+
+            <div class="right-rail__divider" role="separator" aria-hidden="true"></div>
+
+            <ul class="right-rail__group right-rail__group--avatars">
+                <!-- аватар с индикатором онлайн -->
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Иван Петров, онлайн">
+                        <img src="/images/ava1.png" alt="" />
+                        <span class="right-rail__status right-rail__status--online" aria-hidden="true"></span>
+                    </button>
+                </li>
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Мария Смирнова">
+                        <img src="/images/ava2.png" alt="" />
+                    </button>
+                </li>
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Алексей Орлов">
+                        <img src="/images/ava3.png" alt="" />
+                    </button>
+                </li>
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Екатерина Иванова">
+                        <img src="/images/header_avatar.png" alt="" />
+                    </button>
+                </li>
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Сергей Ким">
+                        <img src="/images/ava4.png" alt="" />
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+</main>
+
+<footer>© 2025 Остек — демо-каркас</footer>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="../index.js"></script>
+</body>
+</html>
