@@ -482,34 +482,127 @@
             </nav>
         </aside>
 
-        <div class="card">
-            <div class="card-header"><strong>События</strong><a class="meta" href="#">Все</a></div>
-            <div class="card-body">
-                <div class="calendar">
-                    <div class="meta">Сентябрь 2022</div>
-                    <div class="month" aria-label="Мини-календарь">
-                        <div class="day">Пн</div>
-                        <div class="day">Вт</div>
-                        <div class="day">Ср</div>
-                        <div class="day">Чт</div>
-                        <div class="day">Пт</div>
-                        <div class="day">Сб</div>
-                        <div class="day">Вс</div>
-                        <!-- здесь будут клетки дней; это просто заголовки -->
-                    </div>
-                </div>
+        <aside class="events">
+            <div class="events__header">
+                <strong class="events__title">События</strong>
+                <a class="events__all" href="#">
+                    <span>Все</span>
+                    <img class="events__all-ico" src="/images/icons/arrow_right.svg" alt="" aria-hidden="true">
+                </a>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-header"><strong>Дни рождения</strong><a class="meta" href="#">Все</a></div>
-            <div class="card-body">
-                <div class="list">
-                    <div class="list-item"><div class="avatar"></div><div><div>Иванов Иван</div><div class="meta">Сегодня</div></div><button class="icon-btn">🎉</button></div>
-                    <div class="list-item"><div class="avatar"></div><div><div>Петров Петр</div><div class="meta">21.09</div></div><button class="icon-btn">🎁</button></div>
+            <div class="events__body">
+                <!-- шапка дней недели -->
+                <div class="events__weekdays">
+                    <span class="events__wd">Пн</span>
+                    <span class="events__wd">Вт</span>
+                    <span class="events__wd">Ср</span>
+                    <span class="events__wd">Чт</span>
+                    <span class="events__wd">Пт</span>
+                    <span class="events__wd events__wd--weekend">Сб</span>
+                    <span class="events__wd events__wd--weekend">Вс</span>
                 </div>
+
+                <!-- сетка дней месяца -->
+                <div class="events__days" data-events-days aria-label="Мини-календарь" role="grid"></div>
+
+
+                <!-- выбранные даты / события -->
+                <hr class="events__divider" aria-hidden="true">
+                <div class="events__list" data-events-list aria-live="polite"></div>
             </div>
-        </div>
+        </aside>
+
+        <aside class="birthdays">
+            <div class="birthdays__header">
+                <strong class="birthdays__title">Дни рождения</strong>
+                <a class="birthdays__all" href="#">
+                    <span>Все</span>
+                    <img class="birthdays__all-ico" src="/images/icons/arrow_right.svg" alt="" aria-hidden="true">
+                </a>
+            </div>
+
+            <!-- Полоса выбора дня -->
+            <div class="birthdays__days">
+                <button class="birthdays__nav birthdays__nav--prev" type="button" aria-label="Назад">
+                    <img src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                </button>
+
+                <div class="birthdays__strip" role="tablist" aria-label="Дни">
+                    <button class="birthdays__day" type="button" role="tab"><span class="birthdays__day-num">20</span></button>
+                    <button class="birthdays__day" type="button" role="tab"><span class="birthdays__day-num">21</span></button>
+                    <button class="birthdays__day birthdays__day--active" type="button" role="tab" aria-selected="true">
+                        <span class="birthdays__day-num">22</span>
+                        <span class="birthdays__day-mon">авг</span>
+                    </button>
+                    <button class="birthdays__day" type="button" role="tab"><span class="birthdays__day-num">23</span></button>
+                    <button class="birthdays__day" type="button" role="tab"><span class="birthdays__day-num">24</span></button>
+                </div>
+
+                <button class="birthdays__nav birthdays__nav--next" type="button" aria-label="Вперёд">
+                    <img src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                </button>
+            </div>
+
+            <!-- Список людей -->
+            <div class="birthdays__list">
+                <article class="birthdays__item">
+                    <img class="birthdays__avatar" src="/images/header_avatar.png" alt="Фото: Иванов Евгений">
+
+                    <div class="birthdays__person">
+                        <div class="birthdays__name1">Иванов</div>
+                        <div class="birthdays__name2">
+                            Евгений Борисович
+                            <img class="birthdays__name-ico" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                        </div>
+
+                        <div class="birthdays__company">Компания</div>
+                        <div class="birthdays__dept">Подразделение</div>
+                        <div class="birthdays__role">Должность</div>
+                    </div>
+
+                    <time class="birthdays__date" datetime="2025-08-21">21.08</time>
+
+                    <div class="birthdays__footer">
+                        <div class="birthdays__icons">
+                            <img class="birthdays__ico" src="/images/icons/bell.svg" alt="" aria-hidden="true">
+                        </div>
+                        <a class="birthdays__btn" href="#">
+                            <img class="birthdays__btn-ico" src="/images/icons/gift.svg" alt="" aria-hidden="true">
+                            <span>Поздравить</span>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="birthdays__item">
+                    <img class="birthdays__avatar" src="/images/header_avatar.png" alt="Фото: Иванов Евгений">
+
+                    <div class="birthdays__person">
+                        <div class="birthdays__name1">Иванов</div>
+                        <div class="birthdays__name2">
+                            Евгений Борисович
+                            <img class="birthdays__name-ico" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                        </div>
+
+                        <div class="birthdays__company">Компания</div>
+                        <div class="birthdays__dept">Подразделение</div>
+                        <div class="birthdays__role">Должность</div>
+                    </div>
+
+                    <time class="birthdays__date" datetime="2025-08-21">21.08</time>
+
+                    <div class="birthdays__footer">
+                        <div class="birthdays__icons">
+                            <img class="birthdays__ico" src="/images/icons/bell.svg" alt="" aria-hidden="true">
+                        </div>
+                        <a class="birthdays__btn" href="#">
+                            <img class="birthdays__btn-ico" src="/images/icons/gift.svg" alt="" aria-hidden="true">
+                            <span>Поздравить</span>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </aside>
 
         <div class="card">
             <div class="card-header"><strong>Новые сотрудники</strong></div>
