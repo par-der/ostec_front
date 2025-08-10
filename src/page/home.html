@@ -604,15 +604,86 @@
             </div>
         </aside>
 
-        <div class="card">
-            <div class="card-header"><strong>Новые сотрудники</strong></div>
-            <div class="card-body">
-                <div class="list">
-                    <div class="list-item"><div class="avatar"></div><div><div>Евгений Брусницын</div><div class="meta">Сегодня • 21:08</div></div></div>
-                    <div class="list-item"><div class="avatar"></div><div><div>Имя Фамилия</div><div class="meta">Вчера</div></div></div>
-                </div>
+        <aside class="hires" data-widget="hires">
+            <div class="hires__header">
+                <strong class="hires__title">Новые сотрудники</strong>
             </div>
-        </div>
+
+            <div class="hires__list" data-el="list">
+                <article class="hires__item">
+                    <img class="hires__avatar" src="/images/header_avatar.png" alt="Фото: Иванов Евгений">
+
+                    <div class="hires__person">
+                        <div class="hires__name1">Иванов</div>
+                        <div class="hires__name2">
+                            Евгений Борисович
+                            <img class="hires__name-ico" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                        </div>
+
+                        <div class="hires__company">Компания</div>
+                        <div class="hires__dept">Подразделение</div>
+                        <div class="hires__role">Должность</div>
+                    </div>
+
+                    <time class="hires__date" datetime="2025-08-21">21.08</time>
+
+                    <div class="hires__footer">
+                        <a class="hires__btn" href="#">
+                            <img class="hires__btn-ico" src="/images/icons/waving_hand.svg" alt="" aria-hidden="true">
+                            <span>Поприветствовать</span>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="hires__item">
+                    <img class="hires__avatar" src="/images/header_avatar.png" alt="Фото: Иванов Евгений">
+
+                    <div class="hires__person">
+                        <div class="hires__name1">Иванов</div>
+                        <div class="hires__name2">
+                            Евгений Борисович
+                            <img class="hires__name-ico" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                        </div>
+
+                        <div class="hires__company">Компания</div>
+                        <div class="hires__dept">Подразделение</div>
+                        <div class="hires__role">Должность</div>
+                    </div>
+
+                    <time class="hires__date" datetime="2025-08-21">21.08</time>
+
+                    <div class="hires__footer">
+                        <a class="hires__btn hires__btn--muted" href="#">
+                            <img class="hires__btn-ico" src="/images/icons/waving_hand.svg" alt="" aria-hidden="true">
+                            <span>Поприветствовать</span>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </aside>
+
+        <aside class="social" aria-label="Ссылки">
+            <ul class="social__list">
+                <li class="social__item">
+                    <a class="social__btn social__btn--home" href="#"
+                       aria-label="Домашняя страница">
+                        <img class="social__icon" src="/images/icons/home_white.svg" alt="" aria-hidden="true">
+                    </a>
+                </li>
+                <li class="social__item">
+                    <a class="social__btn social__btn--tg" href="#"
+                       aria-label="Telegram">
+                        <img class="social__icon" src="/images/icons/telegram_white.svg" alt="" aria-hidden="true">
+                    </a>
+                </li>
+                <li class="social__item">
+                    <a class="social__btn social__btn--vk" href="#"
+                       aria-label="VK">
+                        <img class="social__icon" src="/images/icons/vk_white.svg" alt="" aria-hidden="true">
+                    </a>
+                </li>
+            </ul>
+        </aside>
     </aside>
 
     <aside class="right-rail" aria-label="Быстрые действия справа">

@@ -100,3 +100,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderCalendar(year, month);
 })();
+
+// модификатор скрола для найма сотрукдников только когда полоса есть и она «съедает» ширину
+(function initBirthdaysEdge() {
+    const lists = document.querySelectorAll('.birthdays__list');
+
+    lists.forEach((list) => {
+        const root = list.closest('.birthdays');
+
+        const apply = () => {
+            const hasVScroll = list.scrollHeight > list.clientHeight + 1;
+            list.classList.toggle('birthdays__list--edge', hasVScroll);
+
+            // если захочешь вариант с переменной паддинга контейнера (см. CSS выше)
+            if (root) {
+                const padRight = parseFloat(getComputedStyle(root).paddingRight) || 0;
+                root.style.setProperty('--birthdays-pad', padRight + 'px');
+            }
+        };
+
+        apply();
+        new MutationObserver(apply).observe(list, { childList: true });
+        new ResizeObserver(apply).observe(list);
+        window.addEventListener('resize', apply);
+        if (document.fonts?.ready) document.fonts.ready.then(apply);
+    });
+})();

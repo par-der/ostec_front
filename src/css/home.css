@@ -16,7 +16,7 @@
     --rail-bg: #fff;
     --rail-border: #DEDEDE;
     --icon-color: #9BA0A5;
-    --birthdays-list-h: 368px;
+    --birthdays-list-h: 380px;
 }
 * {
     box-sizing: border-box;
@@ -1289,16 +1289,26 @@ button, button:active {
 }
 
 /* список людей */
-.birthdays__list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.birthdays__list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
     max-height: var(--birthdays-list-h, 380px);
-    overflow: auto;
-    padding-right: 11px;
-    margin-right: -22px;
+    overflow:auto;
+    padding-right:0;
+    margin-right:0;
+
     scrollbar-width: thin;
     scrollbar-color: #8FD700 transparent;
+}
+.birthdays__list::-webkit-scrollbar{ width:6px; }
+.birthdays__list::-webkit-scrollbar-thumb{ background:#8FD700; border-radius:6px; }
+.birthdays__list::-webkit-scrollbar-track{ background:transparent; }
+
+/* выносим полосу к правому краю ТОЛЬКО при реальном скролле */
+.birthdays__list--edge{
+    padding-right:11px;
+    margin-right:-22px;
 }
 
 .birthdays__item {
@@ -1429,6 +1439,177 @@ button, button:active {
 }
 
 
+
+/* ========================================= hires (Новые сотрудники) ========================================= */
+.hires {
+    background: var(--card);
+    border-radius: 10px;
+    width: 338px;
+    height: 442px;
+    padding: 20px;
+    box-shadow: 2px 4px 12px #0F0F1112;
+}
+
+.hires__header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom: 12px;
+}
+
+.hires__title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 120%;
+    color: #07150A;
+}
+
+/* Список со скроллом у самого края */
+.hires__list{
+    display:flex; flex-direction:column; gap:12px;
+    max-height:390px;
+    overflow:auto;
+    padding-right:0;
+    margin-right:0;
+    scrollbar-width: thin;
+    scrollbar-color: #8FD700 transparent;
+}
+
+.hires__list::-webkit-scrollbar {
+    width:6px;
+}
+
+.hires__list::-webkit-scrollbar-thumb {
+    background:#8FD700;
+    border-radius:6px;
+}
+
+.hires__list::-webkit-scrollbar-track {
+    background:transparent;
+}
+
+/* применяем только когда реально нужен вынос скролла к краю */
+.hires__list--edge {
+    padding-right:11px;
+    margin-right:-22px;
+}
+
+/* Карточка сотрудника: сетка 6×2 */
+.hires__item {
+    display:grid;
+    grid-template-columns: 48px 1fr;
+    grid-template-rows: 17px 17px 14px 14px 14px 24px;
+    column-gap:12px;
+    row-gap:8px;
+    background:#F4F4F4;
+    border-radius:10px;
+    padding: 20px;
+    border: none;
+}
+
+.hires__avatar {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* кладём поля напрямую в родительскую сетку */
+.hires__person {
+    grid-column:2;
+    grid-row:1 / 6;
+    display:contents;
+}
+
+/* 1–2 строки: фамилия / имя+отчество + чемодан */
+.hires__name1,
+.hires__name2 {
+    font-size: 14px;
+    line-height: 120%;
+    font-weight: 450;
+    white-space: nowrap;
+    color: #07150A;
+}
+.hires__name1 {
+    grid-column:2;
+    grid-row:1;
+}
+
+.hires__name2 {
+    grid-column:2;
+    grid-row:2;
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.hires__name-ico {
+    width:17px;
+    height:17px;
+}
+
+/* 3–5 строки */
+.hires__company {
+    grid-column:2;
+    grid-row:3;
+    font-size:14px;
+    color:#939393;
+    font-weight: 400;
+}
+
+.hires__dept {
+    grid-column:2;
+    grid-row:4;
+    font-size:14px;
+    color:#939393;
+}
+
+.hires__role {
+    grid-column:2;
+    grid-row:5;
+    font-size:14px;
+    color:#939393;
+}
+
+/* Дата напротив "Подразделение" */
+.hires__date{
+    grid-column:1;
+    grid-row:4;
+    align-self:center;
+    font-size:14px;
+    font-weight:400;
+    color:#939393;
+    padding-left:6px;
+}
+
+/* Низ: слева иконка, справа кнопка */
+.hires__footer{
+    grid-column: 2 / -1;
+    grid-row: 6;
+    min-height: 24px;
+    padding-top: 4px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.hires__btn{
+    height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    font-weight: 450;
+    color: #939393;
+    text-decoration: none;
+}
+
+.hires__btn-ico {
+    width:17px;
+    height:17px;
+}
 
 
 
