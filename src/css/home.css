@@ -260,12 +260,12 @@ body {
 .container {
     display: grid;
     grid-template-columns: 1fr 320px;
-    gap: 20px;
+    /*gap: 20px;*/
     max-width: 1400px;
     margin: 0 auto;
     padding: 34px 20px;
     padding-left: calc(20px + var(--sidebar-collapsed));
-    padding-right: calc(20px + var(--right-rail-width));
+    padding-right: calc(46px + var(--right-rail-width));
 }
 
 /* Левый сайдбар */
@@ -529,6 +529,7 @@ button, button:active {
 .main {
     display: flex;
     flex-direction: column;
+    width: 882px;
 }
 
 .widgets-row {
@@ -818,15 +819,214 @@ button, button:active {
 
 
 
-/* Новости */
-.news-list { display: flex; flex-direction: column; gap: 16px; }
-.news { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 12px; display: grid; grid-template-columns: 120px 1fr; gap: 12px; }
-.news .thumb { width: 120px; height: 80px; background: #e5e7eb; border-radius: 10px; }
-.news .title { font-weight: 600; margin: 4px 0; }
+/* =============================================== Новости ============================================== */
+.news-list {
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
 
-/* Правый сайдбар */
-.rightbar { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 72px; height: calc(100dvh - 90px); overflow: auto; padding-bottom: 24px; }
-.widget-list { display: flex; flex-direction: column; gap: 12px; }
+.news-card{
+    background: var(--card);
+    border-radius: 10px;
+    box-shadow: 2px 4px 12px #0F0F1112;
+    padding: 20px;
+}
+
+.news-card__head{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.news-card__title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 120%;
+    margin: 0;
+    color: #07150A;
+}
+
+.news-card__meta {
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.news-card__date {
+    color: #939393;
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.news-card__pin {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.news-card__pin-ico {
+    width:22px;
+    height:22px;
+    display:block;
+}
+
+.news-card__body {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: minmax(230px, 27%) 1fr;
+}
+
+.news-card__thumb {
+    display: block;
+    height: 164px;
+    width: 230px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.news-card__thumb img {
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    aspect-ratio:16/10;
+}
+
+.news-card__content {
+    width: 596px;
+    height: 171px;
+}
+
+.news-card__excerpt {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    overflow: hidden;
+    line-height: 115%;
+    color: #07150A;
+}
+
+.news-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 17px 0;
+    align-items: center;
+}
+
+.chip {
+    display: inline-flex;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: #F4F4F4;
+    font-size: 14px;
+    color: #07150A;
+    font-weight: 400;
+}
+
+.news-card__more {
+    color: #939393;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* Низ: действия + просмотры */
+.news-card__foot {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-top:1px solid var(--rail-border);
+    padding-top:17px;
+}
+
+.news-card__actions {
+    display:flex;
+    align-items: center;
+    gap:12px;
+}
+
+.action {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    padding: 7px 14px;
+    cursor: pointer;
+    border-radius: 999px;
+    background: #F4F4F4;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.action-share {
+    padding: 9px;
+}
+
+.action__ico {
+    width:22px;
+    height:22px;
+    display:block;
+}
+
+.news-card__views {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #939393;
+}
+
+.news-card__eye
+{
+    width:22px; height:22px; display:block;
+}
+
+
+
+
+
+/* ======================================= Правый сайдбар ========================================= */
+.shortcuts {
+    background: var(--card);
+    width: 336px;
+    height: 397px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 12px #0F0F1112;
+}
+
+.shortcuts__list {
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    padding: 20px;
+}
+
+.shortcuts__item {
+    display: flex;
+    align-items: center;
+    padding: 11px 9px 11px 12px;
+    text-decoration: none;
+    color: #07150A;
+    background: #F4F4F4;
+    border-radius: 6px;
+    justify-content: space-between;
+}
+
+.shortcuts__text {
+    font-size: 16px;
+    font-weight: 450;
+}
+
+.shortcuts__icon {
+    width:40px; height:40px; object-fit:contain;
+}
+
+@media (max-width:420px){
+    .shortcuts__icon{ width:32px; height:32px; }
+}
 
 /* Мини-календарь */
 .calendar { display: grid; gap: 8px; }
@@ -836,10 +1036,10 @@ button, button:active {
 /* Списки */
 .list { display: flex; flex-direction: column; gap: 10px; }
 .list-item { display: flex; gap: 10px; align-items: center; }
-.chip { padding: 2px 8px; border-radius: 999px; background: #f1f5f9; font-size: 12px; }
+/*.chip { padding: 2px 8px; border-radius: 999px; background: #f1f5f9; font-size: 12px; }*/
 
 /* Подвал */
-footer { display: flex; justify-content: center; padding: 24px; color: var(--muted); font-size: 12px; }
+/*footer { display: flex; justify-content: center; padding: 24px; color: var(--muted); font-size: 12px; }*/
 
 /* Адаптив */
 @media (max-width: 1200px) {

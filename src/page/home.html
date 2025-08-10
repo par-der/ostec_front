@@ -231,59 +231,256 @@
         </div>
 
 
-        <div class="card-body">
-            <div class="news-list">
-                <article class="news">
-                    <div class="thumb"></div>
-                    <div>
-                        <div class="title">Заголовок новости</div>
-                        <p class="excerpt">Короткий текст новости-превью для макета. Длинный текст длинный текст длинный...</p>
-                        <div class="meta">
-                            <span>18 сентября 09:25</span>
-                            <span style="margin: 0 8px;">•</span>
-                            <span>ТЕГ</span>
-                            <span style="margin: 0 8px;">•</span>
-                            <span>12 комментариев</span>
-                        </div>
-                        <div class="meta" style="display:flex; gap:16px; margin-top:6px;">
-                            <span>👍 5</span><span>💬 0</span><span>👁 42</span>
-                        </div>
+        <div class="news-list">
+            <article class="news-card">
+                <header class="news-card__head">
+                    <h3 class="news-card__title">Заголовок новости</h3>
+
+                    <div class="news-card__meta">
+                        <time class="news-card__date" datetime="2025-09-26">26 сентября 2025</time>
+
+                        <button class="news-card__pin" type="button"
+                                aria-label="Закрепить новость" aria-pressed="false"
+                                data-icon-default="/images/icons/pin.svg"
+                                data-icon-active="/images/icons/pin-active.svg">
+                            <img class="news-card__pin-ico" src="/images/icons/pin.svg" alt="" aria-hidden="true">
+                        </button>
                     </div>
-                </article>
+                </header>
 
-                <article class="news">
-                    <div class="thumb"></div>
-                    <div>
-                        <div class="title">Заголовок новости</div>
-                        <p class="excerpt">Превью текста новости...</p>
-                        <div class="meta"><span>20 сентября</span> <span style="margin:0 8px;">•</span> <span>ТЕГ</span></div>
+                <div class="news-card__body">
+                    <a class="news-card__thumb" href="#">
+                        <img src="/images/news1.png" alt="Изображение новости">
+                    </a>
+
+                    <div class="news-card__content">
+                        <p class="news-card__excerpt">
+                            Текст новости пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример тек пр...
+                        </p>
                     </div>
-                </article>
+                </div>
 
-                <!-- Дублируйте блок .news под нужное количество -->
-            </div>
+                <div class="news-card__tags">
+                    <span class="chip">тег</span>
+                    <span class="chip">тег длинный</span>
+                    <span class="chip">тег</span>
+                    <span class="news-card__more">и ещё 2</span>
+                </div>
 
-            <div style="display:flex; justify-content:center; margin-top:16px;">
-                <button class="icon-btn" style="width:auto; padding:10px 16px;">Показать ещё</button>
-            </div>
+                <footer class="news-card__foot">
+                    <div class="news-card__actions">
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/like.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/comment.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action action-share" type="button">
+                            <img class="action__ico" src="/images/icons/share.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+
+                    <div class="news-card__views">
+                        <img class="news-card__eye" src="/images/icons/eye.svg" alt="" aria-hidden="true"><span>0</span>
+                    </div>
+                </footer>
+            </article>
+
+            <article class="news-card">
+                <header class="news-card__head">
+                    <h3 class="news-card__title">Заголовок новости</h3>
+
+                    <div class="news-card__meta">
+                        <time class="news-card__date" datetime="2025-09-26">26 сентября 2025</time>
+
+                        <button class="news-card__pin" type="button"
+                                aria-label="Закрепить новость" aria-pressed="false"
+                                data-icon-default="/images/icons/pin.svg"
+                                data-icon-active="/images/icons/pin-active.svg">
+                            <img class="news-card__pin-ico" src="/images/icons/pin.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+                </header>
+
+                <div class="news-card__body">
+                    <a class="news-card__thumb" href="#">
+                        <img src="/images/news1.png" alt="Изображение новости">
+                    </a>
+
+                    <div class="news-card__content">
+                        <p class="news-card__excerpt">
+                            Текст новости пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример тек пр...
+                        </p>
+                    </div>
+                </div>
+
+                <div class="news-card__tags">
+                    <span class="chip">тег</span>
+                    <span class="chip">тег длинный</span>
+                    <span class="chip">тег</span>
+                    <span class="news-card__more">и ещё 2</span>
+                </div>
+
+                <footer class="news-card__foot">
+                    <div class="news-card__actions">
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/like.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/comment.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action action-share" type="button">
+                            <img class="action__ico" src="/images/icons/share.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+
+                    <div class="news-card__views">
+                        <img class="news-card__eye" src="/images/icons/eye.svg" alt="" aria-hidden="true"><span>0</span>
+                    </div>
+                </footer>
+            </article>
+
+            <article class="news-card">
+                <header class="news-card__head">
+                    <h3 class="news-card__title">Заголовок новости</h3>
+
+                    <div class="news-card__meta">
+                        <time class="news-card__date" datetime="2025-09-26">26 сентября 2025</time>
+
+                        <button class="news-card__pin" type="button"
+                                aria-label="Закрепить новость" aria-pressed="false"
+                                data-icon-default="/images/icons/pin.svg"
+                                data-icon-active="/images/icons/pin-active.svg">
+                            <img class="news-card__pin-ico" src="/images/icons/pin.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+                </header>
+
+                <div class="news-card__body">
+                    <a class="news-card__thumb" href="#">
+                        <img src="/images/news1.png" alt="Изображение новости">
+                    </a>
+
+                    <div class="news-card__content">
+                        <p class="news-card__excerpt">
+                            Текст новости пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример тек пр...
+                        </p>
+                    </div>
+                </div>
+
+                <div class="news-card__tags">
+                    <span class="chip">тег</span>
+                    <span class="chip">тег длинный</span>
+                    <span class="chip">тег</span>
+                    <span class="news-card__more">и ещё 2</span>
+                </div>
+
+                <footer class="news-card__foot">
+                    <div class="news-card__actions">
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/like.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/comment.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action action-share" type="button">
+                            <img class="action__ico" src="/images/icons/share.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+
+                    <div class="news-card__views">
+                        <img class="news-card__eye" src="/images/icons/eye.svg" alt="" aria-hidden="true"><span>0</span>
+                    </div>
+                </footer>
+            </article>
+
+            <article class="news-card">
+                <header class="news-card__head">
+                    <h3 class="news-card__title">Заголовок новости</h3>
+
+                    <div class="news-card__meta">
+                        <time class="news-card__date" datetime="2025-09-26">26 сентября 2025</time>
+
+                        <button class="news-card__pin" type="button"
+                                aria-label="Закрепить новость" aria-pressed="false"
+                                data-icon-default="/images/icons/pin.svg"
+                                data-icon-active="/images/icons/pin-active.svg">
+                            <img class="news-card__pin-ico" src="/images/icons/pin.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+                </header>
+
+                <div class="news-card__body">
+                    <a class="news-card__thumb" href="#">
+                        <img src="/images/news1.png" alt="Изображение новости">
+                    </a>
+
+                    <div class="news-card__content">
+                        <p class="news-card__excerpt">
+                            Текст новости пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример тек пр...
+                        </p>
+                    </div>
+                </div>
+
+                <div class="news-card__tags">
+                    <span class="chip">тег</span>
+                    <span class="chip">тег длинный</span>
+                    <span class="chip">тег</span>
+                    <span class="news-card__more">и ещё 2</span>
+                </div>
+
+                <footer class="news-card__foot">
+                    <div class="news-card__actions">
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/like.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/comment.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action action-share" type="button">
+                            <img class="action__ico" src="/images/icons/share.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+
+                    <div class="news-card__views">
+                        <img class="news-card__eye" src="/images/icons/eye.svg" alt="" aria-hidden="true"><span>0</span>
+                    </div>
+                </footer>
+            </article>
         </div>
-        </div>
+
     </section>
 
     <!-- ===== Правый сайдбар ===== -->
     <aside class="rightbar">
-        <div class="card">
-            <div class="card-header"><strong>Быстрые разделы</strong><a class="meta" href="#">Все</a></div>
-            <div class="card-body">
-                <div class="widget-list">
-                    <div class="list-item"><div class="icon-btn">🏢</div><div>Структура компании</div></div>
-                    <div class="list-item"><div class="icon-btn">📒</div><div>Адресная книга</div></div>
-                    <div class="list-item"><div class="icon-btn">🏬</div><div>Бронирование переговорок</div></div>
-                    <div class="list-item"><div class="icon-btn">📞</div><div>Справочник</div></div>
-                    <div class="list-item"><div class="icon-btn">💡</div><div>Подать идею</div></div>
-                </div>
-            </div>
-        </div>
+        <aside class="shortcuts">
+            <nav class="shortcuts__list" aria-label="Быстрые разделы">
+                <a class="shortcuts__item" href="#">
+                    <span class="shortcuts__text">Структура компании</span>
+                    <img class="shortcuts__icon" src="/images/icons/struct_company.svg" alt="" aria-hidden="true">
+                </a>
+
+                <a class="shortcuts__item" href="#">
+                    <span class="shortcuts__text">Адресная книга</span>
+                    <img class="shortcuts__icon" src="/images/icons/adres_book.svg" alt="" aria-hidden="true">
+                </a>
+
+                <a class="shortcuts__item" href="#">
+                    <span class="shortcuts__text">Бронировать переговорную</span>
+                    <img class="shortcuts__icon" src="/images/icons/brone.svg" alt="" aria-hidden="true">
+                </a>
+
+                <a class="shortcuts__item" href="#">
+                    <span class="shortcuts__text">Оформить заявку</span>
+                    <img class="shortcuts__icon" src="/images/icons/headphone.svg" alt="" aria-hidden="true">
+                </a>
+
+                <a class="shortcuts__item" href="#">
+                    <span class="shortcuts__text">Подать идею</span>
+                    <img class="shortcuts__icon" src="/images/icons/light_idea.svg" alt="" aria-hidden="true">
+                </a>
+            </nav>
+        </aside>
 
         <div class="card">
             <div class="card-header"><strong>События</strong><a class="meta" href="#">Все</a></div>
