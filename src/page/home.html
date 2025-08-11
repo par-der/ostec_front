@@ -108,7 +108,8 @@
                     </button>
 
                     <button class="status-dd__item" role="menuitemradio" aria-checked="false"
-                            data-value="other" data-icon="/images/icons/atr.svg" data-text="Другое">
+                            data-value="other" data-icon="/images/icons/atr.svg" data-text="Другое"
+                            data-modal-open="absence-modal">
                         <img class="status-dd__ico" src="/images/icons/atr.svg" alt="" aria-hidden="true">
                         <span class="status-dd__text">Другое</span>
                     </button>
@@ -142,52 +143,52 @@
                 aria-label="Закрепить меню"
                 aria-pressed="false"
                 data-icon-default="/images/icons/pin.svg"
-                data-icon-active="/images/icons/pin-active.svg">
+                data-icon-active="/images/icons/pin_active.svg">
             <img class="sidebar__pin-ico" src="/images/icons/pin.svg" alt="" aria-hidden="true">
         </button>
         <nav class="sidebar__nav">
             <ul class="sidebar__group">
                 <li class="sidebar__item">
-                    <button class="sidebar__btn sidebar__btn--active" type="button" aria-label="Главная">
+                    <a class="sidebar__btn sidebar__btn--active" href="/home" aria-current="page">
                         <img class="sidebar__icon" src="/images/icons/home.svg" alt="" aria-hidden="true">
                         <span class="sidebar__label">Главная</span>
-                    </button>
+                    </a>
                 </li>
                 <li class="sidebar__item">
-                    <button class="sidebar__btn" type="button" aria-label="Задачи и проекты">
+                    <a class="sidebar__btn" href="/projects">
                         <img class="sidebar__icon" src="/images/icons/inventory.svg" alt="" aria-hidden="true">
                         <span class="sidebar__label">Задачи и проекты</span>
-                    </button>
+                    </a>
                 </li>
                 <li class="sidebar__item">
-                    <button class="sidebar__btn" type="button" aria-label="Сотрудники">
+                    <a class="sidebar__btn" href="/employees">
                         <img class="sidebar__icon" src="/images/icons/people.svg" alt="" aria-hidden="true">
                         <span class="sidebar__label">Сотрудники</span>
-                    </button>
+                    </a>
                 </li>
                 <li class="sidebar__item">
-                    <button class="sidebar__btn" type="button" aria-label="Новости">
+                    <a class="sidebar__btn" href="/news">
                         <img class="sidebar__icon" src="/images/icons/note.svg" alt="" aria-hidden="true">
                         <span class="sidebar__label">Новости</span>
-                    </button>
+                    </a>
                 </li>
                 <li class="sidebar__item">
-                    <button class="sidebar__btn" type="button" aria-label="События">
+                    <a class="sidebar__btn" href="/events">
                         <img class="sidebar__icon" src="/images/icons/calendare.svg" alt="" aria-hidden="true">
                         <span class="sidebar__label">События</span>
-                    </button>
+                    </a>
                 </li>
                 <li class="sidebar__item">
-                    <button class="sidebar__btn" type="button" aria-label="База знаний">
+                    <a class="sidebar__btn" href="/kb">
                         <img class="sidebar__icon" src="/images/icons/study.svg" alt="" aria-hidden="true">
                         <span class="sidebar__label">База знаний</span>
-                    </button>
+                    </a>
                 </li>
                 <li class="sidebar__item">
-                    <button class="sidebar__btn" type="button" aria-label="Банк идей">
+                    <a class="sidebar__btn" href="/ideas">
                         <img class="sidebar__icon" src="/images/icons/light.svg" alt="" aria-hidden="true">
                         <span class="sidebar__label">Банк идей</span>
-                    </button>
+                    </a>
                 </li>
             </ul>
 
@@ -559,7 +560,8 @@
                     <img class="shortcuts__icon" src="/images/icons/brone.svg" alt="" aria-hidden="true">
                 </a>
 
-                <a class="shortcuts__item" href="#">
+                <a class="shortcuts__item" href="#"
+                   data-modal-open="request-modal">
                     <span class="shortcuts__text">Оформить заявку</span>
                     <img class="shortcuts__icon" src="/images/icons/headphone.svg" alt="" aria-hidden="true">
                 </a>
@@ -857,5 +859,223 @@
 </main>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="../index.js"></script>
+<div class="modal" id="absence-modal" role="dialog" aria-modal="true" aria-labelledby="absence-title" aria-hidden="true">
+    <div class="modal__backdrop" data-modal-close></div>
+
+    <div class="modal__dialog" role="document" tabindex="-1">
+        <div class="modal__header">
+            <h3 class="modal__title" id="absence-title">Добавление отсутствия</h3>
+            <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close>
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+        </div>
+
+        <form class="modal__body" action="#" method="post" novalidate>
+            <!-- Период -->
+            <div class="field-group">
+                <div class="field-group__title">Период <span class="req">*</span></div>
+
+                <div class="ap-period">
+                    <label class="ap-field ap-field--date">
+                        <span class="ap-field__icon" aria-hidden="true">
+                            <img class="ap__arrow-ico" src="/images/icons/calendare.svg" alt="" aria-hidden="true">
+                        </span>
+                        <span class="ap-input" type="date">24.09.25</span>
+                        <div class="ap-datepicker" hidden></div>
+                    </label>
+
+                    <label class="ap-field ap-field--time">
+                        <span class="ap-field__icon" aria-hidden="true">
+                          <img class="ap__arrow-ico" src="/images/icons/clock.svg" alt="" aria-hidden="true">
+                        </span>
+                        <span class="ap-input" type="time">24:00</span>
+                    </label>
+
+                    <span class="ap-period__dash" aria-hidden="true">—</span>
+
+                    <label class="ap-field ap-field--date">
+                        <span class="ap-field__icon" aria-hidden="true">
+                            <img class="ap__arrow-ico" src="/images/icons/calendare.svg" alt="" aria-hidden="true">
+                        </span>
+                        <span class="ap-input" type="date">30.09.25</span>
+                        <div class="ap-datepicker" hidden></div>
+                    </label>
+
+                    <label class="ap-field ap-field--time">
+                        <span class="ap-field__icon" aria-hidden="true">
+                            <img class="ap__arrow-ico" src="/images/icons/clock.svg" alt="" aria-hidden="true">
+                        </span>
+                        <span class="ap-input" type="time">24:00</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Причина + Доп. инфо -->
+            <div class="flex-2">
+                <div class="info">
+                    <span class="info__label">Причина <span class="req">*</span></span>
+                    <div class="select-info" data-reason>
+                        <button class="select-info__btn" type="button"
+                                aria-haspopup="menu" aria-expanded="false" aria-controls="reasonMenu">
+                            <span class="select-info__value">Другое</span>
+                            <img class="select-info__chevron" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                        </button>
+
+                        <!-- новый дропдаун, один-в-один по структуре -->
+                        <div class="reason-dd" id="reasonMenu" role="menu" hidden>
+                            <button type="button" class="reason-dd__item is-active" role="menuitemradio" aria-checked="true"
+                                    data-value="other" data-icon="/images/icons/atr.svg" data-text="Другое">
+                                <img class="reason-dd__ico" src="/images/icons/atr.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">Другое</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="office" data-icon="/images/icons/work.svg" data-text="В офисе">
+                                <img class="reason-dd__ico" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">В офисе</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="remote" data-icon="/images/icons/house_drop.svg" data-text="Удаленно">
+                                <img class="reason-dd__ico" src="/images/icons/house_drop.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">Удаленно</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="trip" data-icon="/images/icons/airplane.svg" data-text="В командировке">
+                                <img class="reason-dd__ico" src="/images/icons/airplane.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">В командировке</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="vacation" data-icon="/images/icons/sun.max.svg" data-text="В отпуске">
+                                <img class="reason-dd__ico" src="/images/icons/sun.max.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">В отпуске</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="meeting" data-icon="/images/icons/group.svg" data-text="На встрече">
+                                <img class="reason-dd__ico" src="/images/icons/group.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">На встрече</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="sick" data-icon="/images/icons/pill.svg" data-text="На больничном">
+                                <img class="reason-dd__ico" src="/images/icons/pill.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">На больничном</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="dayoff" data-icon="/images/icons/weekend.svg" data-text="Отгул">
+                                <img class="reason-dd__ico" src="/images/icons/weekend.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">Отгул</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="study" data-icon="/images/icons/study.svg" data-text="На обучении">
+                                <img class="reason-dd__ico" src="/images/icons/study.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">На обучении</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="expo" data-icon="/images/icons/location_on.svg" data-text="На выставке">
+                                <img class="reason-dd__ico" src="/images/icons/location_on.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">На выставке</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <label class="info">
+                    <span class="info-label">Дополнительная информация <span class="req">*</span></span>
+                    <input class="info-label__input" type="text" maxlength="20" placeholder="Введите текст (макс. 20 символов)" required>
+                </label>
+            </div>
+
+            <label class="proxy-field">
+                <span class="proxy-field__label">Замещающий</span>
+                <input class="proxy-input" type="text" placeholder="Укажите замещающего">
+            </label>
+
+            <!-- Комментарий -->
+            <label class="comment-field">
+                <span class="comment-field__label">Комментарий</span>
+                <textarea class="comment-textarea" placeholder="Введите комментарий (макс. 80 символов)"></textarea>
+            </label>
+        </form>
+
+        <div class="modal__footer">
+            <button class="btn btn-link" type="button">
+                <span class="btn__icon" aria-hidden="true">＋</span>
+                Добавить отсутствие
+            </button>
+            <div class="modal__spacer"></div>
+            <button class="btn btn-secondary" type="button" data-modal-close>Отменить</button>
+            <button class="btn btn-primary" type="button">Сохранить</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal task-modal" id="request-modal" role="dialog" aria-modal="true"
+     aria-labelledby="rq-title" aria-hidden="true">
+    <div class="modal__backdrop task-modal__backdrop" data-modal-close></div>
+
+    <div class="modal__dialog modal__dialog-task" role="document" tabindex="-1">
+        <div class="modal__header task-modal__header">
+            <h3 class="modal__title task-modal__title" id="rq-title">Оформить заявку</h3>
+            <button class="modal__close task-modal__close" type="button" aria-label="Закрыть" data-modal-close>
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <form class="task-form rq-form" id="task-form" action="#" method="post" novalidate>
+            <!-- Тема -->
+            <div class="task-form__group rq-group">
+                <label class="task-form__label rq-label">Тема</label>
+                <div class="task-select rq-select">
+                    <select class="task-select__native rq-select__native" required>
+                        <option value="" selected disabled>Выберите тему</option>
+                        <option>IT-поддержка</option>
+                        <option>Закупка</option>
+                        <option>Хозяйственные работы</option>
+                    </select>
+                    <span class="task-select__arrow rq-select__arrow" aria-hidden="true">
+                        <img src="/images/icons/arrow_down.svg" alt="" />
+                    </span>
+                </div>
+            </div>
+
+            <!-- Тип -->
+            <div class="task-form__group rq-group">
+                <label class="task-form__label rq-label">Тип</label>
+                <div class="task-select rq-select">
+                    <select class="task-select__native rq-select__native" required>
+                        <option value="" selected disabled>Выберите тип</option>
+                        <option>Инцидент</option>
+                        <option>Запрос на сервис</option>
+                        <option>Консультация</option>
+                    </select>
+                    <span class="task-select__arrow rq-select__arrow" aria-hidden="true">
+            <img src="/images/icons/arrow_down.svg" alt="" />
+          </span>
+                </div>
+            </div>
+
+            <!-- Комментарий -->
+            <div class="task-form__group rq-group">
+                <label class="task-form__label rq-label">Комментарий</label>
+                <textarea class="task-form__textarea rq-textarea" placeholder="Текст комментария..."></textarea>
+            </div>
+        </form>
+
+        <div class="task__footer task-modal__footer">
+            <button class="btn btn-secondary" type="button" data-modal-close>Отменить</button>
+            <button class="btn btn-primary" type="submit" form="task-form">Отправить</button>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

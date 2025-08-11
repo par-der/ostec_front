@@ -18,6 +18,10 @@
     --icon-color: #9BA0A5;
     --birthdays-list-h: 380px;
     --search-dd-offset: 8px;
+
+    --green:#8FD700;
+    --green-600:#7cc300;
+    --overlay:rgba(0,0,0,.35);
 }
 * {
     box-sizing: border-box;
@@ -460,6 +464,7 @@ body {
     width: 56px;
     height: 40px;
     display: grid;
+    text-decoration: none;
     /*grid-template-columns: 24px 1fr;*/
     align-items: center;
     justify-items: center;
@@ -1929,6 +1934,573 @@ button, button:active {
     font-size: 16px;
     line-height: 120%;
     transition: transform .12s ease, text-shadow .12s ease;
+}
+
+/* ========================================== МОДАЛКА ДОБАВЛЕНИЯ ОТСУТВИЯ =============================================*/
+.modal {
+    position:fixed;
+    inset:0;
+    display:none;
+    z-index: 10000;
+
+}
+.modal.is-open {
+    display:block;
+}
+
+.modal__backdrop {
+    position:absolute;
+    inset:0;
+    background: #070B1580;
+}
+
+.modal__dialog {
+    position: absolute;
+    inset: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 546px;
+    height: 480px;
+    max-width: 546px;
+    background: #fff;
+    color: #07150A;
+    border-radius: 12px;
+}
+
+.modal__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.modal__title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 120%;
+    font-weight: 700;
+}
+
+.modal__close {
+    margin-left: auto;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    line-height: 0;
+    color: #939393;
+}
+
+.modal__body {
+    padding: 20px;
+}
+
+.modal__footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 20px 20px 20px;
+}
+
+.modal__spacer { flex:1; }
+
+.field-group__title {
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 110%;
+    margin-bottom: 10px;
+}
+
+.req {
+    color:var(--green);
+}
+
+.ap-period{
+    display:flex;
+    align-items:center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.ap-period__dash{
+    align-self: center;
+    user-select: none;
+    color: #939393;
+    margin: 0 4px;
+}
+
+.ap-field{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ap-field--date {
+    min-width: 118px;
+    cursor:pointer;
+}
+
+/* ====================== calendar dropdown =====================*/
+.ap-datepicker[hidden]{
+    display: none !important;
+}
+
+.ap-datepicker {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 4px);
+    width: 252px;
+    height: 252px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, .18);
+    padding: 16px;
+    z-index: 11001;
+}
+
+.ap-dp-backdrop {
+    position:fixed; inset:0; background:rgba(0,0,0,.45);
+    z-index:10000; display:none;
+}
+
+.ap-dp-backdrop.is-open{ display:block; }
+.ap-dp-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 4px;
+}
+
+.ap-dp-title{
+    font-size: 16px;
+    line-height: 110%;
+    font-weight: 450;
+    color: #07150A;
+}
+
+.ap-dp-nav{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.ap-dp-navbtn {
+    border:0;
+    background:transparent;
+    cursor:pointer;
+    color:#9BA0A5;
+}
+
+.ap-dp-navbtn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.ap-dp-btn{
+    width:32px; height:32px; border-radius:50%; border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; background:#fff; cursor:pointer;
+}
+.ap-dp-btn svg{ width:18px; height:18px; }
+
+/* названия дней */
+.ap-dp-week {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+.ap-dp-wd{
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 12px;
+    color: #939393;
+    padding: 6px 0;
+    align-items: center;
+}
+.ap-dp-wd--sat, .ap-dp-wd--sun { color:var(--green); }
+.ap-dp-day.is-weekend{ color: var(--green); }
+
+/* сетка дней — FLEX */
+.ap-dp-days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.ap-dp-day{
+    width: 24px;
+    height: 24px;
+    margin: 2px 0;
+    text-align: center;
+    font-weight: 400;
+    font-size: 12px;
+    color: #07150A;
+    padding: 6px 0;
+    align-items: center;
+}
+.ap-dp-day.is-selected{
+    background: var(--green);
+    border-radius: 4px;
+    color: #fff;
+}
+.ap-dp-day.is-out {
+    color:#CFCFCF;
+    cursor:default;
+}
+
+/* ================================ модалка дропдаун выбора причины ========================================*/
+.select-info{ position: relative; }
+.select-info__btn{
+    display:flex; align-items:center; justify-content:space-between;
+    width:100%; min-height:32px; padding:7px 11px;
+    border: none; background: transparent; cursor:pointer;
+}
+
+.select-info__chevron{ width:12px; height:12px; }
+
+/* ▼ Дропдаун — полный клон status-dd, но с твоими классами */
+.reason-dd{
+    position: absolute;
+    right: -50px;
+    top: calc(100% + 10px);
+    width: 190px;
+    height: 390px;
+    max-width: 190vw;
+    background: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 16px;
+    box-shadow: 0px 4px 12px 0px #00000026;
+    z-index: 12000;
+    transition: opacity .16s ease, transform .16s ease;
+}
+.reason-dd[hidden]{ display: none !important; }
+
+/* пункты списка — клон status-dd__item */
+.reason-dd__item{
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    margin-bottom: 14px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 450;
+    color: #07150A;
+}
+/* если нужны габариты иконки внутри пункта */
+.reason-dd__ico{
+    width: 19px;
+    height: 18px;
+    display: block;
+}
+
+/* ================================= продолжение вывода селектов в модалке ================================= */
+
+.ap-field--time{
+    min-width: 95px;
+}
+
+.ap-field__icon{
+    position: absolute;
+    display: flex;
+    left: 14px;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translateY(-50%);
+    align-items: center;
+}
+
+.ap__arrow-ico {
+    width: 16px;
+    height: 16px;
+}
+
+.ap-input{
+    width: 100%;
+    height: 32px;
+    border: 1px solid #DEDEDE;
+    border-radius: 4px;
+    background: #fff;
+    color: #07150A;
+    padding: 7px 12px 7px 40px;
+    font-size: 16px;
+    font-weight: 450;
+    outline: none;
+}
+
+
+.flex-2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.flex-2 .info__label,
+.flex-2 .info-label{
+    display:block;
+    margin-bottom:10px;
+    font-size:16px;
+    font-weight:450;
+    line-height:110%;
+}
+.flex-2 .req{ color:var(--green); }
+
+/* инпут справа */
+.flex-2 .info-label__input{
+    width:100%;
+    min-height:52px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:#fff;
+    font-size:20px;
+    padding:12px 16px;
+    color:var(--text);
+    outline:none;
+}
+.flex-2 .info-label__input::placeholder{
+    color:#9BA0A5;
+    opacity:1;
+}
+
+/* селект слева */
+.flex-2 .select-info {
+    position: relative;
+    width: 137px;
+    height: 32px;
+    border: 1px solid #DEDEDE;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.flex-2 .select-info__native {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    width: 100%;
+    height: 32px;
+    padding: 7px 40px 7px 12px;
+    font-size: 16px;
+    color: #07150A;
+}
+
+.flex-2 .select-info__icon {
+    position:absolute;
+    right:12px;
+    top:50%;
+    transform:translateY(-50%);
+    pointer-events:none;
+}
+
+.flex-2 .info-label__input {
+    width: 361px;
+    min-height: 32px;
+    height: 32px;
+    border: 1px solid #DEDEDE;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 16px;
+    padding: 7px 12px;
+    color: #07150A;
+    outline: none;
+}
+
+
+.proxy-field {
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom: 20px;
+}
+
+.comment-field {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Заголовки */
+.proxy-field__label,
+.comment-field__label{
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 110%;
+    color: #07150A;
+}
+
+/* Поля */
+.proxy-input {
+    width: 100%;
+    border: 1px solid #DEDEDE;
+    border-radius: 4px;
+    background: #fff;
+    color: #07150A;
+    font-size: 16px;
+    padding: 7px 12px;
+    outline: none;
+}
+
+.comment-textarea {
+    resize: vertical;
+    min-height: 50px;
+    height: 50px;
+    width: 100%;
+    border: 1px solid #DEDEDE;
+    border-radius: 6px;
+    background: #fff;
+    color: #07150A;
+    font-size: 16px;
+    padding: 7px 12px;
+    outline: none;
+    resize: none;
+}
+
+/* Плейсхолдер */
+.proxy-input::placeholder,
+.comment-textarea::placeholder{
+    color:#9BA0A5;
+    opacity:1;
+}
+
+.btn-link {
+    border: 0;
+    background: transparent;
+    color: var(--green);
+    padding: 10px 0;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+.btn-secondary {
+    border: 1px solid var(--green);
+    background: #fff;
+    color: var(--green);
+    padding: 10px 14px;
+    height: 38px;
+}
+
+.btn-primary {
+    border: 0;
+    background: var(--green);
+    color: #fff;
+    padding: 10px 14px;
+    font-weight: 700;
+}
+
+
+
+/* ==================================== модалка Оформить заявку =================================== */
+.modal__dialog-task{
+    position:absolute;
+    inset:auto;
+    left:50%; top:50%;
+    transform:translate(-50%,-50%);
+    width:546px; height:426px;
+    background:#fff; color:#07150A;
+    border-radius:12px;
+    overflow:visible; /* чтобы внутренние дропдауны не обрезались */
+}
+
+/* ===== форма заявки (task-*) ===== */
+.task-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+.task-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-form__label {
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 110%;
+    color: #07150A;
+}
+
+/* поля */
+.task-form__input,
+.task-form__textarea,
+.task-select{
+    width: 100%;
+    border: 1px solid #DEDEDE;
+    background: #fff;
+    color: #07150A;
+    border-radius: 4px;
+}
+
+.task-form__textarea {
+    padding: 7px 12px;
+    font-size: 16px;
+    font-weight: 400;
+    height: 76px;
+    resize: none;
+}
+.task-form__input::placeholder,
+.task-form__textarea::placeholder{ color:#9BA0A5; opacity:1; }
+
+/* кастомный селект — flex */
+.task-select { position: relative;
+    display: flex;
+    align-items: center;
+    height: 32px;
+}
+
+.task-select__native {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: transparent;
+    width: 100%;
+    padding: 7px 12px;
+    height: 32px;
+    font-size: 16px;
+    color: #939393;
+}
+
+.task-select__arrow{
+    position:absolute; right:14px; top:50%; transform:translateY(-50%);
+    display:flex; align-items:center; pointer-events:none;
+}
+.task-select__arrow img{ width:12px; height:12px; }
+
+/* фокус */
+.task-form__textarea:focus,
+.task-select:has(select:focus){
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(143,215,0,.18);
+    outline:none;
+}
+
+.task__footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 20px 20px 20px;
+    justify-content: flex-end;
 }
 
 /* ======================================== Адаптив =========================================== */

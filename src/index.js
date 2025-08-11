@@ -308,3 +308,208 @@ addEventListener('DOMContentLoaded', () => {
         if (!root.contains(e.target)) close();
     });
 });
+
+
+//  открытие модалки отсутствия
+(() => {
+    let lastActive = null;
+
+    const openModal = (id) => {
+        const modal = document.getElementById(id);
+        if (!modal) return;
+        lastActive = document.activeElement;
+        modal.classList.add('is-open');
+        modal.removeAttribute('aria-hidden');
+
+        // фокус в модалку
+        const focusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        (focusable || modal).focus();
+    };
+
+    const closeModal = (modal) => {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden','true');
+        if (lastActive) lastActive.focus();
+    };
+
+    document.addEventListener('click', (e) => {
+        const opener = e.target.closest('[data-modal-open]');
+        if (opener) {
+            e.preventDefault();
+            openModal(opener.dataset.modalOpen);
+            return;
+        }
+        const closer = e.target.closest('[data-modal-close]');
+        if (closer) {
+            const modal = closer.closest('.modal');
+            if (modal) closeModal(modal);
+            return;
+        }
+        // клик по подложке
+        if (e.target.classList.contains('modal__backdrop')) {
+            const modal = e.target.closest('.modal');
+            if (modal) closeModal(modal);
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const modal = document.querySelector('.modal.is-open');
+            if (modal) closeModal(modal);
+        }
+    });
+})();
+
+
+// открытие модалки календарь в модалке
+document.addEventListener('DOMContentLoaded', () => {
+    const fields = document.querySelectorAll('.ap-field.ap-field--date');
+    if (!fields.length) return;
+
+    const MONTHS = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+
+    fields.forEach((field) => {
+        const dp = field.querySelector('.ap-datepicker');
+        let view = new Date();
+        let selected = null;
+
+        function render(){
+            const y = view.getFullYear(), m = view.getMonth();
+            const first = new Date(y, m, 1);
+            const last  = new Date(y, m + 1, 0).getDate();
+            let shift = first.getDay(); shift = shift === 0 ? 6 : shift - 1;
+            const prevLast = new Date(y, m, 0).getDate();
+
+            dp.innerHTML = `
+                <div class="ap-dp-header">
+                  <div class="ap-dp-title">${MONTHS[m]}</div>
+                  <div class="ap-dp-nav">
+                    <button type="button" class="ap-dp-navbtn" data-nav="-1" aria-label="Назад">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M15 19l-7-7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      </svg>
+                    </button>
+                    <button type="button" class="ap-dp-navbtn" data-nav="1" aria-label="Вперёд">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="ap-dp-week">
+                  <div class="ap-dp-wd">Пн</div><div class="ap-dp-wd">Вт</div><div class="ap-dp-wd">Ср</div>
+                  <div class="ap-dp-wd">Чт</div><div class="ap-dp-wd">Пт</div>
+                  <div class="ap-dp-wd ap-dp-wd--sat">Сб</div><div class="ap-dp-wd ap-dp-wd--sun">Вс</div>
+                </div>
+                <div class="ap-dp-days"></div>
+              `;
+
+            const wrap = dp.querySelector('.ap-dp-days');
+            const cells = [];
+            for (let i = 0; i < shift; i++) cells.push({ d: prevLast - shift + 1 + i, out:true, date:new Date(y, m-1, prevLast - shift + 1 + i) });
+            for (let d = 1; d <= last; d++) cells.push({ d, out:false, date:new Date(y, m, d) });
+            while (cells.length % 7) {
+                const next = cells.length - (shift + last) + 1;
+                cells.push({ d: next, out:true, date:new Date(y, m+1, next) });
+            }
+
+            const today = new Date(); today.setHours(0,0,0,0);
+            cells.forEach(c => {
+                const el = document.createElement('div');
+                el.className = 'ap-dp-day' + (c.out ? ' is-out' : '');
+                el.textContent = c.d;
+
+                const wd = c.date.getDay();
+                if (!c.out && (wd === 0 || wd === 6)) {
+                    el.classList.add('is-weekend');
+                }
+
+                const today = new Date(); today.setHours(0,0,0,0);
+                if (c.date.getTime() === today.getTime()) el.classList.add('is-today');
+                if (selected && c.date.getTime() === selected.getTime()) el.classList.add('is-selected');
+
+                if (!c.out){
+                    el.addEventListener('click', () => {
+                        selected = c.date;
+                        render();
+                        close();
+                    });
+                }
+                wrap.appendChild(el);
+            });
+
+            dp.querySelectorAll('[data-nav]').forEach(btn =>
+                btn.addEventListener('click', () => { view.setMonth(view.getMonth() + Number(btn.dataset.nav)); render(); })
+            );
+        }
+
+        function open(){
+            dp.hidden = false;
+            dp.removeAttribute('hidden');     // ← снимаем именно атрибут
+            render();
+            document.addEventListener('click', onDocClick, true);
+            document.addEventListener('keydown', onKey);
+        }
+        function close(){
+            dp.hidden = true;
+            dp.setAttribute('hidden', '');    // ← возвращаем атрибут
+            document.removeEventListener('click', onDocClick, true);
+            document.removeEventListener('keydown', onKey);
+        }
+        function onDocClick(e){ if (!field.contains(e.target)) close(); }
+        function onKey(e){ if (e.key === 'Escape') close(); }
+
+        field.addEventListener('click', (e) => {
+            e.preventDefault();               // ← у label гасим дефолт
+            e.stopPropagation();              // ← и всплытие (чтобы глобальные хендлеры не закрыли сразу)
+            dp.hasAttribute('hidden') ? open() : close();
+        });
+    });
+});
+
+
+// модалка выбора причины в модалке
+document.addEventListener('DOMContentLoaded', () => {
+    const root  = document.querySelector('.select-info[data-reason]');
+    if (!root) return;
+
+    const btn   = root.querySelector('.select-info__btn');
+    const value = root.querySelector('.select-info__value');
+    const menu  = root.querySelector('#reasonMenu');
+
+    // страховка
+    menu.querySelectorAll('button.reason-dd__item').forEach(b => b.type = 'button');
+
+    const open = () => {
+        menu.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded','true');
+        document.addEventListener('click', onDoc, true);
+        document.addEventListener('keydown', onKey, true);
+    };
+    const close = () => {
+        menu.setAttribute('hidden','');
+        btn.setAttribute('aria-expanded','false');
+        document.removeEventListener('click', onDoc, true);
+        document.removeEventListener('keydown', onKey, true);
+    };
+    const toggle = () => (menu.hasAttribute('hidden') ? open() : close());
+    const onDoc  = (e) => { if (!root.contains(e.target)) close(); };
+    const onKey  = (e) => { if (e.key === 'Escape') close(); };
+
+    btn.addEventListener('mousedown', e => e.preventDefault());
+    btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); toggle(); });
+
+    menu.addEventListener('mousedown', e => e.stopPropagation());
+    menu.addEventListener('click', (e) => {
+        e.preventDefault(); e.stopPropagation();
+        const item = e.target.closest('.reason-dd__item'); if (!item) return;
+
+        menu.querySelectorAll('.reason-dd__item').forEach(i=>{
+            i.classList.remove('is-active'); i.setAttribute('aria-checked','false');
+        });
+        item.classList.add('is-active'); item.setAttribute('aria-checked','true');
+
+        if (value) value.textContent = item.dataset.text || item.textContent.trim();
+        close();
+    });
+});
