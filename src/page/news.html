@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/news.css">
+    <title>Внутренний портал — каркас</title>
+</head>
+<body>
+<!-- ===== Шапка ===== -->
+<header class="header">
+    <div class="header__inner">
+        <div class="header__left">
+            <a class="header__logo" href="/">
+                <img class="header__logo-img" src="/images/Header.svg" width="80px" height="43px" alt="Логотип Ostec" />
+            </a>
+            <div class="header__divider" aria-hidden="true"></div>
+            <div class="header__loc">
+                <span class="header__city">Москва,</span>
+                <span class="header__time">12:20</span>
+            </div>
+            <div class="header__divider" aria-hidden="true"></div>
+            <div class="header__search" data-search>
+                <input class="header__search-input" type="search" placeholder="Поиск..." aria-label="Поиск">
+
+                <div class="search-popup" role="listbox" aria-label="Подсказки">
+                    <div class="search-dd__scroll">
+                        <ul class="search-dd__list">
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Александр Иванович</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Борис Иванович</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванова Ирина Ивановна</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Фёдор Иванович</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Фёдор Иванович</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Фёдор Иванович</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header__right">
+            <div class="header__status" data-status>
+                <button class="header__status-btn" type="button"
+                        aria-haspopup="menu" aria-expanded="false" aria-controls="statusMenu">
+                    <img class="header__icon" data-status-icon src="/images/icons/work.svg" alt="" aria-hidden="true">
+                    <span data-status-text>В офисе</span>
+                    <img class="header__chevron" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                </button>
+
+                <!-- dropdown -->
+                <div class="status-dd" id="statusMenu" role="menu" hidden>
+                    <button class="status-dd__item is-active" role="menuitemradio" aria-checked="true"
+                            data-value="office" data-icon="/images/icons/work.svg" data-text="В офисе">
+                        <img class="status-dd__ico" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">В офисе</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="remote" data-icon="/images/icons/house_drop.svg" data-text="Удаленно">
+                        <img class="status-dd__ico" src="/images/icons/house_drop.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">Удаленно</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="trip" data-icon="/images/icons/airplane.svg" data-text="В командировке">
+                        <img class="status-dd__ico" src="/images/icons/airplane.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">В командировке</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="vacation" data-icon="/images/icons/sun.max.svg" data-text="В отпуске">
+                        <img class="status-dd__ico" src="/images/icons/sun.max.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">В отпуске</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="meeting" data-icon="/images/icons/group.svg" data-text="На встрече">
+                        <img class="status-dd__ico" src="/images/icons/group.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">На встрече</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="sick" data-icon="/images/icons/pill.svg" data-text="На больничном">
+                        <img class="status-dd__ico" src="/images/icons/pill.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">На больничном</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="dayoff" data-icon="/images/icons/weekend.svg" data-text="Отгул">
+                        <img class="status-dd__ico" src="/images/icons/weekend.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">Отгул</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="study" data-icon="/images/icons/study.svg" data-text="На обучении">
+                        <img class="status-dd__ico" src="/images/icons/study.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">На обучении</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="expo" data-icon="/images/icons/location_on.svg" data-text="На выставке">
+                        <img class="status-dd__ico" src="/images/icons/location_on.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">На выставке</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="other" data-icon="/images/icons/atr.svg" data-text="Другое"
+                            data-modal-open="absence-modal">
+                        <img class="status-dd__ico" src="/images/icons/atr.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">Другое</span>
+                    </button>
+                </div>
+            </div>
+            <div class="header__notify">
+                <button class="header__notify-btn" type="button" aria-label="Открыть уведомления">
+                    <img class="header__icon" src="/images/icons/bell.svg" alt="" aria-hidden="true" />
+                    <span class="header__notify-badge">1</span>
+                </button>
+            </div>
+            <div class="header__profile">
+                <img class="header__avatar" src="/images/header_avatar.png" alt="Аватар: Константин" />
+                <div class="header__profile-text">
+                    <div class="header__profile-name">Константин</div>
+                    <div class="header__profile-surname">Константинопольский</div>
+                </div>
+                <button class="header__icon-btn" type="button" aria-label="Открыть меню">
+                    <img class="header__icon" src="/images/icons/work.svg" alt="" aria-hidden="true" />
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="news-container">
+    <!-- ===== Левый сайдбар ===== -->
+    <aside class="sidebar sidebar--collapsed" aria-label="Главная навигация">
+        <button class="sidebar__pin"
+                type="button"
+                aria-label="Закрепить меню"
+                aria-pressed="false"
+                data-icon-default="/images/icons/pin.svg"
+                data-icon-active="/images/icons/pin_active.svg">
+            <img class="sidebar__pin-ico" src="/images/icons/pin.svg" alt="" aria-hidden="true">
+        </button>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__group">
+                <li class="sidebar__item">
+                    <a class="sidebar__btn sidebar__btn--active" href="/home" aria-current="page">
+                        <img class="sidebar__icon" src="/images/icons/home.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">Главная</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a class="sidebar__btn" href="/projects">
+                        <img class="sidebar__icon" src="/images/icons/inventory.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">Задачи и проекты</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a class="sidebar__btn" href="/employees">
+                        <img class="sidebar__icon" src="/images/icons/people.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">Сотрудники</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a class="sidebar__btn" href="/news">
+                        <img class="sidebar__icon" src="/images/icons/note.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">Новости</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a class="sidebar__btn" href="/events">
+                        <img class="sidebar__icon" src="/images/icons/calendare.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">События</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a class="sidebar__btn" href="/kb">
+                        <img class="sidebar__icon" src="/images/icons/study.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">База знаний</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a class="sidebar__btn" href="/ideas">
+                        <img class="sidebar__icon" src="/images/icons/light.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">Банк идей</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="sidebar__group sidebar__group--footer">
+                <li class="sidebar__item">
+                    <button class="sidebar__btn" type="button" aria-label="Помощь">
+                        <img class="sidebar__icon" src="/images/icons/headset_mic.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">Помощь</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- ===== Центральная колонка ===== -->
+    <section class="main">
+        <!-- Верхние виджеты -->
+        <div class="widgets-row">
+
+        </div>
+
+        <!-- Новости / события -->
+        <div class="card-header section-head">
+            <nav class="breadcrumbs" aria-label="Хлебные крошки">
+                <ol class="breadcrumbs__list">
+                    <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__news" href="#">Новости</a>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="section-head__actions">
+                <button class="section-news__btn" type="button">
+                    <img class="section-news__icon" src="/images/icons/calendar2.svg" alt="" aria-hidden="true">
+                    <span>За всё время</span>
+                    <img class="section-news__icon" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                </button>
+
+                <a class="section-news__link" href="#">
+                    <span>Моя компания</span>
+                    <img class="section-news__icon right" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                </a>
+            </div>
+        </div>
+
+
+        <div class="news-list">
+            <article class="news-card">
+                <header class="news-card__head">
+                    <h3 class="news-card__title">Заголовок новости</h3>
+
+                    <div class="news-card__meta">
+                        <time class="news-card__date" datetime="2025-09-26">26 сентября 2025</time>
+
+                        <button class="news-card__pin" type="button"
+                                aria-label="Закрепить новость" aria-pressed="false"
+                                data-icon-default="/images/icons/pin.svg"
+                                data-icon-active="/images/icons/pin-active.svg">
+                            <img class="news-card__pin-ico" src="/images/icons/pin.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+                </header>
+
+                <div class="news-card__body">
+                    <a class="news-card__thumb" href="#">
+                        <img src="/images/news1.png" alt="Изображение новости">
+                    </a>
+
+                    <div class="news-card__content">
+                        <p class="news-card__excerpt">
+                            Текст новости пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста
+                            длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текс...
+                        </p>
+                    </div>
+                </div>
+
+                <div class="news-card__tags">
+                    <span class="chip">тег</span>
+                    <span class="chip">тег длинный</span>
+                    <span class="chip">тег</span>
+                    <span class="news-card__more">и ещё 2</span>
+                </div>
+
+                <footer class="news-card__foot">
+                    <div class="news-card__actions">
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/like.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/comment.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action action-share" type="button">
+                            <img class="action__ico" src="/images/icons/share.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+
+                    <div class="news-card__views">
+                        <img class="news-card__eye" src="/images/icons/eye.svg" alt="" aria-hidden="true"><span>0</span>
+                    </div>
+                </footer>
+            </article>
+
+            <article class="news-card">
+                <header class="news-card__head">
+                    <h3 class="news-card__title">Заголовок новости</h3>
+
+                    <div class="news-card__meta">
+                        <time class="news-card__date" datetime="2025-09-26">26 сентября 2025</time>
+
+                        <button class="news-card__pin" type="button"
+                                aria-label="Закрепить новость" aria-pressed="false"
+                                data-icon-default="/images/icons/pin.svg"
+                                data-icon-active="/images/icons/pin-active.svg">
+                            <img class="news-card__pin-ico" src="/images/icons/pin.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+                </header>
+
+                <div class="news-card__body">
+                    <a class="news-card__thumb" href="#">
+                        <img src="/images/news1.png" alt="Изображение новости">
+                    </a>
+
+                    <div class="news-card__content">
+                        <p class="news-card__excerpt">
+                            Текст новости пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример тек пр...
+                        </p>
+                    </div>
+                </div>
+
+                <div class="news-card__tags">
+                    <span class="chip">тег</span>
+                    <span class="chip">тег длинный</span>
+                    <span class="chip">тег</span>
+                    <span class="news-card__more">и ещё 2</span>
+                </div>
+
+                <footer class="news-card__foot">
+                    <div class="news-card__actions">
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/like.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/comment.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action action-share" type="button">
+                            <img class="action__ico" src="/images/icons/share.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+
+                    <div class="news-card__views">
+                        <img class="news-card__eye" src="/images/icons/eye.svg" alt="" aria-hidden="true"><span>0</span>
+                    </div>
+                </footer>
+            </article>
+
+            <article class="news-card">
+                <header class="news-card__head">
+                    <h3 class="news-card__title">Заголовок новости</h3>
+
+                    <div class="news-card__meta">
+                        <time class="news-card__date" datetime="2025-09-26">26 сентября 2025</time>
+
+                        <button class="news-card__pin" type="button"
+                                aria-label="Закрепить новость" aria-pressed="false"
+                                data-icon-default="/images/icons/pin.svg"
+                                data-icon-active="/images/icons/pin-active.svg">
+                            <img class="news-card__pin-ico" src="/images/icons/pin.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+                </header>
+
+                <div class="news-card__body">
+                    <a class="news-card__thumb" href="#">
+                        <img src="/images/news1.png" alt="Изображение новости">
+                    </a>
+
+                    <div class="news-card__content">
+                        <p class="news-card__excerpt">
+                            Текст новости пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример тек пр...
+                        </p>
+                    </div>
+                </div>
+
+                <div class="news-card__tags">
+                    <span class="chip">тег</span>
+                    <span class="chip">тег длинный</span>
+                    <span class="chip">тег</span>
+                    <span class="news-card__more">и ещё 2</span>
+                </div>
+
+                <footer class="news-card__foot">
+                    <div class="news-card__actions">
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/like.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/comment.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action action-share" type="button">
+                            <img class="action__ico" src="/images/icons/share.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+
+                    <div class="news-card__views">
+                        <img class="news-card__eye" src="/images/icons/eye.svg" alt="" aria-hidden="true"><span>0</span>
+                    </div>
+                </footer>
+            </article>
+
+            <article class="news-card">
+                <header class="news-card__head">
+                    <h3 class="news-card__title">Заголовок новости</h3>
+
+                    <div class="news-card__meta">
+                        <time class="news-card__date" datetime="2025-09-26">26 сентября 2025</time>
+
+                        <button class="news-card__pin" type="button"
+                                aria-label="Закрепить новость" aria-pressed="false"
+                                data-icon-default="/images/icons/pin.svg"
+                                data-icon-active="/images/icons/pin-active.svg">
+                            <img class="news-card__pin-ico" src="/images/icons/pin.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+                </header>
+
+                <div class="news-card__body">
+                    <a class="news-card__thumb" href="#">
+                        <img src="/images/news1.png" alt="Изображение новости">
+                    </a>
+
+                    <div class="news-card__content">
+                        <p class="news-card__excerpt">
+                            Текст новости пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример текста длинный пример тек пр...
+                        </p>
+                    </div>
+                </div>
+
+                <div class="news-card__tags">
+                    <span class="chip">тег</span>
+                    <span class="chip">тег длинный</span>
+                    <span class="chip">тег</span>
+                    <span class="news-card__more">и ещё 2</span>
+                </div>
+
+                <footer class="news-card__foot">
+                    <div class="news-card__actions">
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/like.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action" type="button">
+                            <img class="action__ico" src="/images/icons/comment.svg" alt="" aria-hidden="true"><span>0</span>
+                        </button>
+                        <button class="action action-share" type="button">
+                            <img class="action__ico" src="/images/icons/share.svg" alt="" aria-hidden="true">
+                        </button>
+                    </div>
+
+                    <div class="news-card__views">
+                        <img class="news-card__eye" src="/images/icons/eye.svg" alt="" aria-hidden="true"><span>0</span>
+                    </div>
+                </footer>
+            </article>
+        </div>
+
+    </section>
+
+    <aside class="right-rail" aria-label="Быстрые действия справа">
+        <nav class="right-rail__nav">
+            <ul class="right-rail__group">
+                <li class="right-rail__item">
+                    <button class="right-rail__btn" type="button" aria-label="Заявки">
+                        <img class="right-rail__icon" src="/images/icons/mark_chat.svg" alt="" aria-hidden="true">
+                    </button>
+                </li>
+                <div class="right-rail__divider" role="separator" aria-hidden="true"></div>
+                <li class="right-rail__item">
+                    <button class="right-rail__btn" type="button" aria-label="Заметки">
+                        <img class="right-rail__icon" src="/images/icons/edit_square.svg" alt="" aria-hidden="true">
+                    </button>
+                </li>
+                <div class="right-rail__divider" role="separator" aria-hidden="true"></div>
+                <li class="right-rail__item">
+                    <button class="right-rail__btn" type="button" aria-label="Поиск">
+                        <img class="right-rail__icon" src="/images/icons/search.svg" alt="" aria-hidden="true">
+                    </button>
+                </li>
+            </ul>
+
+            <div class="right-rail__divider" role="separator" aria-hidden="true"></div>
+
+            <ul class="right-rail__group right-rail__group--avatars">
+                <!-- аватар с индикатором онлайн -->
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Иван Петров, онлайн">
+                        <img src="/images/ava1.png" alt="" />
+                        <span class="right-rail__status right-rail__status--online" aria-hidden="true"></span>
+                    </button>
+                </li>
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Мария Смирнова">
+                        <img src="/images/ava2.png" alt="" />
+                    </button>
+                </li>
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Алексей Орлов">
+                        <img src="/images/ava3.png" alt="" />
+                    </button>
+                </li>
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Екатерина Иванова">
+                        <img src="/images/header_avatar.png" alt="" />
+                    </button>
+                </li>
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Сергей Ким">
+                        <img src="/images/ava4.png" alt="" />
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <section class="pager" aria-label="Пагинация">
+        <div class="pager__nav">
+            <button class="pager__arrow pager__arrow--prev" type="button" aria-label="Предыдущая страница" disabled>
+                <img class="pager__arrow-ico" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+            </button>
+
+            <ol class="pager__pages">
+                <li class="pager__page"><a class="pager__link pager__link--current" href="#" aria-current="page">1</a></li>
+                <li class="pager__page"><a class="pager__link" href="#">2</a></li>
+                <li class="pager__page"><a class="pager__link" href="#">3</a></li>
+                <li class="pager__page"><a class="pager__link" href="#">4</a></li>
+                <li class="pager__sep" aria-hidden="true">…</li>
+                <li class="pager__page"><a class="pager__link" href="#">999</a></li>
+            </ol>
+
+            <button class="pager__arrow pager__arrow--next" type="button" aria-label="Следующая страница">
+                <img class="pager__arrow-ico" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+            </button>
+        </div>
+
+        <button class="pager__more" type="button">Показать еще</button>
+    </section>
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="../index.js"></script>
+<div class="modal" id="absence-modal" role="dialog" aria-modal="true" aria-labelledby="absence-title" aria-hidden="true">
+    <div class="modal__backdrop" data-modal-close></div>
+
+    <div class="modal__dialog" role="document" tabindex="-1">
+        <div class="modal__header">
+            <h3 class="modal__title" id="absence-title">Добавление отсутствия</h3>
+            <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close>
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+        </div>
+
+        <form class="modal__body" action="#" method="post" novalidate>
+            <!-- Период -->
+            <div class="field-group">
+                <div class="field-group__title">Период <span class="req">*</span></div>
+
+                <div class="ap-period">
+                    <label class="ap-field ap-field--date">
+                        <span class="ap-field__icon" aria-hidden="true">
+                            <img class="ap__arrow-ico" src="/images/icons/calendare.svg" alt="" aria-hidden="true">
+                        </span>
+                        <span class="ap-input" type="date">24.09.25</span>
+                        <div class="ap-datepicker" hidden></div>
+                    </label>
+
+                    <label class="ap-field ap-field--time">
+                        <span class="ap-field__icon" aria-hidden="true">
+                          <img class="ap__arrow-ico" src="/images/icons/clock.svg" alt="" aria-hidden="true">
+                        </span>
+                        <span class="ap-input" type="time">24:00</span>
+                    </label>
+
+                    <span class="ap-period__dash" aria-hidden="true">—</span>
+
+                    <label class="ap-field ap-field--date">
+                        <span class="ap-field__icon" aria-hidden="true">
+                            <img class="ap__arrow-ico" src="/images/icons/calendare.svg" alt="" aria-hidden="true">
+                        </span>
+                        <span class="ap-input" type="date">30.09.25</span>
+                        <div class="ap-datepicker" hidden></div>
+                    </label>
+
+                    <label class="ap-field ap-field--time">
+                        <span class="ap-field__icon" aria-hidden="true">
+                            <img class="ap__arrow-ico" src="/images/icons/clock.svg" alt="" aria-hidden="true">
+                        </span>
+                        <span class="ap-input" type="time">24:00</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Причина + Доп. инфо -->
+            <div class="flex-2">
+                <div class="info">
+                    <span class="info__label">Причина <span class="req">*</span></span>
+                    <div class="select-info" data-reason>
+                        <button class="select-info__btn" type="button"
+                                aria-haspopup="menu" aria-expanded="false" aria-controls="reasonMenu">
+                            <span class="select-info__value">Другое</span>
+                            <img class="select-info__chevron" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                        </button>
+
+                        <!-- новый дропдаун, один-в-один по структуре -->
+                        <div class="reason-dd" id="reasonMenu" role="menu" hidden>
+                            <button type="button" class="reason-dd__item is-active" role="menuitemradio" aria-checked="true"
+                                    data-value="other" data-icon="/images/icons/atr.svg" data-text="Другое">
+                                <img class="reason-dd__ico" src="/images/icons/atr.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">Другое</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="office" data-icon="/images/icons/work.svg" data-text="В офисе">
+                                <img class="reason-dd__ico" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">В офисе</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="remote" data-icon="/images/icons/house_drop.svg" data-text="Удаленно">
+                                <img class="reason-dd__ico" src="/images/icons/house_drop.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">Удаленно</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="trip" data-icon="/images/icons/airplane.svg" data-text="В командировке">
+                                <img class="reason-dd__ico" src="/images/icons/airplane.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">В командировке</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="vacation" data-icon="/images/icons/sun.max.svg" data-text="В отпуске">
+                                <img class="reason-dd__ico" src="/images/icons/sun.max.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">В отпуске</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="meeting" data-icon="/images/icons/group.svg" data-text="На встрече">
+                                <img class="reason-dd__ico" src="/images/icons/group.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">На встрече</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="sick" data-icon="/images/icons/pill.svg" data-text="На больничном">
+                                <img class="reason-dd__ico" src="/images/icons/pill.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">На больничном</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="dayoff" data-icon="/images/icons/weekend.svg" data-text="Отгул">
+                                <img class="reason-dd__ico" src="/images/icons/weekend.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">Отгул</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="study" data-icon="/images/icons/study.svg" data-text="На обучении">
+                                <img class="reason-dd__ico" src="/images/icons/study.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">На обучении</span>
+                            </button>
+
+                            <button type="button" class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                    data-value="expo" data-icon="/images/icons/location_on.svg" data-text="На выставке">
+                                <img class="reason-dd__ico" src="/images/icons/location_on.svg" alt="" aria-hidden="true">
+                                <span class="reason-dd__text">На выставке</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <label class="info">
+                    <span class="info-label">Дополнительная информация <span class="req">*</span></span>
+                    <input class="info-label__input" type="text" maxlength="20" placeholder="Введите текст (макс. 20 символов)" required>
+                </label>
+            </div>
+
+            <label class="proxy-field">
+                <span class="proxy-field__label">Замещающий</span>
+                <input class="proxy-input" type="text" placeholder="Укажите замещающего">
+            </label>
+
+            <!-- Комментарий -->
+            <label class="comment-field">
+                <span class="comment-field__label">Комментарий</span>
+                <textarea class="comment-textarea" placeholder="Введите комментарий (макс. 80 символов)"></textarea>
+            </label>
+        </form>
+
+        <div class="modal__footer">
+            <button class="btn btn-link" type="button">
+                <span class="btn__icon" aria-hidden="true">＋</span>
+                Добавить отсутствие
+            </button>
+            <div class="modal__spacer"></div>
+            <button class="btn btn-secondary" type="button" data-modal-close>Отменить</button>
+            <button class="btn btn-primary" type="button">Сохранить</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal task-modal" id="request-modal" role="dialog" aria-modal="true"
+     aria-labelledby="rq-title" aria-hidden="true">
+    <div class="modal__backdrop task-modal__backdrop" data-modal-close></div>
+
+    <div class="modal__dialog modal__dialog-task" role="document" tabindex="-1">
+        <div class="modal__header task-modal__header">
+            <h3 class="modal__title task-modal__title" id="rq-title">Оформить заявку</h3>
+            <button class="modal__close task-modal__close" type="button" aria-label="Закрыть" data-modal-close>
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <form class="task-form rq-form" id="task-form" action="#" method="post" novalidate>
+            <!-- Тема -->
+            <div class="task-form__group rq-group">
+                <label class="task-form__label rq-label">Тема</label>
+                <div class="task-select rq-select">
+                    <select class="task-select__native rq-select__native" required>
+                        <option value="" selected disabled>Выберите тему</option>
+                        <option>IT-поддержка</option>
+                        <option>Закупка</option>
+                        <option>Хозяйственные работы</option>
+                    </select>
+                    <span class="task-select__arrow rq-select__arrow" aria-hidden="true">
+                        <img src="/images/icons/arrow_down.svg" alt="" />
+                    </span>
+                </div>
+            </div>
+
+            <!-- Тип -->
+            <div class="task-form__group rq-group">
+                <label class="task-form__label rq-label">Тип</label>
+                <div class="task-select rq-select">
+                    <select class="task-select__native rq-select__native" required>
+                        <option value="" selected disabled>Выберите тип</option>
+                        <option>Инцидент</option>
+                        <option>Запрос на сервис</option>
+                        <option>Консультация</option>
+                    </select>
+                    <span class="task-select__arrow rq-select__arrow" aria-hidden="true">
+            <img src="/images/icons/arrow_down.svg" alt="" />
+          </span>
+                </div>
+            </div>
+
+            <!-- Комментарий -->
+            <div class="task-form__group rq-group">
+                <label class="task-form__label rq-label">Комментарий</label>
+                <textarea class="task-form__textarea rq-textarea" placeholder="Текст комментария..."></textarea>
+            </div>
+        </form>
+
+        <div class="task__footer task-modal__footer">
+            <button class="btn btn-secondary" type="button" data-modal-close>Отменить</button>
+            <button class="btn btn-primary" type="submit" form="task-form">Отправить</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
