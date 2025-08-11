@@ -11,7 +11,7 @@
     --hover: #F5F5F5;
     --header-h: 63px;
     --sidebar-collapsed: 56px;
-    --sidebar-expanded: 280px;
+    --sidebar-expanded: 260px;
     --right-rail-width: 56px;
     --rail-bg: #fff;
     --rail-border: #DEDEDE;
@@ -28,7 +28,7 @@ body {
     font-family: "NunitoSans", sans-serif;
 }
 
-/* ===== Шапка ===== */
+/* =========================== Шапка =============================== */
 .header {
     background: var(--card);
     border-bottom: 1px solid var(--rail-border);
@@ -267,15 +267,8 @@ body {
     padding: 34px 20px;
     padding-left: calc(20px + var(--sidebar-collapsed));
     padding-right: calc(46px + var(--right-rail-width));
+    transition: padding-left .25s ease;
 }
-
-/* Левый сайдбар */
-body.has-sidebar-expanded .container {
-    padding-left: calc(20px + var(--sidebar-expanded));
-}
-
-
-
 
 /* ========================= Сайдбар слева ======================================= */
 .sidebar {
@@ -292,12 +285,43 @@ body.has-sidebar-expanded .container {
     background: #fff;
     /*border-right: 1px solid rgba(0,0,0,.06);*/
     /*box-shadow: none;*/
-    /*z-index: 10;*/
-    /*transition: width .25s ease;*/
+    z-index: 120;
+    transition: width .25s ease;
 }
+
+.sidebar__pin {
+    position:absolute; top: 10px; right: 10px;
+    width:22px; height:22px;
+    display:flex; align-items:center; justify-content:center;
+    border:0; background:transparent; padding:0; cursor:pointer;
+    opacity:0; transform: scale(.9);
+    pointer-events:none;
+    transition: opacity .18s ease, transform .18s ease;
+}
+.sidebar__pin-ico{ width:100%; height:100%; display:block; }
+
+.sidebar--expanded .sidebar__pin{
+    opacity:1; transform: none; pointer-events:auto;
+}
+
+.sidebar__pin:focus-visible{ outline:2px solid rgba(143,215,0,.45); outline-offset:2px; }
+
+/* подписи появляются плавно (если ещё не добавлено) */
+.sidebar__label{ display:none; opacity:0; transform:translateX(-4px);
+    transition: opacity .2s ease, transform .2s ease; }
+.sidebar--expanded .sidebar__label{ display:block; opacity:1; transform:translateX(0); }
 
 .sidebar--expanded {
     width: var(--sidebar-expanded);
+    box-shadow: 8px 0 24px rgba(0,0,0,.12);
+}
+
+.sidebar:not(.sidebar--expanded) .sidebar__btn:hover {
+    background: #8FD7001A;
+}
+
+.sidebar--expanded .sidebar__btn:hover {
+    background: transparent;
 }
 
 .sidebar__nav {
@@ -363,19 +387,26 @@ body.has-sidebar-expanded .container {
 /* подписи для будущего раскрытия */
 .sidebar__label {
     display: none;
-    font-size: 14px;
+    opacity:0;
+    transform: translateX(-4px);
+    transition: opacity .2s ease, transform .2s ease;
+    font-size: 16px;
+    font-weight: 450;
     white-space: nowrap;
 }
 
 /* когда сайдбар раскрыт – показываем подписи, расширяем кнопку */
 .sidebar--expanded .sidebar__btn {
-    width: calc(100% - 12px);  /* немного внутреннего воздуха слева/справа */
+    width: 260px;  /* немного внутреннего воздуха слева/справа */
     padding-left: 12px;
     justify-items: start;
+    grid-template-columns: 24px 1fr;
 }
 
 .sidebar--expanded .sidebar__label {
     display: block;
+    opacity:1;
+    transform: translateX(0);
     color: #2C2C2C;
 }
 
@@ -515,16 +546,6 @@ button, button:active {
     background: var(--online);
 }
 
-/* Адаптив: на маленьких экранах можно скрыть рейл или уменьшить ширину */
-@media (max-width: 1100px){
-    :root{ --right-rail-width: 48px; }
-}
-
-@media (max-width: 900px){
-    .right-rail{ display: none; }     /* при желании прячем на мобилках */
-}
-
-
 
 /* Контент */
 .main {
@@ -548,6 +569,14 @@ button, button:active {
     background: var(--card);
     border-radius: 10px;
     box-shadow: 2px 4px 12px #0F0F1112;
+}
+
+.info-widget__title--short {
+    display:none;
+}
+
+.rates__code--short {
+    display:none;
 }
 
 .info-widget .info-widget__header {
@@ -908,6 +937,10 @@ button, button:active {
     overflow: hidden;
     line-height: 115%;
     color: #07150A;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 9;
+    word-break: break-word;
 }
 
 .news-card__tags {
@@ -1612,16 +1645,298 @@ button, button:active {
 }
 
 
-
-/* Подвал */
-/*footer { display: flex; justify-content: center; padding: 24px; color: var(--muted); font-size: 12px; }*/
-
-/* Адаптив */
-@media (max-width: 1200px) {
-    .container { grid-template-columns: 56px 1fr; }
-    .rightbar { display: none; }
+/* ============================== social ================================ */
+.social {
+    background: var(--card, #fff);
+    border-radius: 18px;
+    padding: 20px 81px;
+    width: 338px;
+    height: 88px;
+    box-shadow: 2px 4px 12px #0F0F1112;
 }
+
+.social__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.social__item {
+    display:flex;
+}
+
+/* кнопка-иконка (круг) */
+.social__btn {
+    --size: 48px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social__icon {
+    width: 48px;
+    height: 48px;
+    display: block;
+    transition: transform .18s ease;
+}
+
+.social__icon.telegram {
+    width: 27px;
+    height: 23px;
+    display: block;
+    transition: transform .18s ease;
+}
+
+.social__icon.vk {
+    width: 32px;
+    height: 18px;
+    display: block;
+    transition: transform .18s ease;
+}
+
+.social__btn--tg {
+    background:#239AD6;
+}
+
+.social__btn--vk {
+    background:#0077FF;
+}
+
+/* ховеры / клик */
+.social__btn:hover {
+    transform: scale(1.09);
+    box-shadow: 0 6px 16px rgba(0,0,0,.18);
+}
+.social__btn:hover .social__icon {
+    transform: scale(1.09);
+}
+
+.social__btn:active {
+    transform: scale(1.09);
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+
+
+
+/* ================================= pager ================================== */
+.pager {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 30px 0 30px;
+}
+
+/* верхняя линия: стрелки + номера */
+.pager__nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 250px;
+    height: 24px;
+}
+
+/* стрелки */
+.pager__arrow{
+    width: 24px;
+    height: 24px;
+    border: 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .15s ease;
+}
+
+.pager__arrow-ico {
+    width: 10px;
+    height: 10px;
+}
+
+.pager__arrow--prev .pager__arrow-ico {
+    transform: rotate(90deg);
+}
+
+.pager__arrow--next .pager__arrow-ico {
+    transform: rotate(-90deg);
+}
+
+/* список номеров */
+.pager__pages {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pager__page {
+    display: flex;
+    padding: 2px 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pager__link {
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 120%;
+    color: #07150A;
+    transition: color .15s ease, transform .1s ease;
+}
+
+.pager__link:hover {
+    color:#8FD700;
+}
+
+.pager__link--current,
+.pager__link[aria-current="page"] {
+    color:#8FD700;
+    pointer-events:none;
+}
+
+.pager__sep {
+    font-size: 16px;
+    line-height: 120%;
+    color: #07150A;
+}
+
+/* "Показать еще" */
+.pager__more{
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    color: #8FD700;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 120%;
+    transition: transform .12s ease, text-shadow .12s ease;
+}
+
+/* ======================================== Адаптив =========================================== */
 @media (max-width: 640px) {
     .widgets-row { grid-template-columns: 1fr; }
     .news { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 1280px) {
+
+    .container {
+        max-width: 1040px;
+        padding: 30px 0px;
+        padding-right: 16px;
+    }
+
+    .main {
+        width: 686px;
+    }
+
+    /* ============================ Виджет информаци ======================================= */
+    .info-widget {
+        width: 144px;
+    }
+
+    .info-widget .info-widget__header {
+        padding: 20px 17px 7px 20px;
+    }
+
+    .info-widget__title--full {
+        display:none;
+    }
+
+    .info-widget__title--short {
+        display:block;
+    }
+
+    /* погода: компактнее; статус скрываем */
+    .info-widget__weather{
+        gap: 13px;
+        flex-direction: column;
+        align-items: flex-start;
+        background: transparent;
+        padding: 0;
+    }
+
+    .info-widget__weather-left {
+        gap: 8px;
+    }
+
+    .info-widget__weather-icon {
+        width: 37px;
+        height: 30px;
+    }
+
+    .info-widget__temp {
+        font-size: 20px;
+    }
+
+    .info-widget__status {
+        display:none;
+    }
+
+    .info-widget__divider {
+        margin: 12px 0;
+    }
+
+    .info-widget__subtitle {
+        font-weight: 500;
+        margin-bottom: 12px;
+    }
+
+    .rates {
+        flex-direction: column;
+        gap: 13px;
+        padding: 10px;
+        justify-content: initial;
+    }
+
+    .rates__item {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .rates__code--full {
+        display:none;
+    }
+
+    .rates__code--short {
+        display: block;
+        font-size: 14px;
+        color: #939393;
+        font-weight: 450;
+        text-align: left;
+    }
+
+    .rates_triangle {
+        width: 8px;
+        height: 8px;
+    }
+
+    .rates__value {
+        font-size: 14px;
+        font-weight: 700;
+        color: #07150A;
+    }
+
+    /* ===================================== Новости ================================= */
+    .news-card__content {
+        width: 400px;
+        min-width: 0;
+    }
+
+    /* ===================================== Календарь ================================= */
+    .events {
+        display: none;
+    }
+
 }

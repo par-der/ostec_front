@@ -60,48 +60,56 @@
 <main class="container">
     <!-- ===== Левый сайдбар ===== -->
     <aside class="sidebar sidebar--collapsed" aria-label="Главная навигация">
+        <button class="sidebar__pin"
+                type="button"
+                aria-label="Закрепить меню"
+                aria-pressed="false"
+                data-icon-default="/images/icons/pin.svg"
+                data-icon-active="/images/icons/pin-active.svg">
+            <img class="sidebar__pin-ico" src="/images/icons/pin.svg" alt="" aria-hidden="true">
+        </button>
         <nav class="sidebar__nav">
             <ul class="sidebar__group">
                 <li class="sidebar__item">
                     <button class="sidebar__btn sidebar__btn--active" type="button" aria-label="Главная">
                         <img class="sidebar__icon" src="/images/icons/home.svg" alt="" aria-hidden="true">
-<!--                        <span class="sidebar__label">Главная</span>-->
+                        <span class="sidebar__label">Главная</span>
                     </button>
                 </li>
                 <li class="sidebar__item">
                     <button class="sidebar__btn" type="button" aria-label="Задачи и проекты">
                         <img class="sidebar__icon" src="/images/icons/inventory.svg" alt="" aria-hidden="true">
-<!--                        <span class="sidebar__label">Задачи и проекты</span>-->
+                        <span class="sidebar__label">Задачи и проекты</span>
                     </button>
                 </li>
                 <li class="sidebar__item">
                     <button class="sidebar__btn" type="button" aria-label="Сотрудники">
                         <img class="sidebar__icon" src="/images/icons/people.svg" alt="" aria-hidden="true">
-<!--                        <span class="sidebar__label">Сотрудники</span>-->
+                        <span class="sidebar__label">Сотрудники</span>
                     </button>
                 </li>
                 <li class="sidebar__item">
                     <button class="sidebar__btn" type="button" aria-label="Новости">
                         <img class="sidebar__icon" src="/images/icons/note.svg" alt="" aria-hidden="true">
-<!--                        <span class="sidebar__label">Новости</span>-->
+                        <span class="sidebar__label">Новости</span>
                     </button>
                 </li>
                 <li class="sidebar__item">
                     <button class="sidebar__btn" type="button" aria-label="События">
                         <img class="sidebar__icon" src="/images/icons/calendare.svg" alt="" aria-hidden="true">
-<!--                        <span class="sidebar__label">События</span>-->
+                        <span class="sidebar__label">События</span>
                     </button>
                 </li>
                 <li class="sidebar__item">
                     <button class="sidebar__btn" type="button" aria-label="База знаний">
                         <img class="sidebar__icon" src="/images/icons/study.svg" alt="" aria-hidden="true">
-<!--                        <span class="sidebar__label">База знаний</span>-->
+                        <span class="sidebar__label">База знаний</span>
                     </button>
                 </li>
                 <li class="sidebar__item">
                     <button class="sidebar__btn" type="button" aria-label="Банк идей">
                         <img class="sidebar__icon" src="/images/icons/light.svg" alt="" aria-hidden="true">
-<!--                        <span class="sidebar__label">Банк идей</span>-->
+                        <span class="sidebar__label">Банк идей</span>
                     </button>
                 </li>
             </ul>
@@ -110,7 +118,7 @@
                 <li class="sidebar__item">
                     <button class="sidebar__btn" type="button" aria-label="Помощь">
                         <img class="sidebar__icon" src="/images/icons/headset_mic.svg" alt="" aria-hidden="true">
-<!--                        <span class="sidebar__label">Помощь</span>-->
+                        <span class="sidebar__label">Помощь</span>
                     </button>
                 </li>
             </ul>
@@ -123,7 +131,8 @@
         <div class="widgets-row">
             <div class="info-widget">
                 <div class="info-widget__header">
-                    <strong>Понедельник, 26 сентября</strong>
+                    <strong class="info-widget__title info-widget__title--full">Понедельник, 26 сентября</strong>
+                    <strong class="info-widget__title info-widget__title--short" aria-hidden="true">Пн, 26 сент.</strong>
                 </div>
 
                 <div class="info-widget__body">
@@ -149,21 +158,24 @@
 
                         <div class="rates">
                             <div class="rates__item">
-                                <span class="rates__code">USD</span>
+                                <span class="rates__code rates__code--full">USD</span>
+                                <span class="rates__code rates__code--short" aria-hidden="true">$</span>
                                 <div class="rates__price">
                                     <img class="rates_triangle" src="/images/icons/down_price.svg" alt="" aria-hidden="true">
                                     <span class="rates__value">78,85</span>
                                 </div>
                             </div>
                             <div class="rates__item">
-                                <span class="rates__code">EUR</span>
+                                <span class="rates__code rates__code--full">EUR</span>
+                                <span class="rates__code rates__code--short" aria-hidden="true">€</span>
                                 <div class="rates__price">
                                     <img class="rates_triangle" src="/images/icons/down_price.svg" alt="" aria-hidden="true">
                                     <span class="rates__value">78,85</span>
                                 </div>
                             </div>
                             <div class="rates__item">
-                                <span class="rates__code">CNY</span>
+                                <span class="rates__code rates__code--full">CNY</span>
+                                <span class="rates__code rates__code--short" aria-hidden="true">¥</span>
                                 <div class="rates__price">
                                     <img class="rates_triangle" src="/images/icons/up_price.svg" alt="" aria-hidden="true">
                                     <span class="rates__value">78,85</span>
@@ -667,19 +679,19 @@
                 <li class="social__item">
                     <a class="social__btn social__btn--home" href="#"
                        aria-label="Домашняя страница">
-                        <img class="social__icon" src="/images/icons/home_white.svg" alt="" aria-hidden="true">
+                        <img class="social__icon" src="/images/icons/home_green.svg" alt="" aria-hidden="true">
                     </a>
                 </li>
                 <li class="social__item">
                     <a class="social__btn social__btn--tg" href="#"
                        aria-label="Telegram">
-                        <img class="social__icon" src="/images/icons/telegram_white.svg" alt="" aria-hidden="true">
+                        <img class="social__icon telegram" src="/images/icons/telegram.svg" alt="" aria-hidden="true">
                     </a>
                 </li>
                 <li class="social__item">
                     <a class="social__btn social__btn--vk" href="#"
                        aria-label="VK">
-                        <img class="social__icon" src="/images/icons/vk_white.svg" alt="" aria-hidden="true">
+                        <img class="social__icon vk" src="/images/icons/vk.svg" alt="" aria-hidden="true">
                     </a>
                 </li>
             </ul>
@@ -741,9 +753,31 @@
             </ul>
         </nav>
     </aside>
-</main>
 
-<footer>© 2025 Остек — демо-каркас</footer>
+    <section class="pager" aria-label="Пагинация">
+        <div class="pager__nav">
+            <button class="pager__arrow pager__arrow--prev" type="button" aria-label="Предыдущая страница" disabled>
+                <img class="pager__arrow-ico" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+            </button>
+
+            <ol class="pager__pages">
+                <li class="pager__page"><a class="pager__link pager__link--current" href="#" aria-current="page">1</a></li>
+                <li class="pager__page"><a class="pager__link" href="#">2</a></li>
+                <li class="pager__page"><a class="pager__link" href="#">3</a></li>
+                <li class="pager__page"><a class="pager__link" href="#">4</a></li>
+                <li class="pager__sep" aria-hidden="true">…</li>
+                <li class="pager__page"><a class="pager__link" href="#">999</a></li>
+            </ol>
+
+            <button class="pager__arrow pager__arrow--next" type="button" aria-label="Следующая страница">
+                <img class="pager__arrow-ico" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+            </button>
+        </div>
+
+        <button class="pager__more" type="button">Показать еще</button>
+    </section>
+
+</main>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="../index.js"></script>
 </body>
