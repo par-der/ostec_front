@@ -24,18 +24,95 @@
                 <span class="header__time">12:20</span>
             </div>
             <div class="header__divider" aria-hidden="true"></div>
-            <div class="header__search">
-                <input class="header__search-input" type="search" placeholder="Поиск..." />
+            <div class="header__search" data-search>
+                <input class="header__search-input" type="search" placeholder="Поиск..." aria-label="Поиск">
+
+                <div class="search-popup" role="listbox" aria-label="Подсказки">
+                    <div class="search-dd__scroll">
+                        <ul class="search-dd__list">
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Александр Иванович</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Борис Иванович</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванова Ирина Ивановна</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Фёдор Иванович</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Фёдор Иванович</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Фёдор Иванович</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="header__right">
-            <div class="header__status">
-                <button class="header__status-btn" type="button" aria-haspopup="menu" aria-expanded="false">
-                    <img class="header__icon" src="/images/icons/work.svg" alt="" aria-hidden="true" />
-                    <span>В офисе</span>
-                    <img class="header__chevron" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true" />
+            <div class="header__status" data-status>
+                <button class="header__status-btn" type="button"
+                        aria-haspopup="menu" aria-expanded="false" aria-controls="statusMenu">
+                    <img class="header__icon" data-status-icon src="/images/icons/work.svg" alt="" aria-hidden="true">
+                    <span data-status-text>В офисе</span>
+                    <img class="header__chevron" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
                 </button>
+
+                <!-- dropdown -->
+                <div class="status-dd" id="statusMenu" role="menu" hidden>
+                    <button class="status-dd__item is-active" role="menuitemradio" aria-checked="true"
+                            data-value="office" data-icon="/images/icons/work.svg" data-text="В офисе">
+                        <img class="status-dd__ico" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">В офисе</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="remote" data-icon="/images/icons/house_drop.svg" data-text="Удаленно">
+                        <img class="status-dd__ico" src="/images/icons/house_drop.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">Удаленно</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="trip" data-icon="/images/icons/airplane.svg" data-text="В командировке">
+                        <img class="status-dd__ico" src="/images/icons/airplane.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">В командировке</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="vacation" data-icon="/images/icons/sun.max.svg" data-text="В отпуске">
+                        <img class="status-dd__ico" src="/images/icons/sun.max.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">В отпуске</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="meeting" data-icon="/images/icons/group.svg" data-text="На встрече">
+                        <img class="status-dd__ico" src="/images/icons/group.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">На встрече</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="sick" data-icon="/images/icons/pill.svg" data-text="На больничном">
+                        <img class="status-dd__ico" src="/images/icons/pill.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">На больничном</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="dayoff" data-icon="/images/icons/weekend.svg" data-text="Отгул">
+                        <img class="status-dd__ico" src="/images/icons/weekend.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">Отгул</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="study" data-icon="/images/icons/study.svg" data-text="На обучении">
+                        <img class="status-dd__ico" src="/images/icons/study.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">На обучении</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="expo" data-icon="/images/icons/location_on.svg" data-text="На выставке">
+                        <img class="status-dd__ico" src="/images/icons/location_on.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">На выставке</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="other" data-icon="/images/icons/atr.svg" data-text="Другое">
+                        <img class="status-dd__ico" src="/images/icons/atr.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">Другое</span>
+                    </button>
+                </div>
             </div>
             <div class="header__notify">
                 <button class="header__notify-btn" type="button" aria-label="Открыть уведомления">

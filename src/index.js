@@ -206,3 +206,105 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 })();
+
+// дропдаун хедер
+(function initHeaderStatus(){
+    const root = document.querySelector('[data-status]');
+    if (!root) return;
+
+    const btn = root.querySelector('.header__status-btn');
+    const menu = root.querySelector('.status-dd');
+    const label = root.querySelector('[data-status-text]');
+    const iconInBtn = root.querySelector('[data-status-icon]');
+
+    const open = () => {
+        root.classList.add('is-open');
+        btn.setAttribute('aria-expanded','true');
+        menu.hidden = false;
+    };
+    const close = () => {
+        root.classList.remove('is-open');
+        btn.setAttribute('aria-expanded','false');
+        menu.hidden = true;
+    };
+    const toggle = () => root.classList.contains('is-open') ? close() : open();
+
+    btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggle(); });
+
+    // выбор пункта
+    menu.addEventListener('click', (e)=>{
+        const item = e.target.closest('.status-dd__item'); if (!item) return;
+
+        // снять прошлый active
+        menu.querySelectorAll('.status-dd__item').forEach(i=>{
+            i.classList.remove('is-active'); i.setAttribute('aria-checked','false');
+        });
+
+        // пометить текущий
+        item.classList.add('is-active'); item.setAttribute('aria-checked','true');
+
+        // обновить кнопку
+        const text = item.dataset.text;
+        const icon = item.dataset.icon;
+        const iconActive = item.dataset.iconActive; // опционально
+        if (label && text) label.textContent = text;
+        if (iconInBtn && (iconActive || icon)) iconInBtn.src = iconActive || icon;
+
+        close();
+    });
+
+    // закрытие по клику вне/ESC
+    document.addEventListener('click', (e)=>{ if (!root.contains(e.target)) close(); });
+    document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') close(); });
+})();
+
+
+addEventListener('DOMContentLoaded', () => {
+    const root  = document.querySelector('[data-search]');
+    if (!root) return;
+
+    const input = root.querySelector('.header__search-input');
+    const popup = root.querySelector('.search-popup');
+    const items = [...root.querySelectorAll('.search-dd__item')];
+
+    const open  = () => root.classList.add('is-open');
+    const close = () => root.classList.remove('is-open');
+
+    // показываем список всегда, когда поле активно
+    input.addEventListener('focus', open);
+    input.addEventListener('input', open);
+    input.addEventListener('click', open);
+
+    // выбор по клику
+    items.forEach(li => {
+        li.addEventListener('click', () => {
+            input.value = li.textContent.trim();
+            close();
+            input.dispatchEvent(new Event('change'));
+        });
+    });
+
+    // клавиатура: Enter = выбрать первый (или активный), Esc = закрыть
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+        if (e.key === 'Enter') {
+            (root.querySelector('.search-dd__item.is-active') || items[0])?.click();
+        }
+    });
+
+    // простая навигация стрелками по списку
+    let idx = -1;
+    input.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+        e.preventDefault(); open();
+        idx = e.key === 'ArrowDown' ? Math.min(idx + 1, items.length - 1)
+            : Math.max(idx - 1, 0);
+        items.forEach((el, i) => el.classList.toggle('is-active', i === idx));
+        items[idx].scrollIntoView({ block: 'nearest' });
+    });
+
+    // клик вне — закрыть
+    document.addEventListener('click', (e) => {
+        if (!root.contains(e.target)) close();
+    });
+});
