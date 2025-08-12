@@ -143,6 +143,10 @@
     line-height: 120%;
 }
 
+.org-struct__title {
+    font-size: 18px;
+}
+
 .org-card__chev {
     width: 24px;
     height: 24px;
@@ -191,6 +195,132 @@
 .org-card__meta-ico {
     width: 16px;
     height: 16px;
+}
+
+/* ===================================== Карточка компании на 3 ряда ===================================== */
+.org-main {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 2px 4px 12px #0F0F1112;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+/* зелёная шапка */
+.org-main__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: #8FD700;
+    color: #07150A;
+}
+
+.org-main__title {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.org-main__count {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #517901;
+}
+
+.org-num {
+    color: #07150A;
+}
+
+.org-main__count-ico {
+    width: 16px;
+    height: 21px;
+}
+
+/* тело: три колонки */
+.org-main__body {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 20px;
+}
+
+.org-main__col {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    max-width: 371px;
+}
+
+.org-main__col:not(:last-child)::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    background: #E6E6E6;
+}
+
+/* заголовки колонок */
+.org-main__col-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 120%;
+    color: #07150A;
+}
+
+.org-main__badge {
+    display:inline-grid; place-items:center;
+    width:18px; height:18px; border-radius:50%;
+    border:2px solid #8FD700; color:#8FD700; font-weight:700; line-height:1;
+}
+
+/* человек */
+.org-main__person {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.org-main__avatar {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: 0 0 82px;
+}
+
+.org-main__data {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.org-main__name {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 120%;
+    color: #07150A;
+}
+
+.org-main__contact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #000000;
+}
+
+.org-main__mail {
+    color: #000000;
+    text-decoration: none;
 }
 
 @media (max-width: 1280px) {
