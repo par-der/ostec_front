@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/structure.css">
+    <title>Внутренний портал — каркас</title>
+</head>
+<body>
+<!-- ===== Шапка ===== -->
+<header class="header">
+    <div class="header__inner">
+        <div class="header__left">
+            <a class="header__logo" href="/">
+                <img class="header__logo-img" src="/images/Header.svg" width="80px" height="43px" alt="Логотип Ostec" />
+            </a>
+            <div class="header__divider" aria-hidden="true"></div>
+            <div class="header__loc">
+                <span class="header__city">Москва,</span>
+                <span class="header__time">12:20</span>
+            </div>
+            <div class="header__divider" aria-hidden="true"></div>
+            <div class="header__search" data-search>
+                <input class="header__search-input" type="search" placeholder="Поиск..." aria-label="Поиск">
+
+                <div class="search-popup" role="listbox" aria-label="Подсказки">
+                    <div class="search-dd__scroll">
+                        <ul class="search-dd__list">
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Александр Иванович</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Борис Иванович</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванова Ирина Ивановна</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Фёдор Иванович</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Фёдор Иванович</li>
+                            <li class="search-dd__item" role="option" tabindex="0">Иванов Фёдор Иванович</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header__right">
+            <div class="header__status" data-status>
+                <button class="header__status-btn" type="button"
+                        aria-haspopup="menu" aria-expanded="false" aria-controls="statusMenu">
+                    <img class="header__icon" data-status-icon src="/images/icons/work.svg" alt="" aria-hidden="true">
+                    <span data-status-text>В офисе</span>
+                    <img class="header__chevron" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                </button>
+
+                <!-- dropdown -->
+                <div class="status-dd" id="statusMenu" role="menu" hidden>
+                    <button class="status-dd__item is-active" role="menuitemradio" aria-checked="true"
+                            data-value="office" data-icon="/images/icons/work.svg" data-text="В офисе">
+                        <img class="status-dd__ico" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">В офисе</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="remote" data-icon="/images/icons/house_drop.svg" data-text="Удаленно">
+                        <img class="status-dd__ico" src="/images/icons/house_drop.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">Удаленно</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="trip" data-icon="/images/icons/airplane.svg" data-text="В командировке">
+                        <img class="status-dd__ico" src="/images/icons/airplane.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">В командировке</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="vacation" data-icon="/images/icons/sun.max.svg" data-text="В отпуске">
+                        <img class="status-dd__ico" src="/images/icons/sun.max.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">В отпуске</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="meeting" data-icon="/images/icons/group.svg" data-text="На встрече">
+                        <img class="status-dd__ico" src="/images/icons/group.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">На встрече</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="sick" data-icon="/images/icons/pill.svg" data-text="На больничном">
+                        <img class="status-dd__ico" src="/images/icons/pill.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">На больничном</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="dayoff" data-icon="/images/icons/weekend.svg" data-text="Отгул">
+                        <img class="status-dd__ico" src="/images/icons/weekend.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">Отгул</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="study" data-icon="/images/icons/study.svg" data-text="На обучении">
+                        <img class="status-dd__ico" src="/images/icons/study.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">На обучении</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="expo" data-icon="/images/icons/location_on.svg" data-text="На выставке">
+                        <img class="status-dd__ico" src="/images/icons/location_on.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">На выставке</span>
+                    </button>
+
+                    <button class="status-dd__item" role="menuitemradio" aria-checked="false"
+                            data-value="other" data-icon="/images/icons/atr.svg" data-text="Другое"
+                            data-modal-open="absence-modal">
+                        <img class="status-dd__ico" src="/images/icons/atr.svg" alt="" aria-hidden="true">
+                        <span class="status-dd__text">Другое</span>
+                    </button>
+                </div>
+            </div>
+            <div class="header__notify">
+                <button class="header__notify-btn" type="button" aria-label="Открыть уведомления">
+                    <img class="header__icon" src="/images/icons/bell.svg" alt="" aria-hidden="true" />
+                    <span class="header__notify-badge">1</span>
+                </button>
+            </div>
+            <div class="header__profile">
+                <img class="header__avatar" src="/images/header_avatar.png" alt="Аватар: Константин" />
+                <div class="header__profile-text">
+                    <div class="header__profile-name">Константин</div>
+                    <div class="header__profile-surname">Константинопольский</div>
+                </div>
+                <button class="header__icon-btn" type="button" aria-label="Открыть меню">
+                    <img class="header__icon" src="/images/icons/work.svg" alt="" aria-hidden="true" />
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="structure-container">
+    <!-- ===== Левый сайдбар ===== -->
+    <aside class="sidebar sidebar--collapsed" aria-label="Главная навигация">
+        <button class="sidebar__pin"
+                type="button"
+                aria-label="Закрепить меню"
+                aria-pressed="false"
+                data-icon-default="/images/icons/pin.svg"
+                data-icon-active="/images/icons/pin_active.svg">
+            <img class="sidebar__pin-ico" src="/images/icons/pin.svg" alt="" aria-hidden="true">
+        </button>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__group">
+                <li class="sidebar__item">
+                    <a class="sidebar__btn sidebar__btn--active" href="/home" aria-current="page">
+                        <img class="sidebar__icon" src="/images/icons/home.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">Главная</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a class="sidebar__btn" href="/projects">
+                        <img class="sidebar__icon" src="/images/icons/inventory.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">Задачи и проекты</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a class="sidebar__btn" href="/employees">
+                        <img class="sidebar__icon" src="/images/icons/people.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">Сотрудники</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a class="sidebar__btn" href="/news">
+                        <img class="sidebar__icon" src="/images/icons/note.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">Новости</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a class="sidebar__btn" href="/events">
+                        <img class="sidebar__icon" src="/images/icons/calendare.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">События</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a class="sidebar__btn" href="/kb">
+                        <img class="sidebar__icon" src="/images/icons/study.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">База знаний</span>
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a class="sidebar__btn" href="/ideas">
+                        <img class="sidebar__icon" src="/images/icons/light.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">Банк идей</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="sidebar__group sidebar__group--footer">
+                <li class="sidebar__item">
+                    <button class="sidebar__btn" type="button" aria-label="Помощь">
+                        <img class="sidebar__icon" src="/images/icons/headset_mic.svg" alt="" aria-hidden="true">
+                        <span class="sidebar__label">Помощь</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- ===== Центральная колонка ===== -->
+    <section class="main structure-section">
+        <!-- Верхние виджеты -->
+        <div class="widgets-row">
+
+        </div>
+
+        <!-- Новости / события -->
+        <div class="section-head">
+            <div class="structure__head-row">
+                <h1 class="structure__title">Структура</h1>
+
+                <a class="structure__back" href="#">
+                    <img class="structure__back-ico" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                    <span>Назад</span>
+                </a>
+            </div>
+
+            <a class="structure__org" href="#">
+                <span>Группа компаний Остек</span>
+                <img class="structure__org-ico" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+            </a>
+        </div>
+
+        <!-- Поиск -->
+        <div class="structure-search">
+            <div class="structure-search__outer">
+                <div class="structure-search__inner">
+                    <input class="structure-search__input" type="search" placeholder="Найти сотрудника…" autocomplete="off">
+                    <img class="structure-search__icon" src="/images/icons/search.svg" alt="" aria-hidden="true">
+                </div>
+            </div>
+        </div>
+
+        <section class="org">
+            <div class="org__grid">
+                <!-- карточка -->
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">БИЗНЕСПРОМЭСТЕЙТ</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">НИИИТ</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">Остек-Интегра</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">Остек-СТ</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">ПО «ГЕФЕСД»</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">ООО «ОСТЕК-АРТТУЛ»</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">ПРЕДПРИЯТИЕ ОСТЕК</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">Остек-СМТ</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">Остек-Тест</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">Остек-ЭК</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">Остек-СМТ</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">ТД «ГЕФЕСД»</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">ТД «ГЕФЕСД»</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">ТД «ГЕФЕСД»</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">ТД «ГЕФЕСД»</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title">ТД «ГЕФЕСД»</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__meta">
+                                <img class="org-card__meta-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
+                                <span class="org-card__meta-txt">Сотрудники: 252</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </section>
+
+    <aside class="right-rail" aria-label="Быстрые действия справа">
+        <nav class="right-rail__nav">
+            <ul class="right-rail__group">
+                <li class="right-rail__item">
+                    <button class="right-rail__btn" type="button" aria-label="Заявки">
+                        <img class="right-rail__icon" src="/images/icons/mark_chat.svg" alt="" aria-hidden="true">
+                    </button>
+                </li>
+                <div class="right-rail__divider" role="separator" aria-hidden="true"></div>
+                <li class="right-rail__item">
+                    <button class="right-rail__btn" type="button" aria-label="Заметки">
+                        <img class="right-rail__icon" src="/images/icons/edit_square.svg" alt="" aria-hidden="true">
+                    </button>
+                </li>
+                <div class="right-rail__divider" role="separator" aria-hidden="true"></div>
+                <li class="right-rail__item">
+                    <button class="right-rail__btn" type="button" aria-label="Поиск">
+                        <img class="right-rail__icon" src="/images/icons/search.svg" alt="" aria-hidden="true">
+                    </button>
+                </li>
+            </ul>
+
+            <div class="right-rail__divider" role="separator" aria-hidden="true"></div>
+
+            <ul class="right-rail__group right-rail__group--avatars">
+                <!-- аватар с индикатором онлайн -->
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Иван Петров, онлайн">
+                        <img src="/images/ava1.png" alt="" />
+                        <span class="right-rail__status right-rail__status--online" aria-hidden="true"></span>
+                    </button>
+                </li>
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Мария Смирнова">
+                        <img src="/images/ava2.png" alt="" />
+                    </button>
+                </li>
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Алексей Орлов">
+                        <img src="/images/ava3.png" alt="" />
+                    </button>
+                </li>
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Екатерина Иванова">
+                        <img src="/images/header_avatar.png" alt="" />
+                    </button>
+                </li>
+                <li class="right-rail__item--avatar">
+                    <button class="right-rail__avatar" type="button" aria-label="Сергей Ким">
+                        <img src="/images/ava4.png" alt="" />
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="../index.js"></script>
+
+<!------------------------------------------ модалка профиль ------------------------------------------>
+<!-- RIGHT DRAWER / PROFILE -->
+<div class="drawer" id="profileDrawer" aria-hidden="true">
+    <div class="drawer__overlay" data-drawer-close></div>
+
+    <aside class="drawer__panel" role="dialog" aria-modal="true"
+           aria-labelledby="drawerTitle" tabindex="-1">
+        <!-- Крестик-плашка, «прибит» слева вверху -->
+        <button class="drawer__close" type="button" data-drawer-close aria-label="Закрыть">
+            <img class="drawer__ico" src="/images/icons/subtract.svg" alt="">
+        </button>
+
+        <!-- Шапка с ФИО и вкладками -->
+        <header class="drawer__bar">
+            <h2 class="drawer__title" id="drawerTitle">
+                Константинопольский Константин Константинович
+                <img src="/images/icons/work.svg" class="i-lock" alt="" aria-hidden="true">
+            </h2>
+            <nav class="tabs">
+                <a class="tab tab--active" href="#">Профиль</a>
+                <a class="tab" href="#">Календарь</a>
+                <a class="tab" href="#">Задачи</a>
+                <a class="tab" href="#">Эффективность</a>
+                <div class="tab-more">
+                    <button type="button" class="tab-more__btn">Ещё</button>
+                    <img src="/images/icons/arrow_down.svg" class="i-lock" alt="" aria-hidden="true">
+                </div>
+            </nav>
+        </header>
+
+        <!-- Контент -->
+        <div class="drawer__scroll">
+            <div class="profile-layout">
+                <!-- ЛЕВАЯ КОЛОНКА (2 блока) -->
+                <div class="profile-col profile-col--left">
+                    <section class="card profile-left__top">
+                        <div class="status-row"><span class="dot" aria-hidden="true"></span> В СЕТИ</div>
+                        <div class="ava-wrap">
+                            <img class="ava" src="/images/header_avatar.png" alt="Аватар: Константин">
+                        </div>
+
+                        <div class="place-info select-info">
+                            <button class="place-info__btn" type="button"
+                                    aria-haspopup="menu" aria-expanded="false">
+                                <img src="/images/icons/sun_max.svg" alt="" aria-hidden="true" />
+                                <span>В отпуске</span>
+                                <span class="place-grey">(с 12.05.25 по 18.05.25)</span>
+                            </button>
+                            <div class="place-info__text">
+                                <span>Текст на 20 символов</span>
+                            </div>
+                        </div>
+
+                        <div class="place-info select-info">
+                            <button class="place-info__btn" type="button"
+                                    aria-haspopup="menu" aria-expanded="false">
+                                <img src="/images/icons/sun_max.svg" alt="" aria-hidden="true" />
+                                <span>В отпуске</span>
+                                <span class="place-grey">(с 22.05.25 по 28.05.25)</span>
+                            </button>
+                            <div class="place-info__text">
+                                <span>Текст на 20 символов</span>
+                            </div>
+                        </div>
+
+                        <div class="place-info select-info">
+                            <button class="place-info__btn" type="button"
+                                    aria-haspopup="menu" aria-expanded="false">
+                                <img src="/images/icons/group.svg" alt="" aria-hidden="true" />
+                                <span>На встрече</span>
+                                <span class="place-grey">(29.08.25)</span>
+                            </button>
+                            <div class="place-info__text">
+                                <span>Москва</span>
+                            </div>
+                        </div>
+
+                        <div class="place select-info">
+                            <button class="place-info__btn" type="button"
+                                    aria-haspopup="menu" aria-expanded="false">
+                                <img src="/images/icons/work.svg" alt="" aria-hidden="true" />
+                                <span>В офисе</span>
+                                <img src="/images/icons/arrow_down.svg" class="place-svg" alt="" aria-hidden="true" />
+                            </button>
+
+                            <div class="reason-dd" role="menu" hidden>
+                                <button class="reason-dd__item is-active" role="menuitemradio" aria-checked="true"
+                                        data-value="office" data-icon="/images/icons/work.svg" data-text="В офисе">
+                                    <img class="reason-dd__ico" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                                    <span class="reason-dd__text">В офисе</span>
+                                </button>
+
+                                <button class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                        data-value="remote" data-icon="/images/icons/house_drop.svg" data-text="Удаленно">
+                                    <img class="reason-dd__ico" src="/images/icons/house_drop.svg" alt="" aria-hidden="true">
+                                    <span class="reason-dd__text">Удаленно</span>
+                                </button>
+
+                                <button class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                        data-value="trip" data-icon="/images/icons/airplane.svg" data-text="В командировке">
+                                    <img class="reason-dd__ico" src="/images/icons/airplane.svg" alt="" aria-hidden="true">
+                                    <span class="reason-dd__text">В командировке</span>
+                                </button>
+
+                                <button class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                        data-value="vacation" data-icon="/images/icons/sun.max.svg" data-text="В отпуске">
+                                    <img class="reason-dd__ico" src="/images/icons/sun.max.svg" alt="" aria-hidden="true">
+                                    <span class="reason-dd__text">В отпуске</span>
+                                </button>
+
+                                <button class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                        data-value="meeting" data-icon="/images/icons/group.svg" data-text="На встрече">
+                                    <img class="reason-dd__ico" src="/images/icons/group.svg" alt="" aria-hidden="true">
+                                    <span class="reason-dd__text">На встрече</span>
+                                </button>
+
+                                <button class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                        data-value="sick" data-icon="/images/icons/pill.svg" data-text="На больничном">
+                                    <img class="reason-dd__ico" src="/images/icons/pill.svg" alt="" aria-hidden="true">
+                                    <span class="reason-dd__text">На больничном</span>
+                                </button>
+
+                                <button class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                        data-value="dayoff" data-icon="/images/icons/weekend.svg" data-text="Отгул">
+                                    <img class="reason-dd__ico" src="/images/icons/weekend.svg" alt="" aria-hidden="true">
+                                    <span class="reason-dd__text">Отгул</span>
+                                </button>
+
+                                <button class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                        data-value="study" data-icon="/images/icons/study.svg" data-text="На обучении">
+                                    <img class="reason-dd__ico" src="/images/icons/study.svg" alt="" aria-hidden="true">
+                                    <span class="reason-dd__text">На обучении</span>
+                                </button>
+
+                                <button class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                        data-value="expo" data-icon="/images/icons/location_on.svg" data-text="На выставке">
+                                    <img class="reason-dd__ico" src="/images/icons/location_on.svg" alt="" aria-hidden="true">
+                                    <span class="reason-dd__text">На выставке</span>
+                                </button>
+
+                                <button class="reason-dd__item" role="menuitemradio" aria-checked="false"
+                                        data-value="other" data-icon="/images/icons/atr.svg" data-text="Другое">
+                                    <img class="reason-dd__ico" src="/images/icons/atr.svg" alt="" aria-hidden="true">
+                                    <span class="reason-dd__text">Другое</span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <section class="profile-actions" aria-label="Действия профиля">
+                        <button class="profile-actions__btn" type="button">
+                            <img class="profile-actions__icon" src="/images/icons/message.svg" alt="" aria-hidden="true">
+                            <span class="profile-actions__text">Написать сообщение</span>
+                        </button>
+
+                        <button class="profile-actions__btn" type="button">
+                            <img class="profile-actions__icon" src="/images/icons/bookmark.svg" alt="" aria-hidden="true">
+                            <span class="profile-actions__text">Избранное</span>
+                        </button>
+                    </section>
+
+                    <section class="card stats">
+                        <div class="stats__icons">
+                            <div class="metric"><img class="metric__icon" src="/images/icons/gift.svg"  alt=""></div>
+                            <div class="metric"><img class="metric__icon" src="/images/icons/hand.svg"  alt=""></div>
+                        </div>
+
+                        <div class="stats__values">
+                            <div class="metric__value">109</div>
+                            <div class="metric__value">20</div>
+                        </div>
+                    </section>
+
+                    <section class="profile-widgets" aria-label="Виджеты профиля">
+                        <!-- ЛЕВАЯ: счётчики -->
+                        <div class="profile-widgets__item profile-widgets__item--stats">
+                            <div class="pw-stats">
+                                <div class="pw-stats__icons">
+                                    <div class="pw-stats__metric"><img class="pw-stats__icon" src="/images/icons/gift.svg" alt=""></div>
+                                    <div class="pw-stats__metric"><img class="pw-stats__icon" src="/images/icons/hand.svg" alt=""></div>
+                                </div>
+
+                                <div class="pw-stats__values">
+                                    <div class="pw-stats__value">109</div>
+                                    <div class="pw-stats__value">20</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ПРАВАЯ: идеи -->
+                        <div class="profile-widgets__item profile-widgets__item--ideas">
+                            <div class="pw-ideas">
+                                <div class="pw-ideas__top">
+                                    <img class="pw-ideas__icon" src="/images/icons/light.svg" alt="">
+                                    <span class="pw-ideas__count">5 идей</span>
+                                </div>
+
+                                <a class="pw-ideas__more" href="#">
+                                    <span>Подробнее</span>
+                                    <img class="pw-ideas__arrow" src="/images/icons/arrow_right.svg" alt="" aria-hidden="true">
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="absence-extra" aria-labelledby="absence-extra-title">
+                        <header class="absence-extra__header">
+                            <h3 class="absence-extra__title" id="absence-extra-title">Дополнительно об отсутствии</h3>
+                        </header>
+
+                        <div class="absence-extra__divider" aria-hidden="true"></div>
+
+                        <div class="absence-extra__items">
+
+                            <!-- запись 1 -->
+                            <article class="absence-extra__item">
+                                <div class="absence-extra__head">
+                                    <img class="absence-extra__icon" src="/images/icons/sun_max.svg" alt="" aria-hidden="true">
+                                    <span class="absence-extra__status">В отпуске</span>
+                                    <span class="absence-extra__period">(с 12.05.25 по 18.05.25)</span>
+                                </div>
+                                <p class="absence-extra__comment">Введенный комментарий длиной около 80 символов</p>
+                            </article>
+
+                            <div class="absence-extra__separator" aria-hidden="true"></div>
+
+                            <!-- запись 2 -->
+                            <article class="absence-extra__item">
+                                <div class="absence-extra__head">
+                                    <img class="absence-extra__icon" src="/images/icons/sun_max.svg" alt="" aria-hidden="true">
+                                    <span class="absence-extra__status">В отпуске</span>
+                                    <span class="absence-extra__period">(с 22.05 по 28.05)</span>
+                                </div>
+                                <p class="absence-extra__comment">Введенный комментарий длиной около 80 символов текст текст</p>
+                            </article>
+
+                            <div class="absence-extra__separator" aria-hidden="true"></div>
+
+                            <!-- запись 3 -->
+                            <article class="absence-extra__item">
+                                <div class="absence-extra__head">
+                                    <img class="absence-extra__icon" src="/images/icons/group.svg" alt="" aria-hidden="true">
+                                    <span class="absence-extra__status">На встрече</span>
+                                    <span class="absence-extra__period">(29.08)</span>
+                                </div>
+                                <p class="absence-extra__comment">Пример комментария</p>
+                            </article>
+
+                        </div>
+                    </section>
+                </div>
+
+                <!-- ПРАВАЯ КОЛОНКА (остальные блоки) -->
+                <div class="profile-col profile-col--right">
+                    <!-- Контактная информация -->
+                    <section class="card card-contact">
+                        <header class="card-contact__head">
+                            <h3 class="card-contact__title">Контактная информация</h3>
+                            <button class="contact-btn" type="button" aria-label="Редактировать">
+                                <img src="/images/icons/edit.svg" alt="" aria-hidden="true">
+                            </button>
+                        </header>
+
+                        <div class="info-list">
+                            <div class="info-row">
+                                <div class="info-term">Компания</div>
+                                <div class="info-val">Название</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-term">Подразделение</div>
+                                <div class="info-val">Название</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-term">Должность</div>
+                                <div class="info-val">Главный специалист по интеграции программного обеспечения (3 года, с 09.11.2023)</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-term">День рождения</div>
+                                <div class="info-val">7 июля</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-term">Email</div>
+                                <div class="info-val">konstantin@mail.ru</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-term">Внутренний телефон</div>
+                                <div class="info-val">Доб. 4154</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-term">Мобильный телефон</div>
+                                <div class="info-val">+7 (999) 000-00-00</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Доп. информация -->
+                    <section class="addinfo" aria-labelledby="addinfo-title">
+                        <header class="addinfo__header">
+                            <h3 class="addinfo__title" id="addinfo-title">Дополнительная информация</h3>
+                        </header>
+
+                        <!-- Группа: Руководитель -->
+                        <div class="addinfo__section addinfo__section--manager">
+                            <div class="addinfo__section-title">Руководитель</div>
+
+                            <a class="addinfo__person" href="#">
+                                <img class="addinfo__avatar" src="/images/rukovod.png" alt="">
+                                <div class="addinfo__name">
+                                    <div class="addinfo__name-up">
+                                        <div>Липкин</div>
+                                    </div>
+                                    <div class="addinfo__name-down">
+                                        <div>Евгений Борисович</div>
+                                        <img class="addinfo__role" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="addinfo__note">
+                                <img class="addinfo__note-ico" alt="" src="/images/icons/error.svg" aria-hidden="true" />
+                                <span>Замещающий с 12.05.25 по 18.05.25</span>
+                            </div>
+
+                            <a class="addinfo__person" href="#">
+                                <img class="addinfo__avatar" src="/images/rukovod.png" alt="">
+                                <div class="addinfo__name">
+                                    <div class="addinfo__name-up">
+                                        <div>Иванов</div>
+                                    </div>
+                                    <div class="addinfo__name-down">
+                                        <div>Евгений Иванович</div>
+                                        <img class="addinfo__role" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="addinfo__section-title">Замещающий на постоянной основе</div>
+
+                            <a class="addinfo__person" href="#">
+                                <img class="addinfo__avatar" src="/images/rukovod.png" alt="">
+                                <div class="addinfo__name">
+                                    <div class="addinfo__name-up">
+                                        <div>Иванов</div>
+                                    </div>
+                                    <div class="addinfo__name-down">
+                                        <div>Евгений Иванович</div>
+                                        <img class="addinfo__role" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Группа: Подчинённые -->
+                        <div class="addinfo__section addinfo__section--subs">
+                            <div class="addinfo__section-title">Подчинённые</div>
+
+                            <ul class="addinfo__list">
+                                <li class="addinfo__item">
+                                    <a class="addinfo__podchin" href="#">
+                                        <img class="addinfo__avatar" src="/images/podchin.png" alt="">
+                                        <div class="addinfo__name">
+                                            <div class="addinfo__name-up">
+                                                <div>Иванов</div>
+                                            </div>
+                                            <div class="addinfo__name-down">
+                                                <div>Евгений Иванович</div>
+                                                <img class="addinfo__role" src="/images/icons/house_drop.svg" alt="" aria-hidden="true">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="addinfo__item">
+                                    <a class="addinfo__podchin" href="#">
+                                        <img class="addinfo__avatar" src="/images/podchin.png" alt="">
+                                        <div class="addinfo__name">
+                                            <div class="addinfo__name-up">
+                                                <div>Иванов</div>
+                                            </div>
+                                            <div class="addinfo__name-down">
+                                                <div>Евгений Иванович</div>
+                                                <img class="addinfo__role" src="/images/icons/house_drop.svg" alt="" aria-hidden="true">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="addinfo__item">
+                                    <a class="addinfo__podchin" href="#">
+                                        <span class="addinfo__avatar-wrap">
+                                            <img class="addinfo__avatar" src="/images/podchin.png" alt="">
+                                            <span class="addinfo__online" aria-hidden="true"></span>
+                                        </span>
+                                        <div class="addinfo__name">
+                                            <div class="addinfo__name-up">
+                                                <div>Иванов</div>
+                                            </div>
+                                            <div class="addinfo__name-down">
+                                                <div>Евгений Иванович</div>
+                                                <img class="addinfo__role" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Обо мне -->
+                    <section class="profile-section" aria-labelledby="about-title">
+                        <header class="profile-section__header">
+                            <h3 class="profile-section__title" id="about-title">Обо мне</h3>
+                            <button class="profile-section__edit" type="button" aria-label="Редактировать">
+                                <img src="/images/icons/edit.svg" alt="" aria-hidden="true">
+                            </button>
+                        </header>
+
+                        <div class="profile-section__divider" aria-hidden="true"></div>
+
+                        <div class="profile-section__body">
+                            <p class="profile-section__text">Информация обо мне</p>
+                        </div>
+                    </section>
+
+                    <section class="profile-section" aria-labelledby="interests-title">
+                        <header class="profile-section__header">
+                            <h3 class="profile-section__title" id="interests-title">Мои интересы</h3>
+                            <button class="profile-section__edit" type="button" aria-label="Редактировать">
+                                <img src="/images/icons/edit.svg" alt="" aria-hidden="true">
+                            </button>
+                        </header>
+
+                        <div class="profile-section__divider" aria-hidden="true"></div>
+
+                        <div class="profile-section__body">
+                            <p class="profile-section__text">Информация о интересах</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
+
+</body>
+</html>
