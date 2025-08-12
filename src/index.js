@@ -370,6 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fields.forEach((field) => {
         const dp = field.querySelector('.ap-datepicker');
+        const triggerInput = field.querySelector('.ap-input');
         let view = new Date();
         let selected = null;
 
@@ -413,6 +414,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 cells.push({ d: next, out:true, date:new Date(y, m+1, next) });
             }
 
+            const rows = cells.length / 7;                    // 5 или 6
+            dp.dataset.rows = rows;                           // на всякий
+            requestAnimationFrame(() => {                     // плавная высота
+                dp.style.height = 'auto';
+                const h = dp.scrollHeight;
+                dp.style.height = h + 'px';
+            });
+
             const today = new Date(); today.setHours(0,0,0,0);
             cells.forEach(c => {
                 const el = document.createElement('div');
@@ -429,18 +438,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (selected && c.date.getTime() === selected.getTime()) el.classList.add('is-selected');
 
                 if (!c.out){
-                    el.addEventListener('click', () => {
+                    el.addEventListener('click', (ev) => {
+                        ev.preventDefault();                        // FIX
+                        ev.stopPropagation();                       // FIX
                         selected = c.date;
+                        // FIX: не листаем месяц, фиксируем текущий вид на месяц выбранной даты
+                        view = new Date(selected.getFullYear(), selected.getMonth(), 1);
+                        triggerInput.textContent = fmt(selected);
                         render();
-                        close();
                     });
+                } else {
+                    el.setAttribute('aria-disabled','true');      // NEW
                 }
                 wrap.appendChild(el);
             });
 
             dp.querySelectorAll('[data-nav]').forEach(btn =>
-                btn.addEventListener('click', () => { view.setMonth(view.getMonth() + Number(btn.dataset.nav)); render(); })
+                btn.addEventListener('click', (ev) => {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    const delta = Number(ev.currentTarget.dataset.nav); // FIX
+                    view.setMonth(view.getMonth() + delta);
+                    render();
+                })
             );
+            dp.addEventListener('click', e => e.stopPropagation());
         }
 
         function open(){
@@ -460,8 +482,13 @@ document.addEventListener('DOMContentLoaded', () => {
         function onKey(e){ if (e.key === 'Escape') close(); }
 
         field.addEventListener('click', (e) => {
-            e.preventDefault();               // ← у label гасим дефолт
-            e.stopPropagation();              // ← и всплытие (чтобы глобальные хендлеры не закрыли сразу)
+            if (e.target.closest('.ap-datepicker')) return;                     // NEW
+
+            const isTrigger = e.target.closest('.ap-input, .ap-field__icon');   // NEW: открываем только по этим элементам
+            if (!isTrigger) return;                                             // NEW
+
+            e.preventDefault();
+            e.stopPropagation();
             dp.hasAttribute('hidden') ? open() : close();
         });
     });
