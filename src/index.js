@@ -540,3 +540,140 @@ document.addEventListener('DOMContentLoaded', () => {
         close();
     });
 });
+
+// ------------------------------------------ модалка профиль ------------------------------------------
+(function(){
+    const html = document.documentElement;
+
+    function adjustDrawerPadding(drawer){
+        const sc = drawer.querySelector('.drawer__scroll');
+        if (!sc) return;
+        // ширина вертикального скролла именно у этого блока
+        const hasVScroll = sc.scrollHeight > sc.clientHeight;
+        const sbw = hasVScroll ? (sc.offsetWidth - sc.clientWidth) : 0;
+        sc.style.setProperty('--sbw', sbw + 'px');
+    }
+
+    function openDrawer(sel){
+        const drawer = document.querySelector(sel);
+        if(!drawer) return;
+        drawer.classList.add('is-open');
+        drawer.setAttribute('aria-hidden','false');
+        html.style.overflow = 'hidden';
+
+        adjustDrawerPadding(drawer);          // ← ВАЖНО: сразу посчитать
+        window.addEventListener('resize', onResize);
+        drawer.querySelector('.drawer__panel')?.focus();
+
+        function onResize(){ adjustDrawerPadding(drawer); }
+        // сохраним, чтобы снять при закрытии
+        drawer._onResize = onResize;
+    }
+
+    function closeDrawer(drawer){
+        const d = drawer || document.querySelector('.drawer.is-open');
+        if(!d) return;
+        d.classList.remove('is-open');
+        d.setAttribute('aria-hidden','true');
+        html.style.overflow = '';
+        if (d._onResize){
+            window.removeEventListener('resize', d._onResize);
+            d._onResize = null;
+        }
+    }
+
+    function onEsc(e){ if(e.key === 'Escape') closeDrawer(); }
+
+    // твои уже существующие открытия/закрытия:
+    document.addEventListener('click', (e)=>{
+        const opener = e.target.closest('[data-drawer-open]');
+        if(opener){
+            e.preventDefault();
+            openDrawer(opener.getAttribute('data-drawer-open'));
+            document.addEventListener('keydown', onEsc);
+            return;
+        }
+        if(e.target.closest('[data-drawer-close]')){
+            e.preventDefault();
+            closeDrawer();
+            document.removeEventListener('keydown', onEsc);
+        }
+    });
+
+    // поддержка Enter/Space для блока-«кнопки»
+    document.addEventListener('keydown', (e)=>{
+        const opener = e.target.closest('[data-drawer-open][role="button"]');
+        if(!opener) return;
+        if(e.key === 'Enter' || e.key === ' '){
+            e.preventDefault();
+            openDrawer(opener.getAttribute('data-drawer-open'));
+            document.addEventListener('keydown', onEsc);
+        }
+    });
+})();
+
+// ======================================= выбор работы в дропдауне у себя на странице ====================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Берём ВСЕ инстансы блока
+    document.querySelectorAll('.place.select-info').forEach((root) => {
+        const btn   = root.querySelector('.place-info__btn');
+        const menu  = root.querySelector('.reason-dd');
+        if (!btn || !menu) return;
+
+        // Элементы для обновления текста/иконки (с fallback'ами)
+        const valueEl = root.querySelector('.place-info__value') || btn.querySelector('span');
+        const iconEl  = root.querySelector('.place-info__ico')   || btn.querySelector('img:first-of-type');
+
+        // страховка: чтобы кнопки в меню не сабмитили формы
+        menu.querySelectorAll('button.reason-dd__item').forEach(b => b.type = 'button');
+
+        const open = () => {
+            menu.hidden = false;
+            btn.setAttribute('aria-expanded', 'true');
+            document.addEventListener('click', onDoc, true);
+            document.addEventListener('keydown', onKey, true);
+        };
+        const close = () => {
+            menu.hidden = true;
+            btn.setAttribute('aria-expanded', 'false');
+            document.removeEventListener('click', onDoc, true);
+            document.removeEventListener('keydown', onKey, true);
+        };
+        const toggle = () => (menu.hidden ? open() : close());
+        const onDoc  = (e) => { if (!root.contains(e.target)) close(); };
+        const onKey  = (e) => { if (e.key === 'Escape') close(); };
+
+        // Открытие
+        btn.addEventListener('mousedown', e => e.preventDefault());
+        btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); toggle(); });
+
+        // Выбор пункта
+        menu.addEventListener('mousedown', e => e.stopPropagation());
+        menu.addEventListener('click', (e) => {
+            const item = e.target.closest('.reason-dd__item');
+            if (!item) return;
+            e.preventDefault(); e.stopPropagation();
+
+            // визуально отмечаем выбранный
+            menu.querySelectorAll('.reason-dd__item').forEach(i => {
+                i.classList.remove('is-active');
+                i.setAttribute('aria-checked', 'false');
+            });
+            item.classList.add('is-active');
+            item.setAttribute('aria-checked', 'true');
+
+            // подставляем текст/иконку
+            const text = item.dataset.text
+                || item.querySelector('.reason-dd__text')?.textContent?.trim()
+                || item.textContent.trim();
+
+            if (valueEl) valueEl.textContent = text;
+            if (iconEl && item.dataset.icon) iconEl.src = item.dataset.icon;
+
+            // текущее значение можно прочитать из data-value
+            btn.dataset.value = item.dataset.value || '';
+
+            close();
+        });
+    });
+});
