@@ -238,6 +238,7 @@
 .org-main__count-ico {
     width: 16px;
     height: 21px;
+    padding-bottom: 3px;
 }
 
 /* тело: три колонки */
@@ -256,7 +257,7 @@
     max-width: 371px;
 }
 
-.org-main__col:not(:last-child)::after{
+.org-main__col:first-child::after{
     content: "";
     position: absolute;
     top: 0;
@@ -275,6 +276,10 @@
     font-weight: 700;
     line-height: 120%;
     color: #07150A;
+}
+
+.title-second {
+    color: #939393;
 }
 
 .org-main__badge {
@@ -311,11 +316,22 @@
     color: #07150A;
 }
 
+.name-second {
+    color: #939393;
+    font-weight: 450;
+}
+
 .org-main__contact {
     display: flex;
     align-items: center;
     gap: 8px;
     color: #000000;
+    font-weight: 450;
+    line-height: 110%;
+}
+
+.contact-second .org-main__mail {
+    color: #939393;
 }
 
 .org-main__mail {
