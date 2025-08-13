@@ -13,16 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // уважение к пользователю: отключаем автоплей, если предпочитает меньше анимаций
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        slider.autoplay.stop();
+        slider.autoplay && slider.autoplay.stop();
     }
 });
 
 (() => {
-    const MONTHS_GEN = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+    const root = document.querySelector('.events');
+    if (!root) return;
 
-    const root   = document.querySelector('.events');
-    const daysEl = document.querySelector('[data-events-days]');
-    const listEl = document.querySelector('[data-events-list]');
+    const daysEl = root.querySelector('[data-events-days]');
+    const listEl = root.querySelector('[data-events-list]');
+    if (!daysEl || !listEl) return;
+
+    const MONTHS_GEN = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
 
     const today = new Date();
     const year  = today.getFullYear();
@@ -677,3 +680,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// --------------------------------------------- модалка для структуры организации ----------------------------------
+(function initOrgModal(){
+    const html = document.documentElement;
+
+    function openOrgModal(sel){
+        const m = document.querySelector(sel);
+        if (!m) return;
+        m.classList.add('is-open');
+        m.setAttribute('aria-hidden','false');
+        html.style.overflow = 'hidden';
+        m.querySelector('.org-modal__panel')?.focus();
+        document.addEventListener('keydown', onEsc, true);
+    }
+
+    function closeOrgModal(modal){
+        const m = modal || document.querySelector('.org-modal.is-open');
+        if (!m) return;
+        m.classList.remove('is-open');
+        m.setAttribute('aria-hidden','true');
+        html.style.overflow = '';
+        document.removeEventListener('keydown', onEsc, true);
+    }
+
+    function onEsc(e){ if (e.key === 'Escape') closeOrgModal(); }
+
+    // Делегирование только по нашим дата-атрибутам
+    document.addEventListener('click', (e)=>{
+        const opener = e.target.closest('[data-orgmodal-open]');
+        if (opener){
+            e.preventDefault();
+            openOrgModal(opener.getAttribute('data-orgmodal-open'));
+            return;
+        }
+        if (e.target.closest('[data-orgmodal-close]') ||
+            e.target.classList.contains('org-modal__overlay')){
+            e.preventDefault();
+            closeOrgModal();
+        }
+    });
+})();

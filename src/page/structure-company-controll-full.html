@@ -123,8 +123,8 @@
                 </button>
             </div>
             <div class="header__profile">
-                <img class="header__avatar" src="/images/header_avatar.png" alt="Аватар: Константин" />
-                <div class="header__profile-text">
+                <img class="header__avatar" src="/images/header_avatar.png" alt="Аватар: Константин" data-drawer-open="#profileDrawer" aria-controls="profileDrawer" aria-haspopup="dialog" />
+                <div class="header__profile-text" data-drawer-open="#profileDrawer" role="button" tabindex="0" aria-controls="profileDrawer" aria-haspopup="dialog">
                     <div class="header__profile-name">Константин</div>
                     <div class="header__profile-surname">Константинопольский</div>
                 </div>
@@ -240,7 +240,13 @@
 
         <section class="org-main">
             <header class="org-main__head">
-                <h2 class="org-main__title">Остек-СМТ</h2>
+                <h2 class="org-main__title">
+                    <span class="org-main__brand">Остек-СМТ</span>
+                    <img class="org-main__sep" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                    <span class="org-main__section">Управление</span>
+                    <img class="org-main__sep" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
+                    <span class="org-main__section">Направление программных продуктов</span>
+                </h2>
 
                 <div class="org-main__count">
                     <img class="org-main__count-ico" src="/images/icons/person.svg" alt="" aria-hidden="true">
@@ -250,7 +256,7 @@
 
             <div class="org-main__body">
                 <!-- колонка 1 -->
-                <div class="org-main__col">
+                <div class="org-main__col col-only-one">
                     <div class="org-main__col-title">Директор</div>
 
                     <div class="org-main__person">
@@ -264,50 +270,15 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- колонка 2 -->
-                <div class="org-main__col org-main__col--sep">
-                    <div class="org-main__col-title title-second">
-                        <span class="org-main__badge" aria-hidden="true">!</span>
-                        Замещающий с 12.05.25 по 18.05
-                    </div>
-
-                    <div class="org-main__person">
-                        <img class="org-main__avatar" src="/images/podchin.png" alt="">
-                        <div class="org-main__data">
-                            <div class="org-main__name name-second">Иванов<br>Иван Иванович</div>
-                            <div class="org-main__contact contact-second">
-                                <img class="org-main__mail-ico" src="/images/icons/mail.svg" alt="" aria-hidden="true">
-                                <a class="org-main__mail" href="mailto:lipkin@ostec-group.ru">lipkin@ostec-group.ru</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- колонка 3 -->
-                <div class="org-main__col org-main__col--sep">
-                    <div class="org-main__col-title title-second">Замещающий на постоянной основе</div>
-
-                    <div class="org-main__person">
-                        <img class="org-main__avatar" src="/images/rukovod.png" alt="">
-                        <div class="org-main__data">
-                            <div class="org-main__name name-second">Сидоров<br>Илья Кириллович</div>
-                            <div class="org-main__contact contact-second">
-                                <img class="org-main__mail-ico" src="/images/icons/mail.svg" alt="" aria-hidden="true">
-                                <a class="org-main__mail" href="mailto:lipkin@ostec-group.ru">lipkin@ostec-group.ru</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
         <section class="org">
             <div class="org__grid">
                 <!-- карточка -->
-                <a class="org-card" href="#">
+                <a class="org-card" href="#" data-drawer-open="#orgDrawer" aria-controls="orgDrawer" aria-haspopup="dialog" aria-expanded="false">
                     <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">БИЗНЕСПРОМЭСТЕЙТ</h3>
+                        <h3 class="org-card__title org-struct__title">Отдел разработки интерфейсов и ...</h3>
                         <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
                                   stroke-linecap="round" stroke-linejoin="round"/>
@@ -317,14 +288,14 @@
                     <div class="org-card__body">
                         <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
                         <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__lead">-</div>
                         </div>
                     </div>
                 </a>
 
                 <a class="org-card" href="#">
                     <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">НИИИТ</h3>
+                        <h3 class="org-card__title org-struct__title">Отдел тестирования</h3>
                         <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
                                   stroke-linecap="round" stroke-linejoin="round"/>
@@ -334,14 +305,31 @@
                     <div class="org-card__body">
                         <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
                         <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__lead">-</div>
                         </div>
                     </div>
                 </a>
 
                 <a class="org-card" href="#">
                     <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">Остек-Интегра</h3>
+                        <h3 class="org-card__title org-struct__title">Отдел разработки серверного ПО</h3>
+                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </header>
+
+                    <div class="org-card__body">
+                        <img class="org-card__avatar" src="/images/no_ava.png" alt="">
+                        <div class="org-card__info">
+                            <div class="org-card__lead">-</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="org-card" href="#">
+                    <header class="org-card__head">
+                        <h3 class="org-card__title org-struct__title">Отдел технического сопровождения</h3>
                         <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
                                   stroke-linecap="round" stroke-linejoin="round"/>
@@ -351,231 +339,11 @@
                     <div class="org-card__body">
                         <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
                         <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
+                            <div class="org-card__lead">-</div>
                         </div>
                     </div>
                 </a>
 
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">Остек-СТ</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">ПО «ГЕФЕСД»</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">ООО «ОСТЕК-АРТТУЛ»</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">ПРЕДПРИЯТИЕ ОСТЕК</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">Остек-СМТ</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">Остек-Тест</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">Остек-ЭК</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">Остек-СМТ</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">ТД «ГЕФЕСД»</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">ТД «ГЕФЕСД»</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">ТД «ГЕФЕСД»</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">ТД «ГЕФЕСД»</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="org-card" href="#">
-                    <header class="org-card__head">
-                        <h3 class="org-card__title org-struct__title">ТД «ГЕФЕСД»</h3>
-                        <svg class="org-card__chev" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </header>
-
-                    <div class="org-card__body">
-                        <img class="org-card__avatar" src="/images/header_avatar.png" alt="">
-                        <div class="org-card__info">
-                            <div class="org-card__lead">Ерохин<br>Артем Вячеславович</div>
-                        </div>
-                    </div>
-                </a>
             </div>
         </section>
 
@@ -637,8 +405,159 @@
         </nav>
     </aside>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="../index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!------------------------------------------ Модалка структуры компании -------------------------------------------------------->
+<div class="drawer" id="orgDrawer" aria-hidden="true">
+    <div class="drawer__overlay" data-drawer-close></div>
+
+    <aside class="drawer__panel" role="dialog" aria-modal="true"
+           aria-labelledby="orgDrawerTitle" tabindex="-1">
+        <button class="drawer__close" type="button" data-drawer-close aria-label="Закрыть">
+            <img class="drawer__ico" src="/images/icons/subtract.svg" alt="">
+        </button>
+
+        <header class="drawer__bar">
+            <h2 class="drawer__title" id="orgDrawerTitle">
+                Отдел разработки интерфейсов и технического дизайна
+                <img src="/images/icons/person.svg" class="i-lock" alt="" aria-hidden="true">
+                <span>252</span>
+            </h2>
+            <!-- при желании тут вкладки/фильтры -->
+        </header>
+
+        <div class="drawer__struct">
+            <div class="org-struct">
+                <!-- Руководитель -->
+                <section class="org-struct__section">
+                    <h3 class="org-struct__subtitle">Руководитель</h3>
+                    <a class="org-struct__lead" href="#">
+                        <img class="org-struct__ava" src="/images/rukovod.png" alt="">
+                        <div class="org-struct__text">
+                            <div class="org-struct__name">Иванов Иван Иванович</div>
+                            <div class="org-struct__role">Должность</div>
+                        </div>
+                    </a>
+                </section>
+
+                <div class="org-struct__hr" aria-hidden="true"></div>
+
+                <!-- Два замещающих -->
+                <section class="org-struct__cols">
+                    <div class="org-struct__col">
+                        <h3 class="org-struct__subtitle">
+                            <img class="org-struct__info" src="/images/icons/error.svg" alt="" aria-hidden="true">
+                            Замещающий с&nbsp;12.05.25 по&nbsp;18.05.25
+                        </h3>
+                        <a class="org-struct__lead" href="#">
+                            <img class="org-struct__ava" src="/images/rukovod.png" alt="">
+                            <div class="org-struct__text">
+                                <div class="org-struct__name">Иванов Иван Иванович</div>
+                                <div class="org-struct__role org-struct__role--ell">Должность длинная длинная…</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="org-struct__col">
+                        <h3 class="org-struct__subtitle">Замещающий на постоянной основе</h3>
+                        <a class="org-struct__lead" href="#">
+                            <img class="org-struct__ava" src="/images/rukovod.png" alt="">
+                            <div class="org-struct__text">
+                                <div class="org-struct__name">Иванов Иван Иванович</div>
+                                <div class="org-struct__role">Должность</div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+
+                <div class="org-struct__hr" aria-hidden="true"></div>
+
+                <!-- Сотрудники -->
+                <section class="org-struct__section">
+                    <h3 class="org-struct__subtitle">Сотрудники</h3>
+                    <ul class="org-struct__list">
+                        <!-- item -->
+                        <li class="org-struct__item">
+                            <a class="org-struct__person" href="#">
+                                <img class="org-struct__ava" src="/images/rukovod.png" alt="">
+                                <div class="org-struct__text">
+                                    <div class="org-struct__name">Иванов Иван Иванович</div>
+                                    <div class="org-struct__role org-struct__role--ell">Должность длинная длинная…</div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="org-struct__item">
+                            <a class="org-struct__person" href="#">
+                                <img class="org-struct__ava" src="/images/rukovod.png" alt="">
+                                <div class="org-struct__text">
+                                    <div class="org-struct__name">Иванов Иван Иванович</div>
+                                    <div class="org-struct__role">Должность</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="org-struct__item">
+                            <a class="org-struct__person" href="#">
+                                <img class="org-struct__ava" src="/images/rukovod.png" alt="">
+                                <div class="org-struct__text">
+                                    <div class="org-struct__name">Иванов Иван Иванович</div>
+                                    <div class="org-struct__role">Должность</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="org-struct__item">
+                            <a class="org-struct__person" href="#">
+                                <img class="org-struct__ava" src="/images/rukovod.png" alt="">
+                                <div class="org-struct__text">
+                                    <div class="org-struct__name">Иванов Иван Иванович</div>
+                                    <div class="org-struct__role">Должность</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="org-struct__item">
+                            <a class="org-struct__person" href="#">
+                                <img class="org-struct__ava" src="/images/rukovod.png" alt="">
+                                <div class="org-struct__text">
+                                    <div class="org-struct__name">Иванов Иван Иванович</div>
+                                    <div class="org-struct__role">Должность</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="org-struct__item">
+                            <a class="org-struct__person" href="#">
+                                <img class="org-struct__ava" src="/images/rukovod.png" alt="">
+                                <div class="org-struct__text">
+                                    <div class="org-struct__name">Иванов Иван Иванович</div>
+                                    <div class="org-struct__role">Должность</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="org-struct__item">
+                            <a class="org-struct__person" href="#">
+                                <img class="org-struct__ava" src="/images/rukovod.png" alt="">
+                                <div class="org-struct__text">
+                                    <div class="org-struct__name">Иванов Иван Иванович</div>
+                                    <div class="org-struct__role">Должность</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="org-struct__item">
+                            <a class="org-struct__person" href="#">
+                                <img class="org-struct__ava" src="/images/rukovod.png" alt="">
+                                <div class="org-struct__text">
+                                    <div class="org-struct__name">Иванов Иван Иванович</div>
+                                    <div class="org-struct__role">Должность</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+        </div>
+    </aside>
+</div>
 
 <!------------------------------------------ модалка профиль ------------------------------------------>
 <!-- RIGHT DRAWER / PROFILE -->

@@ -95,6 +95,10 @@
     background: #fff;
 }
 
+.structure-search__inner:has(.structure-search__input:not(:placeholder-shown)) .structure-search__icon{
+    opacity:0; visibility:hidden;
+}
+
 .structure-section .structure-search__icon{
     position: absolute;
     right: 16px;
@@ -220,6 +224,28 @@
     margin: 0;
     font-size: 21px;
     font-weight: 700;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.org-main__brand {
+    color:#517901;
+    font-weight:700;
+}
+
+.org-main__section {
+    color: #07150A;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.org-main__sep {
+    width: 16px;
+    height: 16px;
+    padding-left: 1px;
+    display: block;
+    transform: rotate(-90deg);
 }
 
 .org-main__count {
@@ -248,6 +274,12 @@
     padding: 16px 20px;
 }
 
+.org-main--structure {
+    display: flex;
+    gap: 52px;
+    justify-content: flex-start;
+}
+
 .org-main__col {
     flex: 1 1 0;
     display: flex;
@@ -257,7 +289,7 @@
     max-width: 371px;
 }
 
-.org-main__col:first-child::after{
+.org-main__body > .org-main__col:first-child::after {
     content: "";
     position: absolute;
     top: 0;
@@ -265,6 +297,10 @@
     right: 0;
     width: 1px;
     background: #E6E6E6;
+}
+
+.org-main__body > .org-main__col:only-child::after{
+    content:none;
 }
 
 /* заголовки колонок */
@@ -280,6 +316,7 @@
 
 .title-second {
     color: #939393;
+    font-weight: 450;
 }
 
 .org-main__badge {
@@ -339,6 +376,126 @@
     text-decoration: none;
 }
 
+/* ======================================== Модалка структуры ================================== */
+#orgDrawer .drawer__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 30px 0 30px;
+}
+
+#orgDrawer .drawer__title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 120%;
+    width: 100%;
+    padding: 20px;
+    background: #8FD700;
+    border-radius: 12px 12px 0 0;
+    border-bottom: 1px solid #8FD700;
+    color: #07150A;
+}
+.drawer__struct {
+    padding: 0 30px;
+}
+
+#orgDrawer .drawer__title .i-lock { width: 18px; height: 18px; margin-left: auto; opacity: .9; }
+#orgDrawer .drawer__title .i-lock + span { font-weight: 700; }
+
+/* Контент модалки структуры */
+#orgDrawer .org-struct {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#orgDrawer .org-struct__subtitle{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 450;
+    color: #939393;
+}
+#orgDrawer .org-struct__info{ width:18px; height:18px; display:block; }
+
+#orgDrawer .org-struct__lead,
+#orgDrawer .org-struct__person{
+    display: flex;
+    align-items: center;
+    gap: 19px;
+    text-decoration: none;
+    color: #07150A;
+}
+#orgDrawer .org-struct__ava {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: 0 0 60px;
+}
+#orgDrawer .org-struct__text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+#orgDrawer .org-struct__name {
+    font-weight: 450;
+    line-height: 120%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#orgDrawer .org-struct__role {
+    color: #939393;
+    font-size: 16px;
+    line-height: 120%;
+    font-weight: 450;
+    white-space: nowrap;
+}
+#orgDrawer .org-struct__role--ell{ overflow:hidden; text-overflow:ellipsis; }
+
+/* горизонтальные разделители */
+#orgDrawer .org-struct__hr {
+    height: 1px;
+    background: #DEDEDE;
+}
+
+/* Две колонки «замещающие» */
+#orgDrawer .org-struct__cols {
+    display: flex;
+    gap: 32px;
+}
+#orgDrawer .org-struct__col {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Список сотрудников: 2 колонки на широкой модалке */
+#orgDrawer .org-struct__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#orgDrawer .org-struct__item {
+    width: 414px;
+}
+
+#orgDrawer .org-struct__person {
+    padding: 0 0 12px 0;
+}
+
 @media (max-width: 1280px) {
     .structure-container {
         max-width: 1040px;
@@ -348,5 +505,9 @@
         grid-template-columns: repeat(2, 1fr);
         column-gap: 22px;
         row-gap: 16px;
+    }
+
+    .org-main__col {
+        max-width: 324px;
     }
 }
