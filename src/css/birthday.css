@@ -53,10 +53,19 @@
     box-shadow: 2px 4px 12px #0F0F1112;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .bdays-search__sep {
     display: flex;
+    align-items: center;
+}
+
+.bdays-search__sep:first-child {
+    flex: 1 1 auto;
+    position: relative;       /* для позиционирования иконки лупы */
+    min-width: 240px;
 }
 
 .bdays-search__input {
@@ -72,9 +81,9 @@
     background: #fff;
 }
 
-.bdays-search__icon {
+.bdays-search__sep:first-child .bdays-search__icon {
     position: absolute;
-    right: 146px;
+    right: 28px;
     top: 50%;
     transform: translateY(-50%);
     width: 18px;
@@ -82,14 +91,27 @@
     pointer-events: none;
 }
 
+/*.bdays-search__icon {*/
+/*    position: absolute;*/
+/*    right: 146px;*/
+/*    top: 50%;*/
+/*    transform: translateY(-50%);*/
+/*    width: 18px;*/
+/*    height: 18px;*/
+/*    pointer-events: none;*/
+/*}*/
+
 .bdays-filter {
-    position: absolute;
-    transform: translateY(-50%);
+    /*position: absolute;*/
+    /*transform: translateY(-50%);*/
+    position: static;         /* <— было absolute */
+    transform: none;
     display: inline-flex;
     align-items: center;
     gap: 10px;
     height: 24px;
-    margin-left: 23px;
+    /*margin-left: 23px;*/
+    margin-left: 0;
     padding: 0;
     border: none;
     font-weight: 450;
@@ -100,6 +122,10 @@
 
 .bdays-filter img {
     padding-bottom: 2px
+}
+
+.bdays-search__extra {
+    flex: 1 0 100%;
 }
 
 /* Грид карточек. Карточка — из твоего home.css (birthdays__item …) */
@@ -116,6 +142,71 @@
 
 /* (мелочь) убрать стандартный крестик у type=search в некоторых браузерах */
 .bdays-search__input::-webkit-search-cancel-button{ -webkit-appearance:none; appearance:none; }
+
+/* -------------------------------------------- модалка для поиска ---------------------------------------------------- */
+.bdays-search--inline .bdays-filter{
+    z-index: 2;
+    background: transparent;
+    cursor: pointer;
+}
+
+.bdays-search--inline .bdays-search__extra{
+    display: none;
+    width: 100%;
+}
+.bdays-search--inline .bdays-search__inner.is-open .bdays-search__extra{
+    display: flex;
+    align-items: center;
+}
+
+/* тумблер */
+.bdays-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.bdays-switch__input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+.bdays-switch__ctrl{
+    width: 48px;
+    height: 24px;
+    border-radius: 999px;
+    background: #E7E7E7;
+    position: relative;
+    transition: .2s;
+}
+.bdays-switch__ctrl::after{
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+    transition: .2s;
+}
+.bdays-switch__input:checked + .bdays-switch__ctrl {
+    background:#8FD700;
+}
+.bdays-switch__input:checked + .bdays-switch__ctrl::after {
+    transform:translateX(24px);
+}
+.bdays-switch__label {
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 110%;
+    color: #07150A;
+}
+
+/* мелкий UX: подсветка текста кнопки в активе */
+.bdays-search--inline .bdays-filter[aria-pressed="true"]{ color:#517901; }
+
 
 /* =============================== Модалка месяцев выбор ====================================== */
 /* контейнер модалки */
@@ -273,12 +364,104 @@ text-decoration-thickness:1px;
 text-underline-offset:4px;
 }
 
-@media (min-width: 1680px){
-.bdays-grid{ grid-template-columns: repeat(5, 1fr); }
+/*------------------------------------------- модалка срока напоминания -------------------------------------------*/
+.remind-modal{position:fixed; inset:0; display:none; z-index:1100;}
+.remind-modal.is-open{display:block;}
+.remind-modal__backdrop{position:absolute; inset:0; background:transparent;} /* клики вне — закрывают */
+
+.remind-modal__panel{
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 243px;
+    height: 228px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 2px 6px 16px #0F0F1112;
+    padding: 20px;
 }
-@media (max-width: 1200px){
-.bdays-grid{ grid-template-columns: repeat(3, 1fr); }
+
+.remind-modal__title{
+    margin: 0 0 20px;
+    font-weight: 450;
+    font-size: 16px;
+    line-height: 110%;
+    color: #07150A;
 }
-@media (max-width: 960px){
-.bdays-grid{ grid-template-columns: repeat(2, 1fr); }
+
+.remind-modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.remind-check {
+    display: flex;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    height: 24px;
+}
+.remind-check__input{ position:absolute; opacity:0; pointer-events:none; }
+.remind-check__box{
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    border: 2px solid #939393;
+    box-sizing: border-box;
+    flex: 0 0 16px;
+}
+.remind-check__label {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
+    color: #07150A;
+}
+
+.remind-check__input:checked + .remind-check__box{
+    border-color:#8FD700;
+    background:#8FD700;
+    position:relative;
+}
+.remind-check__input:checked + .remind-check__box::after{
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: -3px;
+    width: 7px;
+    height: 10px;
+    border: 3px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    transform: rotate(45deg);
+}
+
+.remind-modal__actions {
+    display:flex;
+    justify-content:flex-end;
+}
+.remind-modal__save{
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    background: #8FD700;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 14px;
+    border-radius: 6px;
+}
+.remind-modal__save:active{ transform:translateY(1px); }
+
+@media (max-width: 1280px) {
+    .birthdays-section {
+        width: 1040px;
+    }
+    .bdays-search__input {
+        width: 892px;
+    }
+    .bdays-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }

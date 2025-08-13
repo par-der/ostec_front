@@ -931,3 +931,75 @@ document.addEventListener('DOMContentLoaded', () => {
         // здесь можешь дернуть свой фильтр по item.dataset.value
     });
 })();
+
+// ---------------------------------------------------- модалка для поиска ---------------------------------------------
+(() => {
+    const root  = document.querySelector('.bdays-search--inline');
+    if (!root) return;
+
+    const inner = root.querySelector('.bdays-search__inner');
+    const btn   = root.querySelector('.bdays-filter');
+    const icon  = btn?.querySelector('.bdays-filter__ico');
+    const extra = inner.querySelector('.bdays-search__extra');
+
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const open = !inner.classList.contains('is-open');
+        inner.classList.toggle('is-open', open);
+        btn.setAttribute('aria-pressed', String(open));
+        if (extra) extra.hidden = !open;
+
+        // смена иконки (серый ↔︎ зелёный)
+        const def = btn.dataset.iconDefault, act = btn.dataset.iconActive;
+        if (icon && def && act) icon.src = open ? act : def;
+    });
+})();
+
+// ------------------------------------------------ модалка срока напоминания -----------------------------------------
+(() => {
+    const modal = document.getElementById('remindModal');
+    if (!modal) return;
+    const panel = modal.querySelector('.remind-modal__panel');
+    const saveBtn = modal.querySelector('.remind-modal__save');
+
+    // иконка, по которой открыли диалог (чтобы красить её после сохранения)
+    let activeIcon = null;
+
+    function open(icon){
+        activeIcon = icon || null;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden','false');
+        // фокус внутрь
+        requestAnimationFrame(() => panel?.focus());
+    }
+    function close(){
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden','true');
+    }
+
+    // открыть по клику на колокольчик (может быть много карточек)
+    document.addEventListener('click', (e) => {
+        const bell = e.target.closest('.birthdays__ico.icon-toggle');
+        if (!bell) return;
+        e.preventDefault();
+        open(bell);
+    });
+
+    // Сохранить — красим иконку и закрываем
+    saveBtn?.addEventListener('click', () => {
+        if (activeIcon) {
+            const anyChecked = modal.querySelector('.remind-check__input:checked');
+            activeIcon.src = anyChecked
+                ? (activeIcon.dataset.on || activeIcon.src)
+                : (activeIcon.dataset.off || activeIcon.src);
+            activeIcon.classList.toggle('is-on', Boolean(anyChecked));
+        }
+        close();
+    });
+
+    // Закрытие по клику вне/ESC
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.hasAttribute('data-remind-close')) close();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+})();

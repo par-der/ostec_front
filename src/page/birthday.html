@@ -235,17 +235,25 @@
         </div>
 
         <!-- Поиск -->
-        <div class="bdays-search">
-            <div class="bdays-search__inner">
-                <div class="bdays-search__sep">
+        <div class="bdays-search bdays-search--inline">
+            <div class="bdays-search__inner" id="bdaysSearch">
+                <div class="bdays-search__sep bdays-search__sep--grow">
                     <input class="bdays-search__input" type="search" placeholder="Найти сотрудника…" autocomplete="off">
                     <img class="bdays-search__icon" src="/images/icons/search.svg" alt="" aria-hidden="true">
                 </div>
                 <div class="bdays-search__sep">
-                    <button class="bdays-filter" type="button">
-                        <img src="/images/icons/filter.svg" alt="" aria-hidden="true">
+                    <button class="bdays-filter" type="button" aria-pressed="false" data-icon-default="/images/icons/filter.svg" data-icon-active="/images/icons/filter_green.svg">
+                        <img class="bdays-filter__ico" src="/images/icons/filter.svg" alt="" aria-hidden="true">
                         <span>Фильтр</span>
                     </button>
+                </div>
+
+                <div class="bdays-search__extra" hidden>
+                    <label class="bdays-switch">
+                        <input class="bdays-switch__input" type="checkbox" id="bdaysNotify">
+                        <span class="bdays-switch__ctrl" aria-hidden="true"></span>
+                        <span class="bdays-switch__label">С уведомлениями</span>
+                    </label>
                 </div>
             </div>
         </div>
@@ -546,6 +554,40 @@
             <li><button class="month-dd__item" data-value="10">Ноябрь</button></li>
             <li><button class="month-dd__item" data-value="11">Декабрь</button></li>
         </ul>
+    </div>
+</div>
+
+<!-------------------------------------------- модалка срока напоминания ------------------------------------------------------->
+<div class="remind-modal" id="remindModal" aria-hidden="true">
+    <div class="remind-modal__backdrop" data-remind-close></div>
+
+    <div class="remind-modal__panel" role="dialog" aria-modal="true"
+         aria-labelledby="remindTitle" tabindex="-1">
+        <h3 class="remind-modal__title" id="remindTitle">За какой срок напомнить?</h3>
+
+        <form class="remind-modal__form">
+            <label class="remind-check">
+                <input class="remind-check__input" type="checkbox" value="0">
+                <span class="remind-check__box" aria-hidden="true"></span>
+                <span class="remind-check__label">В день рождения</span>
+            </label>
+
+            <label class="remind-check">
+                <input class="remind-check__input" type="checkbox" value="1">
+                <span class="remind-check__box" aria-hidden="true"></span>
+                <span class="remind-check__label">За 1 день</span>
+            </label>
+
+            <label class="remind-check">
+                <input class="remind-check__input" type="checkbox" value="5">
+                <span class="remind-check__box" aria-hidden="true"></span>
+                <span class="remind-check__label">За 5 дней</span>
+            </label>
+        </form>
+
+        <div class="remind-modal__actions">
+            <button type="button" class="remind-modal__save">Сохранить</button>
+        </div>
     </div>
 </div>
 
