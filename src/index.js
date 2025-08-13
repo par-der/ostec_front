@@ -721,3 +721,213 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 })();
+
+// замена картинки при клике
+document.addEventListener('click', e => {
+    const img = e.target.closest('.icon-toggle');
+    if (!img) return;
+    const isOn = img.getAttribute('aria-pressed') === 'true';
+    img.src = isOn ? img.dataset.off : img.dataset.on;
+    img.setAttribute('aria-pressed', String(!isOn));
+});
+
+// ------------------------------------- Выбор месяцев модалка ----------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+    const btn   = document.getElementById('monthBtn');
+    const modal = document.getElementById('monthModal');
+    if (!btn || !modal) return;
+
+    const label = btn.querySelector('.bdays-btn__label');               // <span class="bdays-btn__label">Апрель</span>
+    const panel = modal.querySelector('.month-dd__panel');
+    if (!panel) return;
+
+    const getItems = () => Array.from(modal.querySelectorAll('.month-dd__item'));
+
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+
+    const open = () => {
+        const items = getItems();
+        const current = label?.textContent?.trim();
+        items.forEach(i => i.classList.toggle('is-active', i.textContent.trim() === current));
+
+        const r = btn.getBoundingClientRect();
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden','false');
+        btn.setAttribute('aria-expanded','true');
+
+        requestAnimationFrame(() => {
+            const pw = panel.offsetWidth, ph = panel.offsetHeight;
+            let left = r.left, top = r.bottom + 8;
+            const vw = innerWidth, vh = innerHeight;
+            if (left + pw > vw - 16) left = vw - pw - 16;
+            if (top  + ph > vh - 16) top  = Math.max(16, r.top - ph - 8);
+            panel.style.left = left + 'px';
+            panel.style.top  = top  + 'px';
+            panel.focus();
+        });
+        document.addEventListener('keydown', onKey, true);
+    };
+
+    const close = () => {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden','true');
+        btn.setAttribute('aria-expanded','false');
+        document.removeEventListener('keydown', onKey, true);
+    };
+
+    // выбор месяца
+    modal.addEventListener('click', (e) => {
+        const item = e.target.closest('.month-dd__item');
+        if (!item) return;
+        getItems().forEach(i => i.classList.remove('is-active'));
+        item.classList.add('is-active');
+        if (label) label.textContent = item.textContent.trim();
+        close();
+    });
+
+    // открыть/закрыть
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.contains('is-open') ? close() : open();
+    });
+
+    // клик по подложке
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.hasAttribute('data-month-close')) close();
+    });
+
+    // клавиатура на кнопке
+    btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+});
+
+// -------------------------------------------модалка список компаний ---------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+    const trigger = document.querySelector('.bdays-link');
+    const modal   = document.getElementById('orgListModal');
+    if (!trigger || !modal) return;
+
+    const panel   = modal.querySelector('.org-dd__panel');
+    const items   = modal.querySelectorAll('.org-dd__item');
+    const labelEl = trigger.querySelector('span');
+
+    function open(){
+        const r = trigger.getBoundingClientRect();
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+
+        requestAnimationFrame(() => {
+            const pw = panel.offsetWidth, ph = panel.offsetHeight;
+            let left = r.left, top = r.bottom + 8;
+
+            const vw = window.innerWidth, vh = window.innerHeight;
+            if (left + pw > vw - 16) left = vw - pw - 16;
+            if (top  + ph > vh - 16) top  = Math.max(16, r.top - ph - 8);
+
+            const dx = Number(modal.dataset.offsetX || 0);
+            const dy = Number(modal.dataset.offsetY || 0);
+            left += dx;
+            top  += dy;
+
+            panel.style.left = Math.round(left) + 'px';
+            panel.style.top  = Math.round(top)  + 'px';
+            panel.focus();
+        });
+
+        document.addEventListener('keydown', onKey, true);
+    }
+
+    function close(){
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.removeEventListener('keydown', onKey, true);
+    }
+
+    function onKey(e){ if (e.key === 'Escape') close(); }
+
+    // открыть / закрыть по клику на ссылку
+    trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.contains('is-open') ? close() : open();
+    });
+
+    // выбор компании
+    modal.addEventListener('click', (e) => {
+        if (e.target.matches('[data-org-close]')) { close(); return; }
+        const btn = e.target.closest('.org-dd__item');
+        if (!btn) return;
+
+        items.forEach(i => i.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        if (labelEl) labelEl.textContent = btn.textContent.trim();
+        close();
+    });
+
+    // клик по пустому месту модалки (вне панели) — тоже закрывает
+    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+});
+
+// --------------------------------------------- модалка выбора недели ------------------------------------------------
+(() => {
+    const btn   = document.getElementById('periodBtn');
+    const modal = document.getElementById('periodModal');
+    const panel = modal?.querySelector('.period-dd__panel');
+    const items = [...(modal?.querySelectorAll('.period-dd__item') || [])];
+    const label = btn?.querySelector('.bdays-btn__label') || btn?.querySelector('span');
+
+    if (!btn || !modal || !panel) return;
+
+    function open(){
+        const r = btn.getBoundingClientRect();
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden','false');
+        btn.setAttribute('aria-expanded','true');
+
+        requestAnimationFrame(() => {
+            const pw = panel.offsetWidth, ph = panel.offsetHeight;
+            let left = r.left, top = r.bottom + 8;
+            const vw = innerWidth, vh = innerHeight;
+            if (left + pw > vw - 16) left = vw - pw - 16;
+            if (top  + ph > vh - 16) top  = Math.max(16, r.top - ph - 8);
+
+            // опциональные смещения (как просил ранее)
+            const dx = Number(modal.dataset.offsetX || 0);
+            const dy = Number(modal.dataset.offsetY || 0);
+            panel.style.left = Math.round(left + dx) + 'px';
+            panel.style.top  = Math.round(top  + dy) + 'px';
+
+            panel.focus();
+        });
+
+        document.addEventListener('keydown', onKey, true);
+    }
+
+    function close(){
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden','true');
+        btn.setAttribute('aria-expanded','false');
+        document.removeEventListener('keydown', onKey, true);
+    }
+
+    function onKey(e){ if (e.key === 'Escape') close(); }
+
+    // открыть/закрыть
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.contains('is-open') ? close() : open();
+    });
+
+    // выбор пункта
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.hasAttribute('data-period-close')) { close(); return; }
+        const item = e.target.closest('.period-dd__item'); if (!item) return;
+
+        items.forEach(i => i.classList.remove('is-active'));
+        item.classList.add('is-active');
+
+        if (label) label.textContent = item.textContent.trim(); // обновляем текст на кнопке
+        close();
+        // здесь можешь дернуть свой фильтр по item.dataset.value
+    });
+})();
