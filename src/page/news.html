@@ -222,13 +222,14 @@
             </nav>
 
             <div class="section-head__actions">
-                <button class="section-news__btn" type="button">
+                <button class="section-news__btn" type="button" id="newsFilterBtn"
+                        aria-haspopup="dialog" aria-controls="newsFilterModal" aria-expanded="false">
                     <img class="section-news__icon" src="/images/icons/calendar2.svg" alt="" aria-hidden="true">
                     <span>За всё время</span>
                     <img class="section-news__icon" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
                 </button>
 
-                <a class="section-news__link" href="#">
+                <a class="section-news__link" href="#" aria-controls="orgListModal">
                     <span>Моя компания</span>
                     <img class="section-news__icon right" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
                 </a>
@@ -538,7 +539,53 @@
 
 </main>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="../index.js"></script>
+<script src="../index.js" defer></script>
+
+<!-------------------------------------------модалка список компаний --------------------------------------------->
+<div class="org-dd org-dd--underline" id="orgListModal" aria-hidden="true">
+    <div class="org-dd__backdrop" data-org-close></div>
+
+    <div class="org-dd__panel" role="dialog" aria-modal="true" aria-labelledby="orgDdTitle" tabindex="-1">
+        <ul class="org-dd__list" role="listbox" aria-label="Компании">
+            <li class="org-dd__item">Моя компания</li>
+
+            <li><button class="org-dd__item">ОСТЕК-АРТТУЛ</button></li>
+            <li><button class="org-dd__item">ПРЕДПРИЯТИЕ ОСТЕК</button></li>
+            <li><button class="org-dd__item">Остек-Интегра</button></li>
+            <li><button class="org-dd__item">ФАБЦЕНТР</button></li>
+            <li><button class="org-dd__item">ПО «ГЕФЕСД»</button></li>
+            <li><button class="org-dd__item">БИЗНЕСПРОМЭСТЕЙТ</button></li>
+            <li><button class="org-dd__item">НИИИТ</button></li>
+            <li><button class="org-dd__item">Остек-СМТ</button></li>
+            <li><button class="org-dd__item">Остек-Тест</button></li>
+            <li><button class="org-dd__item">Остек-ЭК</button></li>
+            <li><button class="org-dd__item">Остек-ЭТК</button></li>
+            <li><button class="org-dd__item">ТД «ГЕФЕСД»</button></li>
+            <li><button class="org-dd__item">ЦИВИЛИУС</button></li>
+            <li><button class="org-dd__item">ОСТЕК-УМНЫЕ ТЕХНОЛОГ</button></li>
+            <li><button class="org-dd__item">ОСТЕК-ЭЛЕКТРО</button></li>
+            <li><button class="org-dd__item">Остек-СТ</button></li>
+        </ul>
+    </div>
+</div>
+
+<!---------------------------------------------------- модалка за все время кнопка ------------------------------------>
+<div class="news-dd news-dd--underline" id="newsFilterModal" aria-hidden="true">
+    <div class="news-dd__backdrop" data-news-close></div>
+
+    <div class="news-dd__panel" role="dialog" aria-modal="true"
+         aria-labelledby="newsDdTitle" tabindex="-1">
+
+        <ul class="news-dd__list" role="listbox">
+            <li><button class="news-dd__item" data-value="all">За всё время</button></li>
+            <li><button class="news-dd__item" data-value="week">За неделю</button></li>
+            <li><button class="news-dd__item" data-value="month">За месяц</button></li>
+            <li><button class="news-dd__item" data-value="half">За пол года</button></li>
+            <li><button class="news-dd__item" data-value="year">За год</button></li>
+        </ul>
+    </div>
+</div>
+
 <div class="modal" id="absence-modal" role="dialog" aria-modal="true" aria-labelledby="absence-title" aria-hidden="true">
     <div class="modal__backdrop" data-modal-close></div>
 

@@ -1003,3 +1003,146 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 })();
+
+// ---------------------------------------------- модалка за все время кнопка -----------------------------------
+(() => {
+    function ready(fn){
+        if (document.readyState !== 'loading') fn();
+        else document.addEventListener('DOMContentLoaded', fn);
+    }
+
+    ready(() => {
+        const btn   = document.getElementById('newsFilterBtn');
+        const modal = document.getElementById('newsFilterModal');
+        if (!btn || !modal) return;
+
+        const panel = modal.querySelector('.news-dd__panel');
+        if (!panel) return;
+
+        const items = Array.from(modal.querySelectorAll('.news-dd__item'));
+        const label = btn.querySelector('.section-news__label') || btn.querySelector('span');
+
+        function positionPanel(){
+            const r  = btn.getBoundingClientRect();
+            const vw = innerWidth, vh = innerHeight;
+            let left = r.left, top = r.bottom + 8;
+            const pw = panel.offsetWidth, ph = panel.offsetHeight;
+            if (left + pw > vw - 16) left = vw - pw - 16;
+            if (top  + ph > vh - 16) top  = Math.max(16, r.top - ph - 8);
+            panel.style.left = left + 'px';
+            panel.style.top  = top  + 'px';
+        }
+
+        function open(){
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden','false');
+            btn.setAttribute('aria-expanded','true');
+            requestAnimationFrame(() => { positionPanel(); panel.focus(); });
+            addEventListener('keydown', onKey, true);
+        }
+        function close(){
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden','true');
+            btn.setAttribute('aria-expanded','false');
+            removeEventListener('keydown', onKey, true);
+        }
+        const onKey = (e) => { if (e.key === 'Escape') close(); };
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.contains('is-open') ? close() : open();
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal || e.target.hasAttribute('data-news-close')) { close(); return; }
+            const item = e.target.closest('.news-dd__item'); if (!item) return;
+            items.forEach(i => i.classList.remove('is-active'));
+            item.classList.add('is-active');
+            if (label) label.textContent = item.textContent.trim();
+            close();
+        });
+
+        modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+        addEventListener('resize', () => { if (modal.classList.contains('is-open')) positionPanel(); });
+    });
+})();
+
+// ---------------------------------- модалка на главной по выбору компании --------------------------------
+(() => {
+    function ready(fn){
+        if (document.readyState !== 'loading') fn();
+        else document.addEventListener('DOMContentLoaded', fn);
+    }
+
+    ready(() => {
+        const btn = document.querySelector('.section-head__actions .section-head__btn');
+        if (!btn) return;
+
+        const modalId = btn.getAttribute('aria-controls');      // orgListModal
+        const modal   = document.getElementById(modalId) || document.querySelector('.org-dd');
+        if (!modal) return;
+
+        const panel = modal.querySelector('.org-dd__panel');
+        const items = Array.from(modal.querySelectorAll('.org-dd__item'));
+        const label = btn.querySelector('span');
+
+        const open = () => {
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden','false');
+            btn.setAttribute('aria-expanded','true');
+
+            // позиционирование под кнопкой
+            requestAnimationFrame(() => {
+                const r  = btn.getBoundingClientRect();
+                const vw = window.innerWidth, vh = window.innerHeight;
+                const pw = panel.offsetWidth, ph = panel.offsetHeight;
+
+                let left = r.left;
+                let top  = r.bottom + 8;
+
+                if (left + pw > vw - 16) left = vw - pw - 16;   // не уехать вправо
+                if (top  + ph > vh - 16) top  = Math.max(16, r.top - ph - 8); // поместиться по высоте
+
+                panel.style.left = Math.round(left) + 'px';
+                panel.style.top  = Math.round(top)  + 'px';
+                panel.focus();
+            });
+
+            document.addEventListener('keydown', onKey, true);
+        };
+
+        const close = () => {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden','true');
+            btn.setAttribute('aria-expanded','false');
+            document.removeEventListener('keydown', onKey, true);
+        };
+
+        const onKey = (e) => { if (e.key === 'Escape') close(); };
+
+        // открыть/закрыть по клику на кнопку
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.contains('is-open') ? close() : open();
+        });
+
+        // выбор компании + закрытие (и клик по подложке)
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal || e.target.hasAttribute('data-org-close')) { close(); return; }
+
+            const item = e.target.closest('.org-dd__item');
+            if (!item) return;
+
+            items.forEach(i => i.classList.remove('is-active'));
+            item.classList.add('is-active');
+
+            if (label) label.textContent = item.textContent.trim();
+            close();
+        });
+
+        // репозиционирование при ресайзе
+        window.addEventListener('resize', () => {
+            if (modal.classList.contains('is-open')) open(); // переоткроем для пересчёта позиции
+        });
+    });
+})();

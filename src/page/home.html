@@ -308,7 +308,8 @@
             </nav>
 
             <div class="section-head__actions">
-                <button class="section-head__btn" type="button">
+                <button class="section-head__btn" type="button"
+                        aria-haspopup="dialog" aria-expanded="false" aria-controls="orgListModal">
                     <span>Все компании</span>
                     <img class="section-head__icon" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
                 </button>
@@ -692,6 +693,34 @@
                         </a>
                     </div>
                 </article>
+
+                <article class="birthdays__item">
+                    <img class="birthdays__avatar" src="/images/header_avatar.png" alt="Фото: Иванов Евгений">
+
+                    <div class="birthdays__person">
+                        <div class="birthdays__name1">Иванов</div>
+                        <div class="birthdays__name2">
+                            Евгений Борисович
+                            <img class="birthdays__name-ico" src="/images/icons/work.svg" alt="" aria-hidden="true">
+                        </div>
+
+                        <div class="birthdays__company">Компания Компания Компания</div>
+                        <div class="birthdays__dept">Подразделение Customize Toolbar… Customize Toolbar…</div>
+                        <div class="birthdays__role">Должность Должност Должност</div>
+                    </div>
+
+                    <time class="birthdays__date" datetime="2025-08-21">21.08</time>
+
+                    <div class="birthdays__footer">
+                        <div class="birthdays__icons">
+                            <img class="birthdays__ico" src="/images/icons/bell.svg" alt="" aria-hidden="true">
+                        </div>
+                        <a class="birthdays__btn" href="#">
+                            <img class="birthdays__btn-ico" src="/images/icons/gift.svg" alt="" aria-hidden="true">
+                            <span>Поздравить</span>
+                        </a>
+                    </div>
+                </article>
             </div>
         </aside>
 
@@ -858,7 +887,7 @@
 
 </main>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="../index.js"></script>
+<script src="../index.js" defer></script>
 <div class="modal" id="absence-modal" role="dialog" aria-modal="true" aria-labelledby="absence-title" aria-hidden="true">
     <div class="modal__backdrop" data-modal-close></div>
 
@@ -1518,6 +1547,34 @@
             </div>
         </div>
     </aside>
+</div>
+
+<!-------------------------------------------модалка список компаний --------------------------------------------->
+<div class="org-dd org-dd--underline" id="orgListModal" aria-hidden="true">
+    <div class="org-dd__backdrop" data-org-close></div>
+
+    <div class="org-dd__panel" role="dialog" aria-modal="true" aria-labelledby="orgDdTitle" tabindex="-1">
+        <ul class="org-dd__list" role="listbox" aria-label="Компании">
+            <li class="org-dd__item">Моя компания</li>
+
+            <li><button class="org-dd__item">ОСТЕК-АРТТУЛ</button></li>
+            <li><button class="org-dd__item">ПРЕДПРИЯТИЕ ОСТЕК</button></li>
+            <li><button class="org-dd__item">Остек-Интегра</button></li>
+            <li><button class="org-dd__item">ФАБЦЕНТР</button></li>
+            <li><button class="org-dd__item">ПО «ГЕФЕСД»</button></li>
+            <li><button class="org-dd__item">БИЗНЕСПРОМЭСТЕЙТ</button></li>
+            <li><button class="org-dd__item">НИИИТ</button></li>
+            <li><button class="org-dd__item">Остек-СМТ</button></li>
+            <li><button class="org-dd__item">Остек-Тест</button></li>
+            <li><button class="org-dd__item">Остек-ЭК</button></li>
+            <li><button class="org-dd__item">Остек-ЭТК</button></li>
+            <li><button class="org-dd__item">ТД «ГЕФЕСД»</button></li>
+            <li><button class="org-dd__item">ЦИВИЛИУС</button></li>
+            <li><button class="org-dd__item">ОСТЕК-УМНЫЕ ТЕХНОЛОГ</button></li>
+            <li><button class="org-dd__item">ОСТЕК-ЭЛЕКТРО</button></li>
+            <li><button class="org-dd__item">Остек-СТ</button></li>
+        </ul>
+    </div>
 </div>
 
 </body>

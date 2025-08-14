@@ -1460,7 +1460,7 @@ button, button:active {
 .birthdays__item {
     display:grid;
     grid-template-columns: 48px 1fr;
-    grid-template-rows: 17px 17px 14px 14px 14px 24px;
+    /*grid-template-rows: 17px 17px 14px 14px 14px 24px;*/
     column-gap:12px;
     row-gap:8px;
     background:#F4F4F4;
@@ -1471,39 +1471,65 @@ button, button:active {
 
 .birthdays__avatar{
     grid-column:1;
-    grid-row:1 / span 2;
+    grid-row:1;
     width:48px;
     height:48px;
     border-radius:50%;
     object-fit:cover;
+    position:relative; z-index:1;
 }
 
 .birthdays__person {
     grid-column:2;
-    grid-row:1 / 6;
-    display:contents;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
 }
 
-.birthdays__name1{
-    grid-column: 2;
-    grid-row: 1;
-    font-weight: 450;
-    font-size: 14px;
-    line-height: 120%;
-    color: #07150A;
+.birthdays__company,
+.birthdays__dept,
+.birthdays__role{
+    font-size:14px;
+    font-weight:400;
+    color:#939393;
+    overflow-wrap:anywhere;     /* переноси где угодно */
+    word-break:break-word;      /* и ещё один страхующий вариант */
 }
 
+.birthdays__name1,
 .birthdays__name2{
-    grid-column: 2;
-    grid-row: 2;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    color: #07150A;
-    font-weight: 450;
-    font-size: 14px;
-    line-height: 120%;
+    font-weight:450;
+    font-size:14px;
+    line-height:120%;
+    color:#07150A;
 }
+.birthdays__name2 {
+    display:flex;
+    align-items:center;
+    gap:4px;
+    padding-bottom: 5px;
+}
+
+/*.birthdays__name1{*/
+/*    grid-column: 2;*/
+/*    grid-row: 1;*/
+/*    font-weight: 450;*/
+/*    font-size: 14px;*/
+/*    line-height: 120%;*/
+/*    color: #07150A;*/
+/*}*/
+
+/*.birthdays__name2{*/
+/*    grid-column: 2;*/
+/*    grid-row: 2;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    gap: 4px;*/
+/*    color: #07150A;*/
+/*    font-weight: 450;*/
+/*    font-size: 14px;*/
+/*    line-height: 120%;*/
+/*}*/
 
 .birthdays__name-ico {
     width: 19px;
@@ -1536,7 +1562,9 @@ button, button:active {
 
 .birthdays__date{
     grid-column:1;
-    grid-row:4;
+    grid-row:1 / -1;
+    padding-top: 45px;
+    /*grid-row:4;*/
     align-self:center;
     font-size:14px;
     padding-left: 6px;
@@ -1547,11 +1575,16 @@ button, button:active {
 /* низ карточки */
 .birthdays__footer{
     grid-column: 1 / -1;
-    grid-row: 6;
-    min-height: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-height:24px;
+    margin-top:4px;
+    /*grid-row: 6;*/
+    /*min-height: 24px;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*gap: 12px;*/
 }
 
 .birthdays__icons {
@@ -3231,6 +3264,63 @@ button, button:active {
     height: 24px;
     border: none;
 }
+
+/*-------------------------------------------модалка список компаний -----------------------------------*/
+.org-dd{ position:fixed; inset:0; display:none; z-index:1000; }
+.org-dd.is-open{ display:block; }
+
+.org-dd__panel {
+    position:absolute;
+    width: 264px;
+    height: 539px;
+    background:#fff;
+    border-radius:6px;
+    box-shadow:0 4px 12px #00000026;
+    padding:12px 16px;
+}
+
+.org-dd__list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    overflow:auto;
+}
+
+.org-dd--underline .org-dd__item{ text-decoration:none; }
+.org-dd--underline .org-dd__item:hover,
+.org-dd--underline .org-dd__item:focus-visible{
+    text-decoration-line:underline;
+    text-decoration-color:#8FD700;
+    text-decoration-thickness:1px;
+    text-underline-offset:4px;
+}
+
+.org-dd__item{
+    appearance:none;
+    border:0;
+    background:none;
+    cursor:pointer;
+    display:block;
+    padding:0;
+    font-size:16px;
+    margin-bottom:12px;
+    font-weight:400;
+    line-height:120%;
+    color:#07150A;
+}
+
+.org-dd__item.is-active{ color:#0b1b0b; position:relative; }
+
+/* необязательная шапка «Моя компания» */
+.org-dd__heading{
+    font-weight:700;
+    font-size:18px;
+    margin:0 0 12px 0;
+    color:#07150A;
+}
+
+/* задний слой (клик по нему закроет окно) */
+.org-dd__backdrop{ position:absolute; inset:0; }
 
 
 /* ======================================== Адаптив =========================================== */
