@@ -229,13 +229,36 @@
                     <img class="section-news__icon" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
                 </button>
 
-                <a class="section-news__link" href="#" aria-controls="orgListModal">
+                <button class="section-news__link" type="button"
+                    aria-haspopup="dialog" aria-expanded="false" aria-controls="orgListModal">
                     <span>Моя компания</span>
                     <img class="section-news__icon right" src="/images/icons/arrow_down.svg" alt="" aria-hidden="true">
-                </a>
+                </button>
             </div>
         </div>
 
+        <div class="bdays-search bdays-search--inline">
+            <div class="bdays-search__inner" id="bdaysSearch">
+                <div class="bdays-search__sep bdays-search__sep--grow">
+                    <input class="bdays-search__input" type="search" placeholder="Найти сотрудника…" autocomplete="off">
+                    <img class="bdays-search__icon" src="/images/icons/search.svg" alt="" aria-hidden="true">
+                </div>
+                <div class="bdays-search__sep">
+                    <button class="bdays-filter" type="button" aria-pressed="false" data-icon-default="/images/icons/filter.svg" data-icon-active="/images/icons/filter_green.svg">
+                        <img class="bdays-filter__ico" src="/images/icons/filter.svg" alt="" aria-hidden="true">
+                        <span>Фильтр</span>
+                    </button>
+                </div>
+
+                <div class="bdays-search__extra" hidden>
+                    <label class="bdays-switch">
+                        <input class="bdays-switch__input" type="checkbox" id="bdaysNotify">
+                        <span class="bdays-switch__ctrl" aria-hidden="true"></span>
+                        <span class="bdays-switch__label">С уведомлениями</span>
+                    </label>
+                </div>
+            </div>
+        </div>
 
         <div class="news-list">
             <article class="news-card">

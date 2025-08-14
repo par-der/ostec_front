@@ -1069,80 +1069,107 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ---------------------------------- модалка на главной по выбору компании --------------------------------
 (() => {
-    function ready(fn){
-        if (document.readyState !== 'loading') fn();
-        else document.addEventListener('DOMContentLoaded', fn);
-    }
+    function ready(fn){ document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn); }
 
     ready(() => {
-        const btn = document.querySelector('.section-head__actions .section-head__btn');
-        if (!btn) return;
+        // Делегируем клики от любых триггеров с aria-controls="orgListModal"
+        document.addEventListener('click', (e) => {
+            const trigger = e.target.closest('[aria-controls="orgListModal"]');
+            if (!trigger) return;
 
-        const modalId = btn.getAttribute('aria-controls');      // orgListModal
-        const modal   = document.getElementById(modalId) || document.querySelector('.org-dd');
-        if (!modal) return;
+            const modal = document.getElementById('orgListModal');
+            if (!modal) return;
 
-        const panel = modal.querySelector('.org-dd__panel');
-        const items = Array.from(modal.querySelectorAll('.org-dd__item'));
-        const label = btn.querySelector('span');
+            const panel = modal.querySelector('.org-dd__panel');
+            if (!panel) return;
 
-        const open = () => {
-            modal.classList.add('is-open');
-            modal.setAttribute('aria-hidden','false');
-            btn.setAttribute('aria-expanded','true');
-
-            // позиционирование под кнопкой
-            requestAnimationFrame(() => {
-                const r  = btn.getBoundingClientRect();
-                const vw = window.innerWidth, vh = window.innerHeight;
-                const pw = panel.offsetWidth, ph = panel.offsetHeight;
-
-                let left = r.left;
-                let top  = r.bottom + 8;
-
-                if (left + pw > vw - 16) left = vw - pw - 16;   // не уехать вправо
-                if (top  + ph > vh - 16) top  = Math.max(16, r.top - ph - 8); // поместиться по высоте
-
-                panel.style.left = Math.round(left) + 'px';
-                panel.style.top  = Math.round(top)  + 'px';
-                panel.focus();
-            });
-
-            document.addEventListener('keydown', onKey, true);
-        };
-
-        const close = () => {
-            modal.classList.remove('is-open');
-            modal.setAttribute('aria-hidden','true');
-            btn.setAttribute('aria-expanded','false');
-            document.removeEventListener('keydown', onKey, true);
-        };
-
-        const onKey = (e) => { if (e.key === 'Escape') close(); };
-
-        // открыть/закрыть по клику на кнопку
-        btn.addEventListener('click', (e) => {
             e.preventDefault();
-            modal.classList.contains('is-open') ? close() : open();
+
+            // запомним, кто открыл модалку
+            modal._trigger = trigger;
+
+            if (modal.classList.contains('is-open')) {
+                close(modal);
+            } else {
+                open(modal, trigger);
+            }
         });
 
-        // выбор компании + закрытие (и клик по подложке)
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal || e.target.hasAttribute('data-org-close')) { close(); return; }
+        // Клики внутри модалки: выбор пункта / клик по подложке
+        document.addEventListener('click', (e) => {
+            const modal = e.target.closest('.org-dd');
+            if (!modal || !modal.classList.contains('is-open')) return;
 
+            // клик по подложке/закрывашке
+            if (e.target === modal || e.target.matches('[data-org-close]')) {
+                close(modal);
+                return;
+            }
+
+            // выбор элемента
             const item = e.target.closest('.org-dd__item');
             if (!item) return;
 
-            items.forEach(i => i.classList.remove('is-active'));
+            modal.querySelectorAll('.org-dd__item.is-active').forEach(i => i.classList.remove('is-active'));
             item.classList.add('is-active');
 
+            // подпись на триггере, который открыл модалку
+            const label = modal._trigger?.querySelector('span');
             if (label) label.textContent = item.textContent.trim();
-            close();
+
+            close(modal);
         });
 
-        // репозиционирование при ресайзе
-        window.addEventListener('resize', () => {
-            if (modal.classList.contains('is-open')) open(); // переоткроем для пересчёта позиции
+        // ESC — закрыть
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') return;
+            const modal = document.querySelector('.org-dd.is-open');
+            if (modal) close(modal);
         });
+
+        // Ресайз — перепозиционировать
+        window.addEventListener('resize', () => {
+            const modal = document.querySelector('.org-dd.is-open');
+            if (modal && modal._trigger) position(modal, modal._trigger);
+        });
+
+        function open(modal, trigger){
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden','false');
+            trigger.setAttribute('aria-expanded','true');
+            position(modal, trigger);
+            modal.querySelector('.org-dd__panel')?.focus({preventScroll:true});
+        }
+
+        function close(modal){
+            const t = modal._trigger;
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden','true');
+            if (t) t.setAttribute('aria-expanded','false');
+            modal._trigger = null;
+        }
+
+        function position(modal, trigger){
+            const panel = modal.querySelector('.org-dd__panel');
+            if (!panel) return;
+
+            const r  = trigger.getBoundingClientRect();
+            const vw = window.innerWidth, vh = window.innerHeight;
+            const pw = panel.offsetWidth, ph = panel.offsetHeight;
+
+            let left = r.left;
+            let top  = r.bottom + 8; // отступ 8px под триггером
+
+            // не уезжать за края
+            if (left + pw > vw - 16) left = vw - pw - 16;
+            if (top  + ph > vh - 16) top  = Math.max(16, r.top - ph - 8);
+
+            // опциональные смещения через data-* на модалке
+            const dx = Number(modal.dataset.offsetX || 0);
+            const dy = Number(modal.dataset.offsetY || 0);
+
+            panel.style.left = Math.round(left + dx) + 'px';
+            panel.style.top  = Math.round(top  + dy) + 'px';
+        }
     });
 })();

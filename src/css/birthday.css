@@ -91,26 +91,13 @@
     pointer-events: none;
 }
 
-/*.bdays-search__icon {*/
-/*    position: absolute;*/
-/*    right: 146px;*/
-/*    top: 50%;*/
-/*    transform: translateY(-50%);*/
-/*    width: 18px;*/
-/*    height: 18px;*/
-/*    pointer-events: none;*/
-/*}*/
-
 .bdays-filter {
-    /*position: absolute;*/
-    /*transform: translateY(-50%);*/
-    position: static;         /* <— было absolute */
+    position: static;
     transform: none;
     display: inline-flex;
     align-items: center;
     gap: 10px;
     height: 24px;
-    /*margin-left: 23px;*/
     margin-left: 0;
     padding: 0;
     border: none;
@@ -128,7 +115,6 @@
     flex: 1 0 100%;
 }
 
-/* Грид карточек. Карточка — из твоего home.css (birthdays__item …) */
 .bdays-grid {
     display:grid;
     grid-template-columns: repeat(4, 1fr);
@@ -140,7 +126,6 @@
     box-shadow: 2px 4px 12px #0F0F1112;
 }
 
-/* (мелочь) убрать стандартный крестик у type=search в некоторых браузерах */
 .bdays-search__input::-webkit-search-cancel-button{ -webkit-appearance:none; appearance:none; }
 
 /* -------------------------------------------- модалка для поиска ---------------------------------------------------- */
@@ -204,7 +189,6 @@
     color: #07150A;
 }
 
-/* мелкий UX: подсветка текста кнопки в активе */
 .bdays-search--inline .bdays-filter[aria-pressed="true"]{ color:#517901; }
 
 
