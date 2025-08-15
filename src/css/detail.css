@@ -1,0 +1,470 @@
+.news-container .main{
+    display: block;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    justify-self: center;
+    box-sizing: border-box;
+}
+
+/* чтобы наша сетка заняла всю ширину центральной колонки */
+.news-container .main .nd{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 366px;
+    gap: 20px;
+}
+.news-container .main .widgets-row{ margin:0; padding:0; display:none; }
+
+.nd-head {
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 366px;
+    gap: 20px;
+}
+.nd-head__title {
+    margin:0;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 120%;
+    color: #07150A;
+}
+.nd-head__controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+}
+.nd-head__all {
+    color: #8FD700;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 110%;
+}
+.nd-head__filter {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 110%;
+    font-weight: 450;
+    padding: 0;
+    gap: 8px;
+    border: none;
+}
+
+/* --- Левая колонка (статья) --- */
+.nd-article {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 4px 12px #0F0F1112;
+    padding: 20px;
+    margin-bottom: 31px;
+}
+.nd-article__head {
+    margin-bottom: 20px;
+}
+.nd-article__meta-top {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    color: #939393;
+    font-size: 12px;
+    font-weight: 400;
+    justify-content: space-between;
+}
+.nd-article__title {
+    margin: 20px 0 0;
+    color: #07150A;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.nd-article__cover {
+    margin-left: 0;
+    margin-right: 0;
+}
+.nd-article__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.nd-article__content {
+    color: #07150A;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 110%;
+}
+.nd-article__content p {
+    margin: 20px 0;
+}
+.nd-article__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+.nd-tag {
+    background: #F4F4F4;
+    border: none;
+    color: #07150A;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.nd-article__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    margin: 16px 0 20px 0;
+    border-top: 1px solid #DEDEDE;
+    border-bottom: 1px solid #DEDEDE;
+}
+.nd-article__actions {
+    display: flex;
+    gap: 12px;
+}
+.nd-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    border-radius: 100px;
+    border: none;
+    background: #F4F4F4;
+    cursor: pointer;
+}
+.action-share-btn {
+    padding: 8px;
+}
+.nd-action__count {
+    color: #07150A;
+    font-size: 16px;
+    line-height: 120%;
+    font-weight: 500;
+    padding: 1px 0;
+}
+.nd-article__stats {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #939393;
+}
+
+
+/*----------------------------------- контент блок ---------------------------------*/
+.nd-comments__title {
+    margin: 0 0 20px;
+    color: #1C1C1C;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 110%;
+}
+
+.nd-comments__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.nd-comment {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #DEDEDE;
+}
+.nd-comment:last-child {
+    border-bottom:none;
+}
+.nd-comment__ava {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.nd-comment__body {
+    min-width: 0;
+}
+.nd-comment__grid{
+    display: grid;
+    grid-template-columns: 580px 142px;
+    gap: 16px;
+    align-items: start;
+}
+.nd-comment__main{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
+    color: #1C1C1C;
+}
+.nd-comment__author {
+    margin: 0 0 8px;
+}
+.nd-comment__text{
+    margin:0;
+    white-space:nowrap;      /* в макете одна строка */
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* Правая колонка (время/крестик сверху, действия снизу) — фикс. размеры */
+.nd-comment__aside{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-end;
+}
+
+.nd-comment--reply {
+    padding-left: 30px;
+}
+
+.sub-comment__grid {
+    grid-template-columns: 550px 142px;
+}
+
+.nd-comment__head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    white-space:nowrap;
+    overflow:hidden;
+    margin: 0 0 8px;
+}
+.nd-comment__head .nd-comment__author{
+    margin:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.nd-comment__mention{
+    color: #1C1C1C;
+    font-weight: 450;
+}
+
+/* Верхняя строка: время + крестик */
+.nd-comment__top{
+    display: flex ;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Переиспользуем существующий блок действий, но без верхнего отступа и вправо */
+.nd-comment__aside .nd-comment__actions{
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.nd-comment__author {
+    font-weight: 500;
+    font-size: 16px;
+    color: #111;
+}
+.nd-comment__replyto {
+    color: #929292;
+    font-weight: 450;
+    font-size: 14px;
+}
+.nd-comment__time {
+    font-size: 14px;
+    font-weight: 450;
+    color: #939393;
+}
+.nd-comment__delete{
+    border: 0;
+    padding: 0;
+    padding-top: 3px;
+    background: transparent;
+    cursor: pointer;
+}
+.nd-comment__delete-ico {
+    width: 14px;
+    height: 14px;
+}
+
+.nd-comment__text {
+    margin-top: 8px;
+}
+.nd-comment__reply{
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: #8FD700;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 110%;
+    cursor:pointer;
+}
+.nd-comment__like {
+    border: 0;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+}
+.nd-comment__like-ico {
+    width: 20px;
+    height: 20px;
+}
+
+.nd-comments__more{
+    display: inline-block;
+    margin: 10px 0 20px 0;
+    color: #8FD700;
+    font-weight: 450;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.nd-reply {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 16px 0 0;
+    border-top: 1px solid #DEDEDE;
+}
+.nd-reply__ava {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.nd-reply__field {
+    position: relative;
+    width: 100%;
+}
+.nd-reply__input{
+    width: 100%;
+    padding: 14px 40px 14px 16px;
+    border: 1px solid #DEDEDE;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #07150A;
+    outline: none;
+    background: #fff;
+    box-sizing: border-box;
+}
+.nd-reply__input::placeholder{ color:#a1a6ab; }
+.nd-reply__input:focus{ border-color:#b9d97a; box-shadow:0 0 0 3px rgba(119,192,0,.15); }
+
+.nd-reply__tools{
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex
+;
+}
+.nd-reply__tool {
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    border: none;
+    cursor: pointer;
+}
+
+.nd-reply__send{
+    border: 0;
+    background: #8FD700;
+    color: #fff;
+    padding: 15px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+
+
+/* --- Правая колонка (список) --- */
+.nd__side {
+    align-self: start;
+}
+.nd-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+}
+.nd-list__item {
+    margin:0;
+}
+
+.nd-card {
+    display: block;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+}
+.nd-card__title {
+    margin:0 0 16px;
+    color: #07150A;
+    font-size: 18px;
+    font-weight: 700;
+}
+.nd-card__text{
+    margin: 0 0 15px;
+    color:#07150A;
+    font-size:16px;
+    font-weight:400;
+
+    line-height:19px;
+    max-height:95px;
+    overflow:hidden;
+
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:5;
+    line-clamp:5;
+}
+.nd-card__date {
+    display: block;
+    color: #939393;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+/*-------------------------------------- адаптив ---------------------------------*/
+@media (max-width: 1280px) {
+    .news-container .main{
+        max-width: 1040px;
+    }
+
+    .nd-head {
+        grid-template-columns: minmax(0, 1fr) 295px;
+    }
+
+    .news-container .main .nd {
+        grid-template-columns: minmax(0, 1fr) 295px;
+    }
+
+    .nd-comment__grid {
+        grid-template-columns: 450px 142px;
+    }
+
+    .sub-comment__grid {
+        grid-template-columns: 420px 142px;
+    }
+}
