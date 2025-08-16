@@ -1,0 +1,209 @@
+.news-container .main{
+    display: block;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    justify-self: center;
+    box-sizing: border-box;
+}
+
+.nd-head {
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 366px;
+    gap: 20px;
+}
+.nd-head__title {
+    margin:0;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 120%;
+    color: #07150A;
+}
+.nd-head__controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+}
+.nd-head__all {
+    color: #8FD700;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 110%;
+}
+.nd-head__filter {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 110%;
+    font-weight: 450;
+    padding: 0;
+    gap: 8px;
+    border: none;
+}
+
+/* ====== ГОДОВОЙ КАЛЕНДАРЬ (evcal) ====== */
+.evcal{
+    margin: 8px 0 28px;
+    padding: 24px 24px 28px;
+    background: #ffffff;
+    border: 1px solid #E3E7EA;
+    border-radius: 12px;
+}
+.evcal__grid{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    column-gap: 64px;
+    row-gap: 36px;
+}
+
+/* Разделитель-линиия, растягивается на всю ширину ряда */
+.evcal-sep{
+    grid-column: 1 / -1;
+    height: 1px;
+    background: #E3E7EA;
+    margin: 12px 0 20px;
+}
+
+/* Месяц */
+.evcal-month{}
+.evcal-month__head{ margin-bottom: 8px; }
+.evcal-month__name{
+    margin: 0;
+    font-family: "Nunito Sans", system-ui, -apple-system, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #07150A;
+}
+
+/* Сетка месяца: 7 колонок */
+.evcal-month__grid{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px 10px; /* row/col */
+    align-items: center;
+}
+
+/* Дни недели */
+.evcal-weekday{
+    text-align: center;
+    font-family: "Nunito Sans", system-ui, -apple-system, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1;
+    color: #9AA3AA;
+}
+.evcal-weekday--sat,
+.evcal-weekday--sun{
+    color: #8FD700;          /* зелёные Сб/Вс */
+    font-weight: 800;
+}
+
+/* Ячейки дней */
+.evcal-day{
+    position: relative;
+    min-height: 22px;
+    text-align: center;
+}
+.evcal-day--pad{ /* пустая ячейка для смещения начала месяца */
+    visibility: hidden;
+}
+
+.evcal-day__num{
+    display: inline-block;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 2px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    cursor: default;
+    font-family: "Nunito Sans", system-ui, -apple-system, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #07150A;
+}
+
+/* текущий день */
+.evcal-day--today .evcal-day__num{
+    outline: 2px solid #8FD700;
+    outline-offset: 1px;
+    border-radius: 6px;
+}
+
+/* день с событием */
+.evcal-day--event .evcal-day__num{
+    background: #8FD700;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* тултип события */
+.evcal-tip{
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 8px);
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 220px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #E3E7EA;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.10);
+    font-family: "Nunito Sans", system-ui, -apple-system, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #07150A;
+    white-space: normal;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .15s ease, visibility .15s ease;
+    z-index: 5;
+}
+.evcal-tip::before{
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border-left: 1px solid #E3E7EA;
+    border-top: 1px solid #E3E7EA;
+    transform-origin: center;
+    transform: translateX(-50%) rotate(45deg);
+}
+.evcal-tip__time{
+    display: block;
+    margin-top: 4px;
+    font-weight: 700;
+    color: #7C848B;
+}
+
+/* показываем подсказку при наведении/фокусе */
+.evcal-day--event:hover .evcal-tip,
+.evcal-day--event .evcal-day__num:focus + .evcal-tip{
+    opacity: 1;
+    visibility: visible;
+}
+
+/* адаптив: 3-2-1 колонки */
+@media (max-width: 1200px){
+    .evcal__grid{ grid-template-columns: repeat(3, 1fr); column-gap: 40px; }
+}
+@media (max-width: 900px){
+    .evcal{ padding: 20px; }
+    .evcal__grid{ grid-template-columns: repeat(2, 1fr); column-gap: 28px; }
+}
+@media (max-width: 560px){
+    .evcal__grid{ grid-template-columns: 1fr; }

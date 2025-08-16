@@ -1,5 +1,5 @@
 :root {
-    --bg: #f3f5f7;
+    --bg: #f0f0f0;
     --card: #fff;
     --text: #222;
     --muted: #6b7280;
@@ -32,7 +32,7 @@ body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: "NunitoSans", sans-serif;
+    font-family: "Avenir Next Cyr", sans-serif;
 }
 
 /* =========================== Шапка =============================== */
@@ -86,8 +86,6 @@ body {
     display: flex;
     align-items: baseline;
     gap: 6px;
-    font-size: 16px;
-    font-weight: 450;
 }
 
 .header__city {
@@ -276,6 +274,7 @@ body {
     width: 19px;
     height: 18px;
     display: block;
+    margin-bottom: 2px;
 }
 
 .header__chevron {
@@ -423,13 +422,20 @@ body {
 .sidebar__pin:focus-visible{ outline:2px solid rgba(143,215,0,.45); outline-offset:2px; }
 
 /* подписи появляются плавно (если ещё не добавлено) */
-.sidebar__label{ display:none; opacity:0; transform:translateX(-4px);
-    transition: opacity .2s ease, transform .2s ease; }
-.sidebar--expanded .sidebar__label{ display:block; opacity:1; transform:translateX(0); }
+.sidebar__label{
+    display:none;
+    opacity:0;
+    transform:translateX(-4px);
+    transition: opacity .2s ease, transform .2s ease;
+}
+.sidebar--expanded .sidebar__label{
+    display:block;
+    opacity:1;
+    transform:translateX(0);
+}
 
 .sidebar--expanded {
-    width: var(--sidebar-expanded);
-    box-shadow: 8px 0 24px rgba(0,0,0,.12);
+    width: 260px;
 }
 
 .sidebar:not(.sidebar--expanded) .sidebar__btn:hover {
@@ -457,6 +463,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    padding-top: 5px;
 }
 
 .sidebar__item {}
@@ -485,8 +492,8 @@ body {
 .sidebar__btn--active { background: var(--accent); }
 
 .sidebar__icon {
-    width: 20px;
-    height: 20px;
+    /*width: 20px;*/
+    /*height: 20px;*/
     display: block;
     color: var(--icon);
 }
@@ -511,7 +518,7 @@ body {
 /* когда сайдбар раскрыт – показываем подписи, расширяем кнопку */
 .sidebar--expanded .sidebar__btn {
     width: 260px;  /* немного внутреннего воздуха слева/справа */
-    padding-left: 12px;
+    padding-left: 20px;
     justify-items: start;
     grid-template-columns: 24px 1fr;
 }
@@ -694,7 +701,7 @@ button, button:active {
 
 .info-widget .info-widget__header {
     padding: 20px 77px 14px 20px;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 18px;
 }
 
@@ -741,7 +748,7 @@ button, button:active {
     gap:6px;
     font-weight: 450;
     font-size: 16px;
-    /*line-height: 110%;*/
+    line-height: 110%;
     color: #07150A;
 }
 
@@ -828,7 +835,8 @@ button, button:active {
 
 .card-offers__header {
     font-size: 18px;
-    line-height: 120%;
+    font-weight: 500;
+    /*line-height: 120%;*/
     color: #07150A;
     padding-bottom: 16px;
 }
@@ -904,7 +912,6 @@ button, button:active {
     line-height: 120%;
     text-decoration: none;
     position: relative;
-    font-weight: 600;
 }
 
 .breadcrumbs__link--active{
@@ -1213,6 +1220,14 @@ button, button:active {
     font-weight: 700;
 }
 
+.events__all span {
+    padding-bottom: 2px;
+}
+
+.birthdays__all span {
+    padding-bottom: 2px;
+}
+
 .events__all-ico {
     width: 10px;
     height: 10px;
@@ -1507,7 +1522,7 @@ button, button:active {
     display:flex;
     align-items:center;
     gap:4px;
-    padding-bottom: 5px;
+    /*padding-bottom: 5px;*/
 }
 
 /*.birthdays__name1{*/
@@ -1681,7 +1696,7 @@ button, button:active {
     column-gap:12px;
     row-gap:8px;
     background:#F4F4F4;
-    border-radius:10px;
+    border-radius: 6px;
     padding: 20px;
     border: none;
 }

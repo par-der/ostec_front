@@ -1173,3 +1173,106 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 })();
+
+// ------------------------------------------ календарь событий --------------------------------------------------
+function buildEvCal(year, events, root){
+    const monthsRU = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
+    const weekdaysRU = ["Пн","Вт","Ср","Чт","Пт","Сб","Вс"];
+    const today = new Date();
+
+    for(let m=0; m<12; m++){
+        // <article class="evcal-month">
+        const $month = el("article","evcal-month");
+
+        // шапка месяца
+        const $head = el("header","evcal-month__head");
+        const $name = el("h2","evcal-month__name");
+        $name.id = `evcal-${year}-${m+1}`;
+        $name.textContent = monthsRU[m];
+        $head.appendChild($name);
+        $month.appendChild($head);
+
+        // сетка месяца 7 колонок
+        const $grid = el("div","evcal-month__grid");
+
+        // заголовки дней недели
+        weekdaysRU.forEach((w,i)=>{
+            const wEl = el("div","evcal-weekday" + (i===5 ? " evcal-weekday--sat" : i===6 ? " evcal-weekday--sun" : ""));
+            wEl.textContent = w;
+            $grid.appendChild(wEl);
+        });
+
+        // паддинги до первого числа (понедельник = 0)
+        const firstDowMon0 = (new Date(year, m, 1).getDay() + 6) % 7;
+        for(let i=0;i<firstDowMon0;i++) $grid.appendChild(el("div","evcal-day evcal-day--pad"));
+
+        // дни месяца
+        const daysInMonth = new Date(year, m+1, 0).getDate();
+        for(let d=1; d<=daysInMonth; d++){
+            const ymd = `${year}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+            const hasEvents = Array.isArray(events[ymd]) ? events[ymd] : [];
+
+            const $day = el("div","evcal-day" + (
+                today.getFullYear()===year && today.getMonth()===m && today.getDate()===d ? " evcal-day--today" : ""
+            ));
+
+            const btnOrSpanTag = hasEvents.length ? "button" : "span";
+            const $num = el(btnOrSpanTag,"evcal-day__num");
+            $num.textContent = d;
+            if(hasEvents.length){ $num.type = "button"; }
+
+            $day.appendChild($num);
+
+            // тултип, если есть события
+            if(hasEvents.length){
+                $day.classList.add("evcal-day--event");
+                const tipId = `evcal-tip-${ymd}`;
+                $num.setAttribute("aria-describedby", tipId);
+
+                const $tip = el("div","evcal-tip");
+                $tip.id = tipId;
+                $tip.innerHTML = hasEvents.map(ev => (
+                    `${escapeHtml(ev.title)}${ev.time ? `<br><span class="evcal-tip__time">${formatDateRus(year,m,d)}, ${escapeHtml(ev.time)}</span>` : ""}`
+                )).join('<hr style="border:none;height:1px;background:#E3E7EA;margin:8px 0">');
+
+                // доступность: Esc закрывает фокус
+                $num.addEventListener("keydown", e => { if(e.key==="Escape") $num.blur(); });
+
+                $day.appendChild($tip);
+            }
+
+            $grid.appendChild($day);
+        }
+
+        $month.appendChild($grid);
+        root.appendChild($month);
+
+        const perRow = 4;
+
+        if ( ((m + 1) % perRow) === 0 && m < 11 ) {
+            const $sep = el("div","evcal-sep");
+            root.appendChild($sep);
+        }
+    }
+
+    function el(tag, cls){ const n=document.createElement(tag); if(cls) cls.split(" ").forEach(c=>n.classList.add(c)); return n; }
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+    function formatDateRus(y,m,d){
+        const mNames = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
+        return `${d} ${mNames[m]}`;
+    }
+}
+
+// --- пример вызова ---
+document.addEventListener("DOMContentLoaded", () => {
+    const year = 2025;
+    const events = {
+        "2025-03-20": [{ title: "Юбилей компании", time: "10:40" }],
+        "2025-04-23": [{ title: "День открытых дверей", time: "14:00" }],
+        "2025-06-24": [{ title: "Корпоратив", time: "18:30" }],
+        "2025-07-23": [{ title: "Презентация продукта" }],
+        "2025-12-27": [{ title: "Новогодний квиз", time: "17:00" }]
+    };
+    const root = document.getElementById("evcal-root");
+    buildEvCal(year, events, root);
+});
