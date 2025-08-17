@@ -416,14 +416,15 @@
     line-height: 120%;
 }
 
-
-/* адаптив: 3-2-1 колонки */
-@media (max-width: 1200px){
-    .evcal__grid{ grid-template-columns: repeat(3, 1fr); column-gap: 40px; }
+@media (max-width: 1380px){
+    .news-container .main {
+        width: 1040px;
+    }
+    .evcal {
+        padding: 40px 34px;
+    }
+    .evcal__grid {
+        column-gap: 30px;
+        row-gap: 41px;
+    }
 }
-@media (max-width: 900px){
-    .evcal{ padding: 20px; }
-    .evcal__grid{ grid-template-columns: repeat(2, 1fr); column-gap: 28px; }
-}
-@media (max-width: 560px){
-    .evcal__grid{ grid-template-columns: 1fr; }
