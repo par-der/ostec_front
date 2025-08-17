@@ -514,5 +514,132 @@
     </div>
 </div>
 
+<div class="drawer" id="eventsDrawer" aria-hidden="true">
+    <div class="drawer__overlay" data-drawer-close></div>
+
+    <aside class="drawer__panel" role="dialog" aria-modal="true"
+           aria-labelledby="eventsDrawerTitle" tabindex="-1">
+        <button class="drawer__close" type="button" data-drawer-close aria-label="Закрыть">
+            <img class="drawer__ico" src="/images/icons/subtract.svg" alt="">
+        </button>
+
+        <header class="drawer__bar events-drawer__bar">
+            <h2 class="drawer__title events-drawer__title" id="eventsDrawerTitle">
+                Четверг, 20.03.2025
+            </h2>
+            <span class="evd-badge" id="eventsDrawerCount" aria-hidden="true">2</span>
+        </header>
+
+        <div class="drawer__scroll events-drawer__scroll">
+            <div class="eventsDrawerBody">
+                <article class="evd-card">
+                    <header class="evd-card__head">
+                        <h3 class="evd-card__title">
+                            <img class="evd-card__title-ico" src="/images/icons/campaign.svg" alt="" aria-hidden="true">
+                            Название события
+                        </h3>
+                        <button class="evd-card__pin" type="button"
+                                aria-label="Закрепить меню"
+                                aria-pressed="false"
+                                data-icon-default="/images/icons/pin.svg"
+                                data-icon-active="/images/icons/pin_active.svg">
+                            <img src="/images/icons/pin.svg" alt="" aria-hidden="true">
+                        </button>
+                    </header>
+
+                    <div class="evd-card__desc">
+                        <div class="evd-card__desc-muted">Описание события</div>
+                        <p class="evd-card__desc-text">
+                            Небольшое описание события длинный текст длинный текст небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание. Небольшое описание события длинный текст длинный текст небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание.
+                        </p>
+                    </div>
+
+                    <div class="evd-card__gallery">
+                        <img class="evd-card__img" src="/images/card-1.png" alt="">
+                        <img class="evd-card__img" src="/images/card-2.png" alt="">
+                        <img class="evd-card__img" src="/images/card-3.png" alt="">
+                    </div>
+
+                    <dl class="evd-card__meta">
+                        <dt class="evd-card__term">Место:</dt>
+                        <dd class="evd-card__val">Место проведения события</dd>
+                        <dt class="evd-card__term">Время:</dt>
+                        <dd class="evd-card__val">16:00</dd>
+                    </dl>
+
+                    <footer class="evd-card__foot">
+                        <div class="evd-actions">
+                            <button class="evd-action evd-action--like" type="button">
+                                <img class="evd-action__ico" src="/images/icons/like.svg" alt="" aria-hidden="true">
+                                <span class="evd-action__count">0</span>
+                            </button>
+                            <button class="evd-action evd-action--share" type="button" aria-label="Поделиться">
+                                <img class="evd-action__ico" src="/images/icons/share.svg" alt="" aria-hidden="true">
+                            </button>
+                        </div>
+                        <div class="evd-views">
+                            <img class="evd-views__ico" src="/images/icons/eye.svg" alt="" aria-hidden="true">
+                            <span class="evd-views__count">0</span>
+                        </div>
+                    </footer>
+                </article>
+
+                <!-- вторая карточка (пример проще) -->
+                <article class="evd-card">
+                    <header class="evd-card__head">
+                        <h3 class="evd-card__title">
+                            <img class="evd-card__title-ico" src="/images/icons/campaign.svg" alt="" aria-hidden="true">
+                            Название события
+                        </h3>
+                        <button class="evd-card__pin" type="button"
+                                aria-label="Закрепить меню"
+                                aria-pressed="false"
+                                data-icon-default="/images/icons/pin.svg"
+                                data-icon-active="/images/icons/pin_active.svg">
+                            <img src="/images/icons/pin.svg" alt="" aria-hidden="true">
+                        </button>
+                    </header>
+
+                    <div class="evd-card__desc">
+                        <div class="evd-card__desc-muted">Описание события</div>
+                        <p class="evd-card__desc-text">
+                            Небольшое описание события длинный текст длинный текст небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание. Небольшое описание события длинный текст длинный текст небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание небольшое описание.
+                        </p>
+                    </div>
+
+                    <div class="evd-card__gallery">
+                        <img class="evd-card__img" src="/images/card-1.png" alt="">
+                        <img class="evd-card__img" src="/images/card-2.png" alt="">
+                        <img class="evd-card__img" src="/images/card-3.png" alt="">
+                    </div>
+
+                    <dl class="evd-card__meta">
+                        <dt class="evd-card__term">Место:</dt>
+                        <dd class="evd-card__val">Место проведения события</dd>
+                        <dt class="evd-card__term">Время:</dt>
+                        <dd class="evd-card__val">16:00</dd>
+                    </dl>
+
+                    <footer class="evd-card__foot">
+                        <div class="evd-actions">
+                            <button class="evd-action evd-action--like" type="button">
+                                <img class="evd-action__ico" src="/images/icons/like.svg" alt="" aria-hidden="true">
+                                <span class="evd-action__count">0</span>
+                            </button>
+                            <button class="evd-action evd-action--share" type="button" aria-label="Поделиться">
+                                <img class="evd-action__ico" src="/images/icons/share.svg" alt="" aria-hidden="true">
+                            </button>
+                        </div>
+                        <div class="evd-views">
+                            <img class="evd-views__ico" src="/images/icons/eye.svg" alt="" aria-hidden="true">
+                            <span class="evd-views__count">0</span>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    </aside>
+</div>
+
 </body>
 </html>

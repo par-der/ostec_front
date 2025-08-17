@@ -241,6 +241,182 @@
     color: #8FD700;
 }
 
+/*----------------------------------------- стили для модалки ---------------------------------------*/
+.events-drawer__bar {
+    display: flex;
+}
+
+.events-drawer__title {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.evd-badge{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 10px;
+    margin-left: 12px;
+    margin-top: 2px;
+    background: #fff;
+    color: #07150A;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.events-drawer__scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px 30px;
+    scrollbar-gutter: stable;
+    --sbw: 0px;
+    padding-right: calc(30px - var(--sbw));
+}
+
+.evd-card{
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0 0 20px 0;
+}
+
+.evd-card__head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #DEDEDE;
+}
+.evd-card__title{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 450;
+    font-size: 18px;
+    line-height: 120%;
+    color: #000000;
+    height: 24px;
+}
+.evd-card__title-ico{
+     padding-bottom: 2px;
+ }
+.evd-card__pin{
+     border: 0;
+     margin: 0;
+     padding: 0;
+     background: none;
+     cursor: pointer;
+}
+
+.evd-card__desc {
+    padding-top: 16px;
+}
+
+/* Описание */
+.evd-card__desc-muted{
+    color: #939393;
+    font-weight: 450;
+    font-size: 16px;
+    line-height: 120%;
+    margin-bottom: 8px;
+}
+.evd-card__desc-text{
+     margin: 0 0 12px;
+     color: #07150A;
+     font-size: 16px;
+     font-weight: 400;
+     line-height: 120%;
+}
+
+/* Галерея */
+.evd-card__gallery{
+     display: flex;
+     gap: 8px;
+     flex-wrap: wrap;
+     margin: 0;
+    padding-bottom: 12px;
+}
+.evd-card__img{
+    display: block;
+    width: 280px;
+    height: 158px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Мета: место/время */
+.evd-card__meta{
+     display: grid;
+     grid-template-columns: max-content 1fr;
+     column-gap: 8px;
+     row-gap: 12px;
+     margin: 0;
+}
+.evd-card__term{
+     color: #939393;
+     font-size: 16px;
+     line-height: 120%;
+     font-weight: 450;
+}
+.evd-card__val{
+     color: #07150A;
+     margin: 0;
+     font-size: 16px;
+     line-height: 120%;
+     font-weight: 400;
+}
+
+/* Футер: действия + просмотры */
+.evd-card__foot{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    border-top: 1px solid #F0F0F0;
+    padding: 16px 0;
+}
+.evd-actions{
+     display: flex;
+     gap: 12px;
+}
+.evd-action{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 0;
+    background: #F4F4F4;
+    padding: 8px 10px;
+    border-radius: 100px;
+    cursor: pointer;
+}
+.evd-action__count{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 120%;
+    color: #07150A;
+    margin-top: 1px;
+}
+
+.evd-views{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.evd-views__count {
+    color: #939393;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+
 /* адаптив: 3-2-1 колонки */
 @media (max-width: 1200px){
     .evcal__grid{ grid-template-columns: repeat(3, 1fr); column-gap: 40px; }

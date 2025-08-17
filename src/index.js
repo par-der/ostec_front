@@ -1248,14 +1248,18 @@ function buildCalendar({year, root, events = {}, holidays = [], selected = [], h
             ].filter(Boolean).join(' ');
 
             // делаем кнопку, если есть события ИЛИ дата выбрана (для модалки)
-            const makeButton = hasEvents || isSelected;
-            const tag = makeButton ? 'button' : 'span';
-            const modalAttr = isSelected ? ` data-open-modal="day" data-date="${ymd}"` : '';
-            const tipId = hasEvents ? `tip-${ymd}` : '';
+            const clickable = hasEvents || isSelected || isHighlighted;
+            const tag = clickable ? 'button' : 'span';
+            const attrs = [];
+            if (clickable) {
+                attrs.push('type="button"');
+                attrs.push('data-drawer-open="#eventsDrawer"'); // ← твой же механизм
+                attrs.push(`data-date="${ymd}"`);
+            }
+            if (hasEvents) attrs.push(`aria-describedby="tip-${ymd}"`);
 
-            // тултип как раньше
             const tipHtml = hasEvents
-                ? `<div class="evcal-tip" id="${tipId}">
+                ? `<div class="evcal-tip" id="tip-${ymd}">
              ${evs.map(ev => (
                     `${escapeHtml(ev.title)}${
                         ev.time ? `<br><span class="evcal-tip__time">${formatDateRus(date)}, ${escapeHtml(ev.time)}</span>` : ""
@@ -1265,7 +1269,7 @@ function buildCalendar({year, root, events = {}, holidays = [], selected = [], h
                 : '';
 
             days += `<div class="${cls}">
-                 <${tag} class="evcal-day__num"${makeButton?' type="button"':''}${modalAttr}${hasEvents?` aria-describedby="${tipId}"`:''}>
+                 <${tag} class="evcal-day__num" ${attrs.join(' ')}>
                    ${date.getDate()}
                  </${tag}>
                  ${tipHtml}
@@ -1314,3 +1318,33 @@ document.addEventListener('DOMContentLoaded', () => {
         highlight: "2025-08-07"
     });
 });
+
+// --------------------------------------- нажатие пина в модалке --------------------------------------
+(function enableEventsDrawerPin(){
+    const drawer = document.getElementById('eventsDrawer');
+    if (!drawer) return;
+
+    drawer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.evd-card__pin');
+        if (!btn || !drawer.contains(btn)) return;
+
+        const img = btn.querySelector('img');
+        // если data-icon-default не задан, возьмём текущее значение src
+        if (!btn.dataset.iconDefault && img) {
+            btn.dataset.iconDefault = img.getAttribute('src') || '';
+        }
+
+        const def = btn.dataset.iconDefault;
+        const act = btn.dataset.iconActive;
+        const pressed = btn.getAttribute('aria-pressed') === 'true';
+        const next = !pressed;
+
+        btn.setAttribute('aria-pressed', String(next));
+        if (img && def && act) {
+            img.src = next ? act : def;
+        }
+
+        // опционально: помечаем всю карточку
+        btn.closest('.evd-card')?.classList.toggle('evd-card--pinned', next);
+    });
+})();
