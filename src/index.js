@@ -1175,104 +1175,142 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 // ------------------------------------------ календарь событий --------------------------------------------------
-function buildEvCal(year, events, root){
+function buildCalendar({year, root, events = {}, holidays = [], selected = [], highlight = null}) {
     const monthsRU = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
     const weekdaysRU = ["Пн","Вт","Ср","Чт","Пт","Сб","Вс"];
     const today = new Date();
+    const isCurrentMonth = (y,m)=> y===today.getFullYear() && m===today.getMonth();
+    const holidaySet = new Set(holidays);       // ["2025-01-01", ...]
+    const selectedSet = new Set(selected);      // ["2025-02-12","2025-02-13"]
+    const fmtLocal = d => [
+        d.getFullYear(),
+        String(d.getMonth()+1).padStart(2,"0"),
+        String(d.getDate()).padStart(2,"0")
+    ].join("-");
+    const addDays = (d,n)=> { const x=new Date(d); x.setDate(x.getDate()+n); return x; };
+    const dowMon0 = d => (d.getDay()+6)%7;      // Пн=0 ... Вс=6
 
-    for(let m=0; m<12; m++){
-        // <article class="evcal-month">
-        const $month = el("article","evcal-month");
+    const escapeHtml = s => String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+    const formatDateRus = d => {
+        const mNames = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
+        return `${d.getDate()} ${mNames[d.getMonth()]}`;
+    };
 
-        // шапка месяца
-        const $head = el("header","evcal-month__head");
-        const $name = el("h2","evcal-month__name");
-        $name.id = `evcal-${year}-${m+1}`;
-        $name.textContent = monthsRU[m];
-        $head.appendChild($name);
-        $month.appendChild($head);
+    let hYear=null, hMonth=null, hDay=null;
+    if (typeof highlight === "string") {
+        const [hy, hm, hd] = highlight.split("-").map(n=>parseInt(n,10));
+        if (!Number.isNaN(hy) && !Number.isNaN(hm) && !Number.isNaN(hd)) {
+            hYear = hy; hMonth = hm - 1; hDay = hd;
+        }
+    }
 
-        // сетка месяца 7 колонок
-        const $grid = el("div","evcal-month__grid");
+    let html = "";
+    const perRow = 4;
+    for (let m=0; m<12; m++) {
+        const first = new Date(year, m, 1);
+        const start = addDays(first, -dowMon0(first));
 
-        // заголовки дней недели
-        weekdaysRU.forEach((w,i)=>{
-            const wEl = el("div","evcal-weekday" + (i===5 ? " evcal-weekday--sat" : i===6 ? " evcal-weekday--sun" : ""));
-            wEl.textContent = w;
-            $grid.appendChild(wEl);
-        });
+        const header =
+            `<header class="evcal-month__head">
+         <h2 class="evcal-month__name">${monthsRU[m]}</h2>
+       </header>`;
 
-        // паддинги до первого числа (понедельник = 0)
-        const firstDowMon0 = (new Date(year, m, 1).getDay() + 6) % 7;
-        for(let i=0;i<firstDowMon0;i++) $grid.appendChild(el("div","evcal-day evcal-day--pad"));
+        const week =
+            `<div class="evcal-week">
+        ${weekdaysRU.map((w,i)=>`<div class="evcal-weekday ${i===5?'is-sat':''} ${i===6?'is-sun':''}">${w}</div>`).join('')}
+       </div>`;
 
-        // дни месяца
-        const daysInMonth = new Date(year, m+1, 0).getDate();
-        for(let d=1; d<=daysInMonth; d++){
-            const ymd = `${year}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
-            const hasEvents = Array.isArray(events[ymd]) ? events[ymd] : [];
+        let days = "";
+        for (let i=0; i<42; i++) {
+            const date = addDays(start, i);
+            const ymd = fmtLocal(date);                     // ✅ без сдвига
+            const inMonth = date.getMonth() === m;
+            const dMon = dowMon0(date);
+            const isSat = dMon === 5, isSun = dMon === 6;
+            const isSelected = selectedSet.has(ymd);
+            const evs = Array.isArray(events[ymd]) ? events[ymd] : [];
+            const hasEvents = evs.length > 0;
 
-            const $day = el("div","evcal-day" + (
-                today.getFullYear()===year && today.getMonth()===m && today.getDate()===d ? " evcal-day--today" : ""
-            ));
+            const isHighlighted = (hMonth !== null && date.getMonth() === hMonth && date.getDate() === hDay);
+            const isPrevYear    = isHighlighted && hYear !== null && hYear < year;
 
-            const btnOrSpanTag = hasEvents.length ? "button" : "span";
-            const $num = el(btnOrSpanTag,"evcal-day__num");
-            $num.textContent = d;
-            if(hasEvents.length){ $num.type = "button"; }
+            const cls = [
+                'evcal-day',
+                inMonth ? 'is-in' : 'is-out',
+                isSat ? 'is-sat' : '',
+                isSun ? 'is-sun' : '',
+                holidaySet.has(ymd) ? 'is-holiday' : '',
+                (year===today.getFullYear() && date.getMonth()===today.getMonth() && date.getDate()===today.getDate()) ? 'is-today' : '',
+                hasEvents ? 'evcal-day--event' : '',
+                isSelected ? 'is-selected' : '',
+                isHighlighted ? 'is-highlighted' : '',
+                isPrevYear ? 'is-prevyear' : '',
+            ].filter(Boolean).join(' ');
 
-            $day.appendChild($num);
+            // делаем кнопку, если есть события ИЛИ дата выбрана (для модалки)
+            const makeButton = hasEvents || isSelected;
+            const tag = makeButton ? 'button' : 'span';
+            const modalAttr = isSelected ? ` data-open-modal="day" data-date="${ymd}"` : '';
+            const tipId = hasEvents ? `tip-${ymd}` : '';
 
-            // тултип, если есть события
-            if(hasEvents.length){
-                $day.classList.add("evcal-day--event");
-                const tipId = `evcal-tip-${ymd}`;
-                $num.setAttribute("aria-describedby", tipId);
+            // тултип как раньше
+            const tipHtml = hasEvents
+                ? `<div class="evcal-tip" id="${tipId}">
+             ${evs.map(ev => (
+                    `${escapeHtml(ev.title)}${
+                        ev.time ? `<br><span class="evcal-tip__time">${formatDateRus(date)}, ${escapeHtml(ev.time)}</span>` : ""
+                    }`
+                )).join('<hr style="border:none;height:1px;background:#E3E7EA;margin:8px 0">')}
+           </div>`
+                : '';
 
-                const $tip = el("div","evcal-tip");
-                $tip.id = tipId;
-                $tip.innerHTML = hasEvents.map(ev => (
-                    `${escapeHtml(ev.title)}${ev.time ? `<br><span class="evcal-tip__time">${formatDateRus(year,m,d)}, ${escapeHtml(ev.time)}</span>` : ""}`
-                )).join('<hr style="border:none;height:1px;background:#E3E7EA;margin:8px 0">');
-
-                // доступность: Esc закрывает фокус
-                $num.addEventListener("keydown", e => { if(e.key==="Escape") $num.blur(); });
-
-                $day.appendChild($tip);
-            }
-
-            $grid.appendChild($day);
+            days += `<div class="${cls}">
+                 <${tag} class="evcal-day__num"${makeButton?' type="button"':''}${modalAttr}${hasEvents?` aria-describedby="${tipId}"`:''}>
+                   ${date.getDate()}
+                 </${tag}>
+                 ${tipHtml}
+               </div>`;
         }
 
-        $month.appendChild($grid);
-        root.appendChild($month);
-
-        const perRow = 4;
+        html += `<article class="evcal-month${isCurrentMonth(year,m)?' is-current-month':''}">
+               ${header}
+               ${week}
+               <div class="evcal-month__grid">${days}</div>
+             </article>`;
 
         if ( ((m + 1) % perRow) === 0 && m < 11 ) {
-            const $sep = el("div","evcal-sep");
-            root.appendChild($sep);
+            html += `<div class="evcal-sep" role="separator" aria-hidden="true"></div>`;
         }
     }
 
-    function el(tag, cls){ const n=document.createElement(tag); if(cls) cls.split(" ").forEach(c=>n.classList.add(c)); return n; }
-    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
-    function formatDateRus(y,m,d){
-        const mNames = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
-        return `${d} ${mNames[m]}`;
-    }
+    root.innerHTML = html;
+
+    // делегирование — открыть модалку по выбранным датам
+    root.addEventListener('click', (e)=>{
+        const btn = e.target.closest('[data-open-modal="day"]');
+        if (!btn) return;
+        const ymd = btn.dataset.date;
+        document.dispatchEvent(new CustomEvent('open-day-modal', { detail: { date: ymd }}));
+        // openModal(ymd); // твой вызов
+    });
 }
 
-// --- пример вызова ---
-document.addEventListener("DOMContentLoaded", () => {
-    const year = 2025;
-    const events = {
-        "2025-03-20": [{ title: "Юбилей компании", time: "10:40" }],
-        "2025-04-23": [{ title: "День открытых дверей", time: "14:00" }],
-        "2025-06-24": [{ title: "Корпоратив", time: "18:30" }],
-        "2025-07-23": [{ title: "Презентация продукта" }],
-        "2025-12-27": [{ title: "Новогодний квиз", time: "17:00" }]
-    };
-    const root = document.getElementById("evcal-root");
-    buildEvCal(year, events, root);
+document.addEventListener('DOMContentLoaded', () => {
+    const root = document.getElementById('evcal-root');
+    buildCalendar({
+        year: 2025,
+        root,
+        events: {
+            "2025-03-20": [{ title: "Юбилей компании", time: "10:40" }],
+            "2025-04-23": [{ title: "День открытых дверей", time: "14:00" }],
+            "2025-06-24": [{ title: "Корпоратив", time: "18:30" }],
+            "2025-07-23": [{ title: "Презентация продукта" }],
+        },
+        holidays: [
+            "2025-01-01","2025-01-02","2025-01-03","2025-01-04","2025-01-05","2025-01-06","2025-01-07","2025-01-08",
+            "2025-02-23","2025-03-08","2025-05-01","2025-05-09","2025-06-12","2025-11-04"
+        ],
+        selected: ["2025-03-20","2025-04-23","2025-06-24","2025-07-23"],
+        highlight: "2025-08-07"
+    });
 });
