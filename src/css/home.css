@@ -1661,7 +1661,7 @@ button, button:active {
 /* Список со скроллом у самого края */
 .hires__list{
     display:flex; flex-direction:column; gap:12px;
-    max-height:390px;
+    max-height: 372px;
     overflow:auto;
     padding-right:0;
     margin-right:0;
@@ -2797,22 +2797,38 @@ button, button:active {
 .profile-actions__btn{
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 8px;
+    gap: 6px;
+    padding: 8px 10px;
     border: 0;
     border-radius: 8px;
     background: #8FD700;
     color: #fff;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 110%;
     font-weight: 700;
+    height: 40px;
+}
+
+.profile-actions__btn-right {
+    width: 136px;
+}
+
+.profile-actions__btn-left {
+    width: 214px;
+}
+
+.profile-actions__img {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .profile-actions__icon{
-    width: 23px;
-    height: 23px;
     display: block;
+    padding-bottom: 2px;
 }
 
 .absence-extra{
@@ -3009,30 +3025,47 @@ button, button:active {
 
 
 .stats {
-    --ico-h: 48px;
-    --div-w: 2px;
-    --gap-x: 24px;
+    /*--ico-h: 48px;*/
+    /*--div-w: 2px;*/
+    /*--gap-x: 24px;*/
     padding: 12px;
     min-height: 98px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
     justify-content: center;
+    align-items: stretch;
+    /*justify-content: center;*/
 }
 
 .stats__icons {
-    position: relative;
+    /*position: relative;*/
+    /*display: flex;*/
+    /*gap: 48px;*/
+    /*height: 48px;*/
+    /*align-items: center;*/
+    /*width: 98px;*/
     display: flex;
-    gap: 48px;
-    height: 48px;
+    flex-direction: column;
     align-items: center;
-    width: 98px;
+    gap: 8px;
+    padding: 0 16px;
+    min-height: 74px;
+    text-align: center;
 }
 
 .stats__icons .metric {
-    flex: 1 1 0;
-    display: flex;
-    justify-content: center;
+    /*flex: 1 1 0;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    display: grid;
+    place-items: center;
+    padding: 11px 0;
+}
+
+.stats__divider {
+    width: 1px;
+    height: 48px;
+    background: #F7F7F7;
 }
 
 .metric__icon {
@@ -3041,16 +3074,13 @@ button, button:active {
     display: block;
 }
 
-.stats__icons::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 2px;
-    height: 48px;
-    background: #F0F0F0;
-    transform: translateX(-50%);
-    border-radius: 1px;
+.stats__values .metric__value {
+    /*flex: 1 1 0;*/
+    /*text-align: center;*/
+    font-size: 16px;
+    line-height: 110%;
+    font-weight: 450;
+    color: #07150A;
 }
 
 /* Ряд значений — ровно под соответствующими иконками */
@@ -3061,19 +3091,11 @@ button, button:active {
     width: 98px;
 }
 
-.stats__values .metric__value {
-    flex: 1 1 0;
-    text-align: center;
-    font-size: 16px;
-    line-height: 110%;
-    font-weight: 450;
-    color: #07150A;
-}
 
 /* контактная инфа на flex */
 .card-contact {
     height: 548px;
-    width: 524px;
+    /*width: 524px;*/
 }
 
 .card-contact__head {
@@ -3121,8 +3143,12 @@ button, button:active {
 .info-val {
     font-size: 16px;
     line-height: 120%;
-    font-weight: 450;
+    font-weight: 400;
     color: #07150A;
+}
+
+.info-second {
+    color: #939393;
 }
 
 /* доп. инфа */

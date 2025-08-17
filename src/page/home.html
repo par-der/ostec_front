@@ -753,6 +753,7 @@
                         </a>
                     </div>
                 </article>
+
             </div>
         </aside>
 
@@ -1231,60 +1232,38 @@
                     </section>
 
                     <section class="profile-actions" aria-label="Действия профиля">
-                        <button class="profile-actions__btn" type="button">
-                            <img class="profile-actions__icon" src="/images/icons/message.svg" alt="" aria-hidden="true">
+                        <button class="profile-actions__btn profile-actions__btn-left" type="button">
+                            <div class="profile-actions__img">
+                                <img class="profile-actions__icon" src="/images/icons/message.svg" alt="" aria-hidden="true">
+                            </div>
                             <span class="profile-actions__text">Написать сообщение</span>
                         </button>
 
-                        <button class="profile-actions__btn" type="button">
-                            <img class="profile-actions__icon" src="/images/icons/bookmark.svg" alt="" aria-hidden="true">
+                        <button class="profile-actions__btn profile-actions__btn-right" type="button">
+                            <div class="profile-actions__img">
+                                <img class="profile-actions__icon" src="/images/icons/bookmark.svg" alt="" aria-hidden="true">
+                            </div>
                             <span class="profile-actions__text">Избранное</span>
                         </button>
                     </section>
 
                     <section class="card stats">
                         <div class="stats__icons">
-                            <div class="metric"><img class="metric__icon" src="/images/icons/gift.svg"  alt=""></div>
-                            <div class="metric"><img class="metric__icon" src="/images/icons/hand.svg"  alt=""></div>
-                        </div>
-
-                        <div class="stats__values">
+                            <div class="metric"><img class="metric__icon" src="/images/icons/gift_for_profile.svg"  alt=""></div>
                             <div class="metric__value">109</div>
+                        </div>
+                        <div class="stats__divider" aria-hidden="true"></div>
+                        <div class="stats__icons">
+                            <div class="metric"><img class="metric__icon" src="/images/icons/waving_hand_for_profile.svg"  alt=""></div>
                             <div class="metric__value">20</div>
                         </div>
-                    </section>
-
-                    <section class="profile-widgets" aria-label="Виджеты профиля">
-                        <!-- ЛЕВАЯ: счётчики -->
-                        <div class="profile-widgets__item profile-widgets__item--stats">
-                            <div class="pw-stats">
-                                <div class="pw-stats__icons">
-                                    <div class="pw-stats__metric"><img class="pw-stats__icon" src="/images/icons/gift.svg" alt=""></div>
-                                    <div class="pw-stats__metric"><img class="pw-stats__icon" src="/images/icons/hand.svg" alt=""></div>
-                                </div>
-
-                                <div class="pw-stats__values">
-                                    <div class="pw-stats__value">109</div>
-                                    <div class="pw-stats__value">20</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ПРАВАЯ: идеи -->
-                        <div class="profile-widgets__item profile-widgets__item--ideas">
-                            <div class="pw-ideas">
-                                <div class="pw-ideas__top">
-                                    <img class="pw-ideas__icon" src="/images/icons/light.svg" alt="">
-                                    <span class="pw-ideas__count">5 идей</span>
-                                </div>
-
-                                <a class="pw-ideas__more" href="#">
-                                    <span>Подробнее</span>
-                                    <img class="pw-ideas__arrow" src="/images/icons/arrow_right.svg" alt="" aria-hidden="true">
-                                </a>
-                            </div>
+                        <div class="stats__divider" aria-hidden="true"></div>
+                        <div class="stats__icons">
+                            <div class="metric"><img class="metric__icon" src="/images/icons/light.svg"  alt=""></div>
+                            <div class="metric__value">5</div>
                         </div>
                     </section>
+
 
                     <section class="absence-extra" aria-labelledby="absence-extra-title">
                         <header class="absence-extra__header">
@@ -1355,7 +1334,7 @@
                             </div>
                             <div class="info-row">
                                 <div class="info-term">Должность</div>
-                                <div class="info-val">Главный специалист по интеграции программного обеспечения (3 года, с 09.11.2023)</div>
+                                <div class="info-val">Главный специалист по интеграции программного обеспечения <span class="info-second">(3 года, с 09.11.2023)</span></div>
                             </div>
                             <div class="info-row">
                                 <div class="info-term">День рождения</div>
